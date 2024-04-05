@@ -1,18 +1,686 @@
-# MSCOINS-v1.1.1-
+local screen_gui = Instance.new("ScreenGui")
+screen_gui.Name = "Kiwi"
+screen_gui.DisplayOrder = 999999999
+screen_gui.IgnoreGuiInset = false
+screen_gui.ResetOnSpawn = false
+screen_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screen_gui.Parent = game.CoreGui
+
+local frame = Instance.new("Frame")
+frame.AnchorPoint = Vector2.new(0, 1)
+frame.BackgroundColor3 = Color3.new(1, 1, 1)
+frame.BackgroundTransparency = 1
+frame.BorderColor3 = Color3.new(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Position = UDim2.new(0, 0, 1, 0)
+frame.Size = UDim2.new(0.386924595, 0, 0.576817155, 0)
+frame.Visible = true
+frame.Parent = screen_gui
+
+local uigrid_layout = Instance.new("UIGridLayout")
+uigrid_layout.CellPadding = UDim2.new(0, 0, 0.0500000007, 0)
+uigrid_layout.CellSize = UDim2.new(0.800000012, 0, 0.200000003, 0)
+uigrid_layout.StartCorner = Enum.StartCorner.BottomLeft
+uigrid_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uigrid_layout.SortOrder = Enum.SortOrder.LayoutOrder
+uigrid_layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+uigrid_layout.Parent = frame
+
+local uipadding = Instance.new("UIPadding")
+uipadding.PaddingBottom = UDim.new(0.02500000037252903, 0)
+uipadding.Parent = frame
+
+local template = Instance.new("Frame")
+template.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+template.BorderColor3 = Color3.new(0, 0, 0)
+template.BorderSizePixel = 0
+template.Position = UDim2.new(0, 0, 0.605726838, 0)
+template.Size = UDim2.new(0, 231, 0, 286)
+template.Visible = false
+template.Name = "template"
+template.Parent = frame
+
+local uiscale = Instance.new("UIScale")
+uiscale.Parent = template
+
+local uicorner = Instance.new("UICorner")
+uicorner.Parent = template
+
+local uistroke = Instance.new("UIStroke")
+uistroke.Color = Color3.new(0.588235, 0.588235, 0.588235)
+uistroke.Thickness = 2.5
+uistroke.Parent = template
+
+local uigradient = Instance.new("UIGradient")
+uigradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.996078, 0.0392157, 0)), ColorSequenceKeypoint.new(0.1599999964237213, Color3.new(1, 0.615686, 0)), ColorSequenceKeypoint.new(0.3199999928474426, Color3.new(1, 1, 0)), ColorSequenceKeypoint.new(0.47999998927116394, Color3.new(0, 1, 0)), ColorSequenceKeypoint.new(0.6399999856948853, Color3.new(0, 0.666667, 1)), ColorSequenceKeypoint.new(0.800000011920929, Color3.new(1, 0.333333, 1)), ColorSequenceKeypoint.new(1, Color3.new(0.666667, 0, 1))})
+uigradient.Parent = uistroke
+
+local text_label = Instance.new("TextLabel")
+text_label.Font = Enum.Font.GothamBold
+text_label.Text = "Entity spawned"
+text_label.TextColor3 = Color3.new(1, 1, 1)
+text_label.TextScaled = true
+text_label.TextSize = 14
+text_label.TextWrapped = true
+text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+text_label.BackgroundTransparency = 1
+text_label.BorderColor3 = Color3.new(0, 0, 0)
+text_label.BorderSizePixel = 0
+text_label.Size = UDim2.new(1, 0, 1, 0)
+text_label.Visible = true
+text_label.ZIndex = 3
+text_label.Parent = template
+
+local uistroke_2 = Instance.new("UIStroke")
+uistroke_2.Thickness = 2.5
+uistroke_2.Parent = text_label
+
+local uipadding_2 = Instance.new("UIPadding")
+uipadding_2.PaddingBottom = UDim.new(0.10000000149011612, 0)
+uipadding_2.PaddingLeft = UDim.new(0.10000000149011612, 0)
+uipadding_2.PaddingRight = UDim.new(0.10000000149011612, 0)
+uipadding_2.PaddingTop = UDim.new(0.10000000149011612, 0)
+uipadding_2.Parent = text_label
+
+local uigradient_2 = Instance.new("UIGradient")
+uigradient_2.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(0.3799654543399811, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(0.5, Color3.new(0.580392, 0.580392, 0.580392)), ColorSequenceKeypoint.new(0.5336787700653076, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(1, Color3.new(1, 1, 1))})
+uigradient_2.Offset = Vector2.new(-1, 0)
+uigradient_2.Rotation = 45
+uigradient_2.Parent = template
+
+local shadow = Instance.new("ImageLabel")
+shadow.Image = "rbxassetid://14001321443"
+shadow.ImageColor3 = Color3.new(0, 0, 0)
+shadow.ImageTransparency = 0.75
+shadow.ScaleType = Enum.ScaleType.Slice
+shadow.SliceCenter = Rect.new(50, 50, 150, 150)
+shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+shadow.BackgroundColor3 = Color3.new(1, 1, 1)
+shadow.BackgroundTransparency = 1
+shadow.BorderColor3 = Color3.new(0, 0, 0)
+shadow.BorderSizePixel = 0
+shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+shadow.Size = UDim2.new(1, 35, 1, 35)
+shadow.Visible = true
+shadow.ZIndex = -1
+shadow.Name = "shadow"
+shadow.Parent = template
+
+local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+uiaspect_ratio_constraint.AspectRatio = 1.107398509979248
+uiaspect_ratio_constraint.Parent = frame
+
+local function sound()
+	local notification = Instance.new("Sound", workspace)
+	notification.SoundId = "rbxassetid://5153734608"
+	notification.Parent = workspace
+	notification:Play()
+end
+
+local function notify(entity, bypassed, other)
+	sound()
+	local tem = template:Clone()
+	tem.Visible = true
+	tem.TextLabel.Text = entity .. " Has just spawned!"
+	if bypassed then
+		tem.TextLabel.Text = entity .. " Has been bypassed!"
+	end
+	if other then
+		tem.TextLabel.Text = other
+	end
+	tem.Parent = frame
+	game:GetService("TweenService"):Create(tem.UIScale, TweenInfo.new(0.25, Enum.EasingStyle.Sine), { Scale = 1 }):Play()
+	spawn(function()
+		while true do
+			task.wait(0.01)
+			if not tem or not tem:FindFirstChild("UIStroke") or not tem:FindFirstChild("UIStroke"):FindFirstChild("UIGradient") then
+				return
+			end
+			tem.UIStroke.UIGradient.Rotation += 1
+		end
+	end)
+
+	spawn(function()
+		while true do
+			task.wait(0.01)
+			if not tem or not tem:FindFirstChild("UIGradient") then
+				return
+			end
+			if tem.UIGradient.Offset.X >= 1 then
+				tem.UIGradient.Offset = Vector2.new(-1, 0)
+			end
+			tem.UIGradient.Offset += Vector2.new(0.01, 0)
+		end
+	end)
+	spawn(function()
+		task.wait(15)
+		if tem and tem:FindFirstChild("UIScale") then
+			game:GetService("TweenService"):Create(tem.UIScale, TweenInfo.new(0.25, Enum.EasingStyle.Sine), { Scale = 0 }):Play()
+			task.wait(.25)
+			tem:Destroy()
+		end
+	end)
+end
+
+if game:GetService("ReplicatedStorage").GameData.Floor.Value ~= "Retro" then
+	notify("", nil, "Not Retro Mode!")
+	return
+end
+
+
+local function billboard(child, name, name2, name3)
+	local billboard_gui = Instance.new("BillboardGui")
+	billboard_gui.Active = true
+	billboard_gui.AlwaysOnTop = true
+	billboard_gui.ClipsDescendants = true
+	billboard_gui.LightInfluence = 1
+	billboard_gui.Size = UDim2.new(10, 0, 2, 0)
+	billboard_gui.ResetOnSpawn = false
+	billboard_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	billboard_gui.Parent = child
+	billboard_gui.Name = "KiwiHighlight"
+	if name2 then
+		billboard_gui.Name = "KiwiHighlight_2"
+	end
+	if name3 then
+		billboard_gui.Name = "KiwiHighlight_3"
+	end
+
+	local text_label = Instance.new("TextLabel")
+	text_label.Font = Enum.Font.GothamBold
+	text_label.Text = name
+	text_label.TextColor3 = Color3.new(1, 1, 1)
+	text_label.TextScaled = true
+	text_label.TextSize = 14
+	text_label.TextWrapped = true
+	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label.BackgroundTransparency = 1
+	text_label.BorderColor3 = Color3.new(0, 0, 0)
+	text_label.BorderSizePixel = 0
+	text_label.Size = UDim2.new(1, 0, 1, 0)
+	text_label.Visible = true
+	text_label.Parent = billboard_gui
+
+	local uistroke = Instance.new("UIStroke")
+	uistroke.Thickness = 2.5
+	uistroke.Parent = text_label
+
+	spawn(function()
+		while task.wait() do
+			local hue = tick() % 5 / 5
+			local color = Color3.fromHSV(hue, 1, 1) 
+			text_label.TextColor3 = color
+		end
+	end)
+end
+
+local function selection(child, name, name2, name3)
+	billboard(child, name, name2, name3)
+	local hi = Instance.new("Highlight")
+	hi.Parent = child
+	hi.Adornee = child
+	hi.OutlineColor = Color3.fromRGB(161, 0, 0)
+	hi.FillColor = Color3.fromRGB(255, 0, 0)
+	hi.FillTransparency = 0.75
+	hi.Name = "KiwiHighlight"
+	if name2 then
+		hi.Name = "KiwiHighlight_2"
+	end
+	if name3 then
+		hi.Name = "KiwiHighlight_3"
+	end
+	if child:IsA("Part") then
+		child.Color = Color3.fromRGB(0, 0, 0)
+		child.Transparency = 0
+	end
+	spawn(function()
+		while task.wait() do
+			if hi then
+				local hue = tick() % 5 / 5
+				local color = Color3.fromHSV(hue, 1, 1) 
+				hi.OutlineColor = color
+				hi.FillColor = color
+			end
+		end
+	end)
+end
+
+function checkDistance(part, extra)
+	if not extra then extra = 15 end
+	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
+		return false
+	end
+	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
+	if distanceToPart <= extra then
+		return true
+	end
+	return false
+end
 local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 
 local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-setfpscap(5)
-wait(2)
-setfpscap(500)
-Library:Notify("MSCOINS-(v1.1.1) - Checking Key...")
-wait(5)
-if _G.wl_key then
-local Object = {(
-"2d00019992hfm111po0",
-"10020299jdoel2900021cd",
-"Deka1002dceh9021",
-"lo16390dceh251198")}
-end
+
+local Window = Library:CreateWindow({
+    Title = "MSCOINS-(v1.2.1) ",
+    Center = true,
+    AutoShow = true,
+    TabPadding = 5.5,
+    MenuFadeTime = 0
+})
+
+local killBricks
+local Eyes
+local DrakoBloxxers
+local Noclipping
+local brightLoop
+local KeyESP
+local DoorESP
+local ClosetESP
+local EntityNotifier
+local EntityNotifierScreech
+local SeekWall
+local FLYING = false
+local FlySpeed = 0.3
+local Clip = true
+local MainNotified = false
+local AutoInteract = false
+local EntityEsp = false
+local FOV = 70
+local Speed = 15
+local JumpPower = 25
+local Tab = Window:AddTab("Main")
+local Section = Tab:AddLeftGroupbox("Toggles")
+
+local Toggle = Section:AddToggle("Notifies",{
+	Text = "Entity Notifier",
+	Default = false,
+	Tooltip = "EntityNotifier",
+	Callback = function(Value)
+		if Value then
+			EntityNotifier = workspace.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Eyes" then
+					notify("Retro Eyes")
+					if EntityEsp then
+						selection(child, "Retro Eyes")
+					end
+				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+					notify("Retro Rush")
+					if EntityEsp then
+						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Rush]")
+					end
+				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+					notify("Retro Ambush")
+					if EntityEsp then
+						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Ambush]")
+					end
+				elseif child.Name == "Drakobloxxer" then
+					if EntityEsp then
+						selection(child, "[DrakoBloxxer]")
+					end
+					if not MainNotified then
+						MainNotified = true
+						notify("DrakoBloxxer")
+					end
+				end
+			end)
+			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "RetroScreech" then
+					notify("Retro Screech")
+					if EntityEsp then
+						selection(child, "Retro Screech")
+					end
+				end
+			end)
+		else
+			EntityNotifier:Disconnect()
+			EntityNotifierScreech:Disconnect()
+		end
+	end,
+})
+local Toggle = Section:AddToggle("Interact",{
+	Text = "Auto Interact",
+	Default = false,
+	Tooltip = "Auto Interact",
+	Callback = function(Value)
+		AutoInteract = Value
+	end,
+})
+local Toggle = Section:AddToggle("No",{
+	Text = "Noclip",
+	Default = false,
+	Tooltip = "Noclip",
+	Callback = function(Value)
+		if Value then
+			Clip = false
+			task.wait(0.1)
+			local function NoclipLoop()
+				if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+					for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+						if child:IsA("BasePart") and child.CanCollide == true then
+							child.CanCollide = false
+						end
+					end
+				end
+			end
+			Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+		else
+			if Noclipping then
+				Noclipping:Disconnect()
+			end
+			Clip = true
+		end
+	end,
+})
+local Toggle = Section:AddToggle("FB",{
+	Text = "FullBright",
+	Default = false,
+	Tooltip = "FullBright",
+	Callback = function(Value)
+		if Value then
+				game:GetService("Lighting").Brightness = 2
+				game:GetService("Lighting").ClockTime = 14
+				game:GetService("Lighting").FogEnd = 100000
+				game:GetService("Lighting").GlobalShadows = false
+				game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+			else
+                    game:GetService("Lighting").Brightness = 1
+				game:GetService("Lighting").ClockTime = 14
+				game:GetService("Lighting").FogEnd = 300
+				game:GetService("Lighting").GlobalShadows = true
+				game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(256,256,256)
+              end
+	end,
+})
+local Button = Section:AddButton({
+	Text = "GodMode",
+	Func = function()
+		game.Players.LocalPlayer.Character.Collision.Weld.C0 += Vector3.new(7, 0, 0)
+		game.Players.LocalPlayer.Character.Collision.Weld.C1 += Vector3.new(0, -0.5, 0)
+		game.Players.LocalPlayer.Character.Collision.CanCollide = false
+		game.Players.LocalPlayer.Character.Collision:GetPropertyChangedSignal("CanCollide"):Connect(function()
+			game.Players.LocalPlayer.Character.Collision.CanCollide = false
+		end)
+	end,
+})
+
+local Button = Section:AddButton({
+	Text = "Delete Messages",
+	Func = function()
+		for _, v in pairs(workspace:GetChildren()) do
+			if v:IsA("Message") then
+				v:Destroy()
+			end
+		end
+	end,
+})
+local Section = Tab:AddLeftGroupbox("Sliders")
+
+local Slider = Section:AddSlider("MySlider",{
+	Text = "Walk Speed",
+	Min = 16,
+	Max = 21,
+	Default = 16,
+	Tooltip = "WalkSpeed",
+	Rounding=0,
+	Compact=true,
+	Callback = function(Value)
+		Speed = Value
+	end,
+})
+
+local Slider = Section:AddSlider("MySlider",{
+	Text = "JumpPower",
+	Min = 25,
+	Max = 50,
+	Default = 25,
+	Tooltip = "JumpPower",
+	Rounding=0,
+        Compact=true,
+	Callback = function(Value)
+		JumpPower = Value
+	end,
+})
+
+
+local Slider = Section:AddSlider("MySlider",{
+	Text = "Field Of View",
+	Min = 70,
+	Max = 120,
+	Default = 70,
+	Flag = "FOV",
+	Rounding=0,
+        Compact=true,
+	Callback = function(Value)
+		FOV = Value
+	end,
+})
+game:GetService("RunService").RenderStepped:Connect(function()
+	workspace.CurrentCamera.FieldOfView = FOV
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
+end)
+local Section = Tab:AddRightGroupbox("Bypass")
+local Toggle = Section:AddToggle("Nos",{
+	Text = "Bypass Screech",
+	Default = false,
+	Tooltip = "BypassScreech",
+	Callback = function(Value)
+		if Value then
+			game:GetService("ReplicatedStorage").Entities.ScreechRetro.Name = "Screechretro"
+		else
+			game:GetService("ReplicatedStorage").Entities.Screechretro.Name = "ScreechRetro"
+		end
+	end,
+})
+
+local Toggle = Section:AddToggle("BK",{
+	Text = "Bypass Lava",
+	Default = false,
+	Tooltip = "BypassKillbricks",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end
+			killBricks = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end)
+		else
+			killBricks:Disconnect()
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = true
+						end
+					end
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Section:AddToggle("Beyes",{
+	Text = "Bypass Eyes",
+	Default = false,
+	Tooltip = "BypassEyes",
+	Callback = function(Value)
+		if Value then
+			Eyes = game:GetService("RunService").RenderStepped:Connect(function()
+				game:GetService("ReplicatedStorage").RemotesFolder.MotorReplication:FireServer(0, 90, 0, false)
+			end)
+		else
+			Eyes:Disconnect()
+		end
+	end,
+})
+
+
+local Toggle = Section:AddToggle("BD",{
+	Text = "Bypass DrakoBloxxers",
+	Default = false,
+	Tooltip = "BypassDrakoBloxxers",
+	Callback = function(Value)
+		if Value then
+			DrakoBloxxers = workspace.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Drakobloxxer" then
+					child:Destroy()
+					for _, v in pairs(workspace:GetChildren()) do
+						if v.Name == "Sound" and v:IsA("Sound") then
+							v:Destroy()
+						end
+					end
+				end
+			end)
+		else
+			DrakoBloxxers:Disconnect()
+		end
+	end,
+})
+local Tab2 = Window:AddTab("ESP")
+local Section4 = Tab2:AddLeftGroupbox("Toggles")
+
+local Toggle = Section4:AddToggle("Kesp",{
+	Text = "Key ESP",
+	Default = false,
+	Tooltip = "KeyESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KeyObtain" and v:IsA("Model") then
+					selection(v, "[Key]")
+					spawn(function()
+						while task.wait() do
+							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+								fireproximityprompt(v.ModulePrompt)
+							end
+						end
+					end)
+				end
+			end
+			KeyESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "KeyObtain" and v:IsA("Model") then
+						selection(v, "[Key]")
+						spawn(function()
+							while task.wait() do
+								if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+									fireproximityprompt(v.ModulePrompt)
+								end
+							end
+						end)
+					end
+				end
+			end)
+		else
+			KeyESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Section4:AddToggle("Desp",{
+	Text = "Door ESP",
+	Default = false,
+	Tooltip = "DoorESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "Door" and v:IsA("Model") then
+					selection(v, "[Door]", true)
+					spawn(function()
+						while task.wait() do
+							if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
+								fireproximityprompt(v.ActivateEventPrompt)
+							end
+						end
+					end)
+				end
+			end
+			DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "Door" and v:IsA("Model") then
+						selection(v, "[Door]", true)
+						spawn(function()
+							while task.wait() do
+								if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
+									fireproximityprompt(v.ActivateEventPrompt)
+								end
+							end
+						end)
+					end
+				end
+			end)
+		else
+			DoorESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight_2" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Section4:AddToggle("Cesp",{
+	Text = "Closet ESP",
+	Default = false,
+	Tooltip = "ClosetESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "RetroWardrobe" and v:IsA("Model") then
+					selection(v, "[Wardrobe]", false, true)
+				end
+			end
+			ClosetESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "RetroWardrobe" and v:IsA("Model") then
+						selection(v, "[Wardrobe]", false, true)
+					end
+				end
+			end)
+		else
+			ClosetESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight_3" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Section4:AddToggle("Eesp",{
+	Text = "Entity ESP",
+	Default = false,
+	Tooltip = "EntityESP",
+	Callback = function(Value)
+		EntityEsp = Value
+	end,
+})
