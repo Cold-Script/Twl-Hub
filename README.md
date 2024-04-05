@@ -302,34 +302,34 @@ local Toggle = Section:AddToggle("Notifies",{
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Eyes" then
-					notify("Retro Eyes")
+					Library:notify("[Notifies Entities] : Retro Eyes")
 					if EntityEsp then
 						selection(child, "Retro Eyes")
 					end
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("Retro Rush")
+					Library:notify("[Notifies Entities] : Retro Rush")
 					if EntityEsp then
 						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Rush]")
 					end
 				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("Retro Ambush")
+					Library:notify("[Notifies Entities] : Retro Ambush")
 					if EntityEsp then
 						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Ambush]")
 					end
 				elseif child.Name == "Drakobloxxer" then
 					if EntityEsp then
-						selection(child, "[DrakoBloxxer]")
+						selection(child, "DrakoBloxxer")
 					end
 					if not MainNotified then
 						MainNotified = true
-						notify("DrakoBloxxer")
+						Library:notify("[Notifies Entities] : [DrakoBloxxer]")
 					end
 				end
 			end)
 			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "RetroScreech" then
-					notify("Retro Screech")
+					Library:notify("[Notifies Entities] : Retro Screech")
 					if EntityEsp then
 						selection(child, "Retro Screech")
 					end
@@ -395,16 +395,14 @@ local Toggle = Section:AddToggle("FB",{
               end
 	end,
 })
-local Button = Section:AddButton({
+local Button = Section:AddToggle("Gm",{
 	Text = "GodMode",
-	Func = function()
-		game.Players.LocalPlayer.Character.Collision.Weld.C0 += Vector3.new(7, 0, 0)
-		game.Players.LocalPlayer.Character.Collision.Weld.C1 += Vector3.new(0, -0.5, 0)
-		game.Players.LocalPlayer.Character.Collision.CanCollide = false
-		game.Players.LocalPlayer.Character.Collision:GetPropertyChangedSignal("CanCollide"):Connect(function()
-			game.Players.LocalPlayer.Character.Collision.CanCollide = false
-		end)
-	end,
+        Default = false,
+	Tooltip = "Anti Ambush/Rush Died",
+	Callback = function(GM)
+ if GM then
+ 
+		
 })
 
 local Button = Section:AddButton({
