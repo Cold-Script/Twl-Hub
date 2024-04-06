@@ -191,12 +191,12 @@ local function billboard(child, name, name2, name3)
 	text_label.Text = name
 	text_label.TextColor3 = Color3.new(1, 1, 1)
 	text_label.TextScaled = true
-	text_label.TextSize = 4
+	text_label.TextSize = 1
 	text_label.TextWrapped = true
 	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
-	text_label.BackgroundTransparency = 1
+	text_label.BackgroundTransparency = 0
 	text_label.BorderColor3 = Color3.new(0, 0, 0)
-	text_label.BorderSizePixel = 0
+	text_label.BorderSizePixel = 0.1
 	text_label.Size = UDim2.new(1, 0, 1, 0)
 	text_label.Visible = true
 	text_label.Parent = billboard_gui
@@ -348,7 +348,7 @@ local Toggle = Section:AddToggle("Interact",{
 	Callback = function(Value)
 		AutoInteract = Value
 	end,
-}):AddKeyPicker("KeyPicker",{Default="I",SyncToggleState=false,Mode="Toggle",Text="",NoUI=false});
+})
 local Toggle = Section:AddToggle("No",{
 	Text = "Noclip",
 	Default = false,
@@ -374,7 +374,7 @@ local Toggle = Section:AddToggle("No",{
 			Clip = true
 		end
 	end,
-}):AddKeyPicker("KeyPicker",{Default="N",SyncToggleState=false,Mode="Toggle",Text="",NoUI=false});
+})
 local Toggle = Section:AddToggle("FB",{
 	Text = "FullBright",
 	Default = false,
@@ -417,7 +417,7 @@ local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
    end
 end
-}):AddKeyPicker("KeyPicker",{Default="G",SyncToggleState=false,Mode="Toggle",Text="",NoUI=false});
+})
 local Button = Section:AddButton({
 	Text = "Delete Messages",
 	Func = function()
