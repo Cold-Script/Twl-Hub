@@ -163,7 +163,7 @@ local function notify(entity, bypassed, other)
 end
 
 if game:GetService("ReplicatedStorage").GameData.Floor.Value ~= "Retro" then
-	notify("", nil, "Not Retro Mode!")
+	notify("", nil, "Join Retro Mode!")
 	return
 end
 
@@ -191,7 +191,7 @@ local function billboard(child, name, name2, name3)
 	text_label.Text = name
 	text_label.TextColor3 = Color3.new(1, 1, 1)
 	text_label.TextScaled = true
-	text_label.TextSize = 1
+	text_label.TextSize = 14
 	text_label.TextWrapped = true
 	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
 	text_label.BackgroundTransparency = 0
