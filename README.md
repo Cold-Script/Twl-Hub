@@ -395,14 +395,28 @@ local Toggle = Section:AddToggle("FB",{
               end
 	end,
 })
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Chandelier") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Chandelier:Destroy();end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Light_Fixtures") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Light_Fixtures:Destroy();end end end);end)
+Section:AddToggle("Nlight",{
+Text = "No Light"
+Default = false,
+Tooltip = "No Light"
+Callback = function(NL)
+_G.MSHL = NL
+end
+})
 local Button = Section:AddToggle("Gm",{
 	Text = "GodMode",
         Default = false,
 	Tooltip = "Anti Ambush/Rush Died",
 	Callback = function(GM)
  if GM then
- 
-		
+ local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
+else
+local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+Collison.Position = Collison.Position - Vector3.new(0,7.5,0)
+   end
+end
 })
 
 local Button = Section:AddButton({
