@@ -348,7 +348,7 @@ local Toggle = Section:AddToggle("Interact",{
 	Callback = function(Value)
 		AutoInteract = Value
 	end,
-})AddKeyPicker("KeyPicker",{Default="I",SyncToggleState=false,Mode="Toggle",Text="",NoUI=false});
+}):AddKeyPicker("KeyPicker",{Default="I",SyncToggleState=false,Mode="Toggle",Text="",NoUI=false});
 local Toggle = Section:AddToggle("No",{
 	Text = "Noclip",
 	Default = false,
@@ -417,7 +417,7 @@ local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
    end
 end
-})AddKeyPicker("KeyPicker",{Default="G",SyncToggleState=false,Mode="Toggle",Text="",NoUI=false});
+}):AddKeyPicker("KeyPicker",{Default="G",SyncToggleState=false,Mode="Toggle",Text="",NoUI=false});
 local Button = Section:AddButton({
 	Text = "Delete Messages",
 	Func = function()
