@@ -121,9 +121,9 @@ local function notify(entity, bypassed, other)
 	sound()
 	local tem = template:Clone()
 	tem.Visible = true
-	tem.TextLabel.Text = entity .. 
+	tem.TextLabel.Text = entity .. " Has just spawned!"
 	if bypassed then
-		tem.TextLabel.Text = entity .. 
+		tem.TextLabel.Text = entity .. " Has been bypassed!"
 	end
 	if other then
 		tem.TextLabel.Text = other
@@ -302,34 +302,34 @@ local Toggle = Section:AddToggle("Notifies",{
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "Eyes" then
-					notify("[Notifies Entities] : Retro Eyes")
+					notify("Retro Eyes")
 					if EntityEsp then
 						selection(child, "Retro Eyes")
 					end
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("[Notifies Entities] : Retro Rush")
+					notify("Retro Rush")
 					if EntityEsp then
 						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Rush]")
 					end
 				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("[Notifies Entities] : Retro Ambush")
+					notify("Retro Ambush")
 					if EntityEsp then
 						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Ambush]")
 					end
 				elseif child.Name == "Drakobloxxer" then
 					if EntityEsp then
-						selection(child, "DrakoBloxxer")
+						selection(child, "[DrakoBloxxer]")
 					end
 					if not MainNotified then
 						MainNotified = true
-						notify("[Notifies Entities] : [DrakoBloxxer]")
+						notify("DrakoBloxxer")
 					end
 				end
 			end)
 			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
 				task.wait(1)
 				if child.Name == "RetroScreech" then
-					notify("[Notifies Entities] : Retro Screech")
+					notify("Retro Screech")
 					if EntityEsp then
 						selection(child, "Retro Screech")
 					end
@@ -418,7 +418,6 @@ Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
    end
 end
 })
-
 local Button = Section:AddButton({
 	Text = "Delete Messages",
 	Func = function()
@@ -543,7 +542,28 @@ local Toggle = Section:AddToggle("Beyes",{
 		end
 	end,
 })
-
+local Toggle = Section:AeddToggle("BS",{
+	Text = "Bypass Seek",
+	Default = false,
+	Tooltip = "BypassSeek",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end
+			SeekWall = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end)
+		else
+			SeekWall:Disconnect()
+		end
+	end,
+})
 
 local Toggle = Section:AddToggle("BD",{
 	Text = "Bypass DrakoBloxxers",
