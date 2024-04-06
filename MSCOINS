@@ -411,10 +411,10 @@ local Button = Section:AddToggle("Gm",{
 	Callback = function(GM)
  if GM then
  local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
+Collison.Position = Collison.Position - Vector3.new(0,7.5,0)
 else
 local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
-Collison.Position = Collison.Position - Vector3.new(0,7.5,0)
+Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
    end
 end
 })
