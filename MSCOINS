@@ -191,7 +191,7 @@ local function billboard(child, name, name2, name3)
 	text_label.Text = name
 	text_label.TextColor3 = Color3.new(1, 1, 1)
 	text_label.TextScaled = true
-	text_label.TextSize = 14
+	text_label.TextSize = 4
 	text_label.TextWrapped = true
 	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
 	text_label.BackgroundTransparency = 1
@@ -221,7 +221,7 @@ local function selection(child, name, name2, name3)
 	hi.Adornee = child
 	hi.OutlineColor = Color3.fromRGB(161, 0, 0)
 	hi.FillColor = Color3.fromRGB(255, 0, 0)
-	hi.FillTransparency = 0.75
+	hi.FillTransparency = 0.5
 	hi.Name = "KiwiHighlight"
 	if name2 then
 		hi.Name = "KiwiHighlight_2"
