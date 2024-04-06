@@ -542,7 +542,7 @@ local Toggle = Section:AddToggle("Beyes",{
 		end
 	end,
 })
-local Toggle = Section:AeddToggle("BS",{
+local Toggle = Section:AddToggle("BS",{
 	Text = "Bypass Seek",
 	Default = false,
 	Tooltip = "BypassSeek",
