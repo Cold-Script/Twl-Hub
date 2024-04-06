@@ -196,7 +196,7 @@ local function billboard(child, name, name2, name3)
 	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
 	text_label.BackgroundTransparency = 0
 	text_label.BorderColor3 = Color3.new(0, 0, 0)
-	text_label.BorderSizePixel = 0.1
+	text_label.BorderSizePixel = 1
 	text_label.Size = UDim2.new(1, 0, 1, 0)
 	text_label.Visible = true
 	text_label.Parent = billboard_gui
