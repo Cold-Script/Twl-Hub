@@ -161,12 +161,11 @@ local function notify(entity, bypassed, other)
 		end
 	end)
 end
-
-if game:GetService("ReplicatedStorage").GameData.Floor.Value ~= "Retro" then
-	notify("", nil, "Join Retro Mode!")
-	return
+if _G.Only then
+Library:Notify("Only The 1 Script")
+return
 end
-
+_G.Only = true
 local function billboard(child, name, name2, name3)
 	local billboard_gui = Instance.new("BillboardGui")
 	billboard_gui.Active = true
@@ -713,6 +712,7 @@ local Toggle = Section:AddToggle("BD",{
 		end
 	end,
 })
+game:GetService("Workspace").DescendantAdded:Connect(function(v186)if  not _G.antibanananana then return;end if v186.IsA(v186,"Part") then if _G.antibanananana then if (v186.Name=="BananaPeel") then v186.CanTouch=false;end end end end);Section:AddToggle("MyToggle",{Text="Bypass Banana",Default=false,Tooltip="Anti BananaPeel!",Callback=function(v187)local v188=0;while true do if (v188==(0 + 0)) then _G.antibanananana=v187;if (_G.antibanananana==true) then for v600,v601 in pairs(game:GetService("Workspace"):GetDescendants()) do if v601:IsA("Part") then if (v601.Name=="BananaPeel") then v601.CanTouch=false;end end end end break;end end end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.antije then for v413,v414 in pairs(game.workspace:GetChildren()) do if (v414.Name=="JeffTheKiller") then v414.Knife.CanTouch=false;end end for v415,v416 in pairs(game.workspace:GetChildren()) do if (v416.Name=="JeffTheKiller") then v416.Head.CanTouch=false;end end for v417,v418 in pairs(game.workspace:GetChildren()) do if (v418.Name=="JeffTheKiller") then v418.HumanoidRootPart.CanTouch=false;end end for v419,v420 in pairs(game.workspace:GetChildren()) do if (v420.Name=="JeffTheKiller") then v420["Left Arm"].CanTouch=false;end end for v421,v422 in pairs(game.workspace:GetChildren()) do if (v422.Name=="JeffTheKiller") then v422["Left Leg"].CanTouch=false;end end for v423,v424 in pairs(game.workspace:GetChildren()) do if (v424.Name=="JeffTheKiller") then v424["Right Arm"].CanTouch=false;end end for v425,v426 in pairs(game.workspace:GetChildren()) do if (v426.Name=="JeffTheKiller") then v426["Right Leg"].CanTouch=false;end end for v427,v428 in pairs(game.workspace:GetChildren()) do if (v428.Name=="JeffTheKiller") then v428.Torso.CanTouch=false;end end end end);end);Section:AddToggle("MyToggle",{Text="Bypass Jeff",Default=false,Tooltip="Anti Jeff!",Callback=function(v189)_G.antije=v189;end});
 local Tab2 = Window:AddTab("ESP")
 local Section4 = Tab2:AddLeftGroupbox("Toggles")
 
