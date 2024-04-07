@@ -310,6 +310,14 @@ local Toggle = Section:AddToggle("Notifies",{
 					if EntityEsp then
 						selection(child, "")
 					end
+                                      elseif child.Name == "LiveHintBook" then
+					if EntityEsp then
+						selection(child, "[Book]")
+					end
+                                      elseif child.Name == "LiveHintBreaker" then
+					if EntityEsp then
+						selection(child, "[Breaker]")
+					end
                                 elseif child.Name == "SeekMoving" then
 					notify("Seek")
 					if EntityEsp then
