@@ -305,12 +305,12 @@ local Toggle = Section:AddToggle("Notifies",{
 					if EntityEsp then
 						selection(child, "Retro Eyes")
 					end
-                                      if child.Name == "FigureRadoll" then
+                                      elseif child.Name == "FigureRadoll" then
 notify("Figure")
 					if EntityEsp then
 						selection(child, "")
 					end
-if child.Name == "JeffTheKiller" then
+                                elseif child.Name == "JeffTheKiller" then
 					notify("Jeff")
 					if EntityEsp then
 						selection(child, "Jeff")
@@ -344,18 +344,9 @@ if child.Name == "JeffTheKiller" then
 					end
 				end
 			end)
-EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
-				task.wait(1)
-				if child.Name == "Screech" then
-					notify("Screech")
-					if EntityEsp then
-						selection(child, "Screech")
-					end
-				end
-			end)
+
 		else
 			EntityNotifier:Disconnect()
-			EntityNotifierScreech:Disconnect()
                         EntityNotifierRetroScreech:Disconnect()
 		end
 	end,
