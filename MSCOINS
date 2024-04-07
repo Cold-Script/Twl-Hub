@@ -305,15 +305,24 @@ local Toggle = Section:AddToggle("Notifies",{
 					if EntityEsp then
 						selection(child, "Retro Eyes")
 					end
-				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("Retro Rush")
+                                      if child.Name == "FigureRadoll" then
 					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Rush]")
+						selection(child, "")
+					end
+if child.Name == "JeffTheKiller" then
+					notify("Jeff")
+					if EntityEsp then
+						selection(child, "Jeff")
+					end
+				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+					notify("Rush")
+					if EntityEsp then
+						selection(child:FindFirstChildWhichIsA("BasePart"), "[Rush]")
 					end
 				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-					notify("Retro Ambush")
+					notify("Ambush")
 					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "[Retro Ambush]")
+						selection(child:FindFirstChildWhichIsA("BasePart"), "[Ambush]")
 					end
 				elseif child.Name == "Drakobloxxer" then
 					if EntityEsp then
@@ -331,6 +340,15 @@ local Toggle = Section:AddToggle("Notifies",{
 					notify("Retro Screech")
 					if EntityEsp then
 						selection(child, "Retro Screech")
+					end
+				end
+			end)
+EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Screech" then
+					notify("Screech")
+					if EntityEsp then
+						selection(child, "Screech")
 					end
 				end
 			end)
@@ -613,7 +631,18 @@ local Toggle = Section:AddToggle("Nos",{
 		end
 	end,
 })
-
+local Toggle = Section:AddToggle("Nos",{
+	Text = "Bypass Screech",
+	Default = false,
+	Tooltip = "BypassScreech",
+	Callback = function(Value)
+		if Value then
+			game:GetService("ReplicatedStorage").Entities.Screech.Name = "Screech"
+		else
+			game:GetService("ReplicatedStorage").Entities.Screech.Name = "Screech"
+		end
+	end,
+})
 local Toggle = Section:AddToggle("BK",{
 	Text = "Bypass Lava",
 	Default = false,
