@@ -305,7 +305,7 @@ local Toggle = Section:AddToggle("Notifies",{
 					if EntityEsp then
 						selection(child, "[Eyes]")
 					end
-                                      elseif child.Name == "FigureSetup" then
+                                      elseif child.Name == "FigureRagdoll" then
                                         notify("Figure")
 					if EntityEsp then
 						selection(child, "")
