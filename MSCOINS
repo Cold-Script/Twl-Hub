@@ -303,12 +303,17 @@ local Toggle = Section:AddToggle("Notifies",{
 				if child.Name == "Eyes" then
 					notify("Eyes")
 					if EntityEsp then
-						selection(child, "Eyes")
+						selection(child, "[Eyes]")
 					end
-                                      elseif child.Name == "FigureRadoll" then
-notify("Figure")
+                                      elseif child.Name == "FigureSetup" then
+                                        notify("Figure")
 					if EntityEsp then
 						selection(child, "")
+					end
+                                elseif child.Name == "SeekMoving" then
+					notify("Seek")
+					if EntityEsp then
+						selection(child, "[Seek]")
 					end
                                 elseif child.Name == "JeffTheKiller" then
 					notify("Jeff")
@@ -340,7 +345,7 @@ notify("Figure")
 				if child.Name == "RetroScreech" then
 					notify("Retro Screech")
 					if EntityEsp then
-						selection(child, "Retro Screech")
+						selection(child, "[Retro Screech]")
 					end
 				end
 			end)
@@ -349,7 +354,7 @@ notify("Figure")
 				if child.Name == "Screech" then
 					notify("Screech")
 					if EntityEsp then
-						selection(child, "Screech")
+						selection(child, "[Screech]")
 					end
 				end
 			end)
@@ -757,7 +762,7 @@ local Tab2 = Window:AddTab("ESP")
 local Section4 = Tab2:AddLeftGroupbox("Toggles")
 
 local Toggle = Section4:AddToggle("Kesp",{
-	Text = "Key ESP",
+	Text = "Key/Breaker/Book ESP",
 	Default = false,
 	Tooltip = "KeyESP",
 	Callback = function(Value)
@@ -765,6 +770,10 @@ local Toggle = Section4:AddToggle("Kesp",{
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "KeyObtain" and v:IsA("Model") then
 					selection(v, "[Key]")
+                                if v.Name == "LiveHintBreaker" then
+                                        selection(v  "[Breaker]")
+                                if v.Name == "LiveHintBook" then
+                                        selection(v, "[Book]")
 					spawn(function()
 						while task.wait() do
 							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
