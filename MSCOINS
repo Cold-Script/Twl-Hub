@@ -167,7 +167,6 @@ if game:GetService("ReplicatedStorage").GameData.Floor.Value ~= "Retro" then
 	return
 end
 
-
 local function billboard(child, name, name2, name3)
 	local billboard_gui = Instance.new("BillboardGui")
 	billboard_gui.Active = true
@@ -194,9 +193,9 @@ local function billboard(child, name, name2, name3)
 	text_label.TextSize = 14
 	text_label.TextWrapped = true
 	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
-	text_label.BackgroundTransparency = 0
+	text_label.BackgroundTransparency = 1
 	text_label.BorderColor3 = Color3.new(0, 0, 0)
-	text_label.BorderSizePixel = 1
+	text_label.BorderSizePixel = 0
 	text_label.Size = UDim2.new(1, 0, 1, 0)
 	text_label.Visible = true
 	text_label.Parent = billboard_gui
@@ -221,7 +220,7 @@ local function selection(child, name, name2, name3)
 	hi.Adornee = child
 	hi.OutlineColor = Color3.fromRGB(161, 0, 0)
 	hi.FillColor = Color3.fromRGB(255, 0, 0)
-	hi.FillTransparency = 0.5
+	hi.FillTransparency = 0.75
 	hi.Name = "KiwiHighlight"
 	if name2 then
 		hi.Name = "KiwiHighlight_2"
@@ -244,6 +243,7 @@ local function selection(child, name, name2, name3)
 		end
 	end)
 end
+
 
 function checkDistance(part, extra)
 	if not extra then extra = 15 end
