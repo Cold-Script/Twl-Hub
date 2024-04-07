@@ -645,12 +645,10 @@ local Toggle = Section:AddToggle("Nos",{
 	Tooltip = "BypassScreech",
 	Callback = function(Value)
 		if Value then
-			Screech = game:GetService("ReplicatedStorage").Entities.Screech
-                        Screech:Destroy()
-		else
-			Screech:Disconnect()
+			game:GetService("ReplicatedStorage").Entities.Screech:Destroy()
+                        else
+                        game:GetService("Workspace").Entities.Screech:Destroy()
 		end
-            end
 	end,
 })
 local Toggle = Section:AddToggle("BK",{
