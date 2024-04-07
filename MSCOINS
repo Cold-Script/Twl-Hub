@@ -341,7 +341,7 @@ local Toggle = Section:AddToggle("Notifies",{
 				end
 			end)
 			EntityNotifierRetroScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
-				task.wait(1)
+				task.wait(0.1)
 				if child.Name == "RetroScreech" then
 					notify("Retro Screech")
 					if EntityEsp then
@@ -350,7 +350,7 @@ local Toggle = Section:AddToggle("Notifies",{
 				end
 			end)
                        EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
-				task.wait(1)
+				task.wait(0.1)
 				if child.Name == "Screech" then
 					notify("Screech")
 					if EntityEsp then
@@ -770,10 +770,6 @@ local Toggle = Section4:AddToggle("Kesp",{
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "KeyObtain" and v:IsA("Model") then
 					selection(v, "[Key]")
-                                if v.Name == "LiveHintBreaker" then
-                                        selection(v  "[Breaker]")
-                                if v.Name == "LiveHintBook" then
-                                        selection(v, "[Book]")
 					spawn(function()
 						while task.wait() do
 							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
