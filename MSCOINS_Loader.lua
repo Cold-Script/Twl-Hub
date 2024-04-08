@@ -305,16 +305,15 @@ local Toggle = Section:AddToggle("Notifies",{
 					if EntityEsp then
 						selection(child, "[Eyes]")
 					end
-                                      elseif child.Name == "FigureRagdoll" then
-                                        notify("Figure")
+                                      elseif child.Name == "FigureSetup" or "FigureRagdoll" then
 					if EntityEsp then
-						selection(child, "")
+						selection(child, " ")
 					end
                                       elseif child.Name == "LiveHintBook" then
 					if EntityEsp then
 						selection(child, "[Book]")
 					end
-                                      elseif child.Name == "LiveHintBreaker" then
+                                      elseif child.Name == "LiveBreakerPolePickup" then
 					if EntityEsp then
 						selection(child, "[Breaker]")
 					end
@@ -326,7 +325,7 @@ local Toggle = Section:AddToggle("Notifies",{
                                 elseif child.Name == "JeffTheKiller" then
 					notify("Jeff")
 					if EntityEsp then
-						selection(child, "")
+						selection(child, " ")
 					end
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 					notify("Rush")
