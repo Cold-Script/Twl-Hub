@@ -299,16 +299,12 @@ local Toggle = Section:AddToggle("Notifies",{
 	Callback = function(Value)
 		if Value then
 			EntityNotifier = workspace.ChildAdded:Connect(function(child)
-				task.wait(0.1)
+				task.wait(1)
 				if child.Name == "Eyes" then
 					notify("Eyes")
 					if EntityEsp then
 						selection(child, "[Eyes]")
-					end
-                                      elseif child.Name == "FigureSetup" or "FigureRagdoll" then
-					if EntityEsp then
-						selection(child, " ")
-					end
+							end
                                       elseif child.Name == "LiveHintBook" then
 					if EntityEsp then
 						selection(child, "[Book]")
@@ -330,12 +326,12 @@ local Toggle = Section:AddToggle("Notifies",{
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 					notify("Rush")
 					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "[Rush]")
+						selection(child:FindFirstChildWhichIsA("BasePart"), "Rush")
 					end
 				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 					notify("Ambush")
 					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "[Ambush]")
+						selection(child:FindFirstChildWhichIsA("BasePart"), "Ambush")
 					end
 				elseif child.Name == "Drakobloxxer" then
 					if EntityEsp then
