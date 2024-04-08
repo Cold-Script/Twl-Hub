@@ -1,1 +1,4 @@
-game.Players.LocalPlayer:Kick("Đụng Má")
+setfpscap(1)
+wait(1)
+setfps(300)
+game.Players.LocalPlayer:Kick("Please check in the Internet again")
