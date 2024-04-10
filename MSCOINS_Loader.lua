@@ -172,7 +172,7 @@ local function billboard(child, name, name2, name3)
 	billboard_gui.AlwaysOnTop = true
 	billboard_gui.ClipsDescendants = true
 	billboard_gui.LightInfluence = 1
-	billboard_gui.Size = UDim2.new(10, 0, 2, 0)
+	billboard_gui.Size = UDim2.new(5, 0, 2, 0)
 	billboard_gui.ResetOnSpawn = false
 	billboard_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	billboard_gui.Parent = child
@@ -200,7 +200,7 @@ local function billboard(child, name, name2, name3)
 	text_label.Parent = billboard_gui
 
 	local uistroke = Instance.new("UIStroke")
-	uistroke.Thickness = 2.5
+	uistroke.Thickness = 0.5
 	uistroke.Parent = text_label
 
 	spawn(function()
