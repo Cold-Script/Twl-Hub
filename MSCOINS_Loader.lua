@@ -765,7 +765,7 @@ local Tab2 = Window:AddTab("ESP")
 local Section4 = Tab2:AddLeftGroupbox("Toggles")
 
 local Toggle = Section4:AddToggle("Kesp",{
-	Text = "Key/Breaker/Book ESP",
+	Text = "Key ESP",
 	Default = false,
 	Tooltip = "KeyESP",
 	Callback = function(Value)
@@ -816,7 +816,7 @@ local Toggle = Section4:AddToggle("Desp",{
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "Door" and v:IsA("Model") then
-					selection(v, "[Door]", true)
+					selection(v, "[𝘿𝙤𝙤𝙧]", true)
 					spawn(function()
 						while task.wait() do
 							if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
@@ -830,7 +830,7 @@ local Toggle = Section4:AddToggle("Desp",{
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
 					if v.Name == "Door" and v:IsA("Model") then
-						selection(v, "[Door]", true)
+						selection(v, "[𝘿𝙤𝙤𝙧]", true)
 						spawn(function()
 							while task.wait() do
 								if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
