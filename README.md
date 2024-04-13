@@ -2,6 +2,7 @@ if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Messag
 
 local Flux = loadstring(game:HttpGet("https://raw.githubusercontent.com/drillygzzly/Roblox-UI-Libs/main/Flux Lib/Flux Lib Source.lua"))()
 local Window = Flux:Window("MSCOINS  ", "v1.2.6", Color3.fromHSV(tick() % 5/5, 1, 1), Enum.KeyCode.RightControl)
+local Tab = Window:Tab("Main", "rbxassetid://6031763426")
 local Tab2 = Window:Tab("Visual", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
@@ -418,6 +419,166 @@ EntityInfo.A90.OnClientEvent:Connect(function()
         end)
     end
 end)
+Tab:Toggle("Closet Exit Fix","Fixes the bug where you can't exit a closet right after entering it",false,function(Bool)
+    ClosetExitFix = Bool
+end)
+    
+Tab:Toggle("Enable All Interactions","Sets the Enabled property of all Proximity Prompts to true. Useful for getting to the Rooms without a Skeleton Key.",false,function(Bool)
+    EnableInteractions = Bool
+    for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+        if Object:IsA("ProximityPrompt") then
+            if EnableInteractions and Object.Enabled then
+                table.insert(OldEnabled,Object)
+            end
+            Object.Enabled = EnableInteractions
+            if not EnableInteractions then
+                if table.find(OldEnabled, Object) then
+                    Object.Enabled = true
+                end
+            end
+            Object:GetPropertyChangedSignal("Enabled"):Connect(function()
+                if EnableInteractions then
+                    Object.Enabled = true
+                end
+            end)
+        end
+    end
+    if not EnableInteractions then
+        for index in pairs(OldEnabled) do
+            table.remove(OldEnabled, index)
+        end
+    end
+end)
+Tab:Toggle("Increased Door Opening Range","Makes it so you can open doors from much further away.",false,function(Bool)
+    if Bool then
+        DoorRange = RunService.Heartbeat:Connect(function()
+            if not workspace:FindFirstChild("A120") then
+                CurrentRooms:WaitForChild(LatestRoom.Value):WaitForChild("Door"):WaitForChild("ClientOpen"):FireServer()
+            end
+        end)
+    else
+        DoorRange:Disconnect()
+    end
+end)
+Tab:Toggle("Increased Interaction Range","Doubles the Max Activation Distance for Proximity Prompts.",false,function(Bool)
+    IncreasedDistance = Bool
+    for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+        if Object:IsA("ProximityPrompt") then
+            Object.MaxActivationDistance *= IncreasedDistance and 2 or 0.5
+        end
+    end
+end)
+Tab:Toggle("Interact Through Objects","Lets you interact with Proximity Prompts through Parts. Could be useful for grabbing book faster.",false,function(Bool)
+    InteractNoclip = Bool
+    for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+        if Object:IsA("ProximityPrompt") then
+            Object.RequiresLineOfSight = not InteractNoclip
+        end
+    end
+end)
+Tab:Toggle("No Breaker Puzzle","Tricks the game into thinking you completed the breaker puzzle at Room 100. May take up to 10 seconds to work.",false,function(Bool)
+    NoBreaker = Bool
+    while task.wait(1) do
+        if not NoBreaker then
+            break
+        end
+        EntityInfo.EBF:FireServer()
+    end
+end)
+if Floor.Value == "Hotel" or Floor.Value == "Fools" then
+    Tab:Button("Unlock Library Padlock","Instantly inputs the Padlock code for Room 50. Can guess up to 3 digits. Requires 1 Player to have the hint paper.",function()
+        local Paper = workspace:FindFirstChild("LibraryHintPaper",true) or workspace:FindFirstChild("LibraryHintPaperHard",true) or Players:FindFirstChild("LibraryHintPaper",true) or Players:FindFirstChild("LibraryHintPaperHard",true)
+        if not Paper then
+            Flux:Notification("Someone needs to have the Hint Paper to use this.","OK")
+            return
+        end
+        local HintsNeeded = Floor.Value == "Fools" and 8 or 3
+        local Hints = 0
+        for _,Collected in pairs(LocalPlayer.PlayerGui.PermUI.Hints:GetChildren()) do
+            if Collected.Name == "Icon" then
+                if Collected:IsA("ImageLabel") then
+                    for _,Icon in pairs(Paper.UI:GetChildren()) do
+                        if tonumber(Icon.Name) then
+                            if Icon.ImageRectOffset == Collected.ImageRectOffset then
+                                Hints += 1
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        if Hints < HintsNeeded then
+            Flux:Notification("You need to collect at least " .. HintsNeeded - Hints .. " more correct hint" .. (Hints ~= 2 and "s" or "") .. " to use this.","OK")
+            return
+        end
+        local t = {}
+        for i = 1, Floor.Value == "Hotel" and 5 or 10 do
+            local Icon = Paper.UI[i]
+            local Number = -1
+            for _,Collected in pairs(LocalPlayer.PlayerGui.PermUI.Hints:GetChildren()) do
+                if Collected.Name == "Icon" then
+                    if Collected.ImageRectOffset == Icon.ImageRectOffset then
+                        Number = tonumber(Collected.TextLabel.Text)
+                    end
+                end
+            end
+            table.insert(t,Number)
+        end
+        for one=0,t[1]==-1 and 9 or 0 do
+            for two=0,t[2]==-1 and 9 or 0 do
+                for three=0,t[3]==-1 and 9 or 0 do
+                    for four=0,t[4]==-1 and 9 or 0 do
+                        for five=0,t[5]==-1 and 9 or 0 do
+                            if Floor.Value == "Fools" then
+                                for six=0,t[6]==-1 and 9 or 0 do
+                                    for seven=0,t[7]==-1 and 9 or 0 do
+                                        for eight=0,t[8]==-1 and 9 or 0 do
+                                            for nine=0,t[9]==-1 and 9 or 0 do
+                                                for ten=0,t[10]==-1 and 9 or 0 do
+                                                    EntityInfo.PL:FireServer((t[1]==-1 and one or t[1])..(t[2]==-1 and two or t[2])..(t[3]==-1 and three or t[3])..(t[4]==-1 and four or t[4])..(t[5]==-1 and five or t[5])..(t[6]==-1 and six or t[6])..(t[7]==-1 and seven or t[7])..(t[8]==-1 and eight or t[8])..(t[9]==-1 and nine or t[9])..(t[10]==-1 and ten or t[10]))
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
+                            else
+                                EntityInfo.PL:FireServer((t[1]==-1 and one or t[1])..(t[2]==-1 and two or t[2])..(t[3]==-1 and three or t[3])..(t[4]==-1 and four or t[4])..(t[5]==-1 and five or t[5]))
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+if Floor.Value == "Rooms" then
+    Tab3:Toggle("Disable A-90","Disables A-90 visual, sound, and damage.",false,function(Bool)
+        DisableA90 = Bool
+    end)
+end
+
+Tab:Toggle("Remove Death Messages","Completely skips the Guiding/Curious light messages that appear after you die.",false,function(Bool)
+    RemoveDeathHint = Bool
+end)
+Tab:Toggle("Remove Glitch Jumpscare","Removes the Glitch visual and sound. Will still teleport you.",false,function(Bool)
+    DisableGlitch = Bool
+end)
+if Floor.Value == "Hotel" or Floor.Value == "Fools" then
+    Tab:Toggle("Remove Timothy Jumpscare","Removes the Timothy visual and sound. Will still deal damage.",false,function(Bool)
+        DisableTimothy = Bool
+    end)
+end
+if Floor.Value == "Hotel" or Floor.Value == "Fools" then
+    Tab:Toggle("Unbreakable Lights","Makes it so entities like Rush and Ambush won't shatter/break the lights (which makes the room dark)",false,function(Bool)
+        if Bool then
+            Module_Events.shatter = function(Room)
+                table.insert(ScreechSafeRooms, tostring(Room))
+            end
+        else
+            Module_Events.shatter = ShatterFunction
+        end
+    end)
+end
 Tab2:Toggle("Utilities ESP","Highlights all hostile entities.",false,function(Bool)
     OtherESP = Bool
     for _,Object in pairs(workspace:GetDescendants()) do
