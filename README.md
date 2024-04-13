@@ -587,10 +587,9 @@ Tab3:Toggle("Disable Seek Trigger","Makes it so you can't trigger Seek to spawn.
             if Object.Name == "DoorFake" then
                 ApplySettings(Object)
             end
-        end
-    end)
-
-    Tab:Toggle("Noclip","Noclip",false,function(Value)
+        end)
+    end
+Tab:Toggle("Noclip","Noclip",false,function(Value)
 		if Value then
 			Clip = false
 			task.wait(0.1)
@@ -609,10 +608,9 @@ Tab3:Toggle("Disable Seek Trigger","Makes it so you can't trigger Seek to spawn.
 				Noclipping:Disconnect()
 			end
 			Clip = true
-		end
-	end,
-)
-local Toggle = Tab:Toggle("FullBright","No Darkness",false,function(Value)
+		end)
+	end
+Tab:Toggle("FullBright","No Darkness",false,function(Value)
 		if Value then
 				game:GetService("Lighting").Brightness = 2
 				game:GetService("Lighting").ClockTime = 14
@@ -625,9 +623,8 @@ local Toggle = Tab:Toggle("FullBright","No Darkness",false,function(Value)
 				game:GetService("Lighting").FogEnd = 300
 				game:GetService("Lighting").GlobalShadows = true
 				game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(256,256,256)
-              end
-	end,
-)
+              end)
+	end
 Tab:Toggle("Remove Death Messages","Completely skips the Guiding/Curious light messages that appear after you die.",false,function(Bool)
     RemoveDeathHint = Bool
 end)
