@@ -70,24 +70,6 @@ local ShatterFunction = Module_Events.shatter
 local HideTick = tick()
 local GlitchModule = EntityModules.Glitch
 local CustomGlitchModule = GlitchModule:Clone()
-local Ranks = {
-    Creator = {
-        Title = "awesome script creator",
-        Color = Color3.new(0,0.8,0)
-    },
-    MrHong = {
-        Title = "Mr. Hong",
-        Color = Color3.new(0.9,0,0)
-    },
-    Cool = {
-        Title = "Cool",
-        Color = Color3.new(0,0.7,1)
-    },
-    Greg = {
-        Title = "official greg heffley",
-        Color = Color3.new(0.3,0.3,0.3)
-    }
-}
 CustomGlitchModule.Name = "CustomGlitch"
 CustomGlitchModule.Parent = GlitchModule.Parent
 GlitchModule:Destroy()
@@ -245,6 +227,24 @@ local function ApplySettings(Object)
             ApplyHighlight(ESP_Entities[Object.Name],EntityESP)
             ApplyHighlight(ESP_Other[Object.Name],OtherESP)
         end
+ 
+  local Ranks = {Creator = {
+        Title = "awesome script creator",
+        Color = Color3.new(0,0.8,0)
+    },
+    MrHong = {
+        Title = "Mr. Hong",
+        Color = Color3.new(0.9,0,0)
+    },
+    Cool = {
+        Title = "Cool",
+        Color = Color3.new(0,0.7,1)
+    },
+    Greg = {
+        Title = "official greg heffley",
+        Color = Color3.new(0.3,0.3,0.3)
+    }
+}
         if Object:IsA("ProximityPrompt") then
             if InstantInteract then
                 Object.HoldDuration = -Object.HoldDuration
@@ -418,7 +418,7 @@ EntityInfo.A90.OnClientEvent:Connect(function()
         end)
     end
 end)
-Tab2:Toggle("Other ESP","Highlights all hostile entities.",false,function(Bool)
+Tab2:Toggle("Utilities ESP","Highlights all hostile entities.",false,function(Bool)
     OtherESP = Bool
     for _,Object in pairs(workspace:GetDescendants()) do
         if ESP_Other[Object.Name] then
@@ -426,7 +426,7 @@ Tab2:Toggle("Other ESP","Highlights all hostile entities.",false,function(Bool)
         end
     end
 end)
-Tab2:Toggle("Entity ESP","Highlights all hostile entities.",false,function(Bool)
+Tab2:Toggle("Entities ESP","Highlights all hostile entities.",false,function(Bool)
     EntityESP = Bool
     for _,Object in pairs(workspace:GetDescendants()) do
         if ESP_Entities[Object.Name] then
