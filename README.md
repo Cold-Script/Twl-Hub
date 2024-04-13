@@ -4,6 +4,7 @@ local Flux = loadstring(game:HttpGet("https://raw.githubusercontent.com/drillygz
 local Window = Flux:Window("MSCOINS  ", "v1.2.6", Color3.fromHSV(tick() % 5/5, 1, 1), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("Main", "rbxassetid://6031763426")
 local Tab2 = Window:Tab("Visual", "rbxassetid://6031763426")
+local Tab3 = Window:Tab("Bypass", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -556,7 +557,77 @@ if Floor.Value == "Rooms" then
         DisableA90 = Bool
     end)
 end
+Tab3:Toggle("Eyes Invincibility","Makes the game (and other players) think you are looking down whenever eyes spawns.",false,function(Bool)
+    DisableEyes = Bool
+    if workspace:FindFirstChild("Eyes") then
+        MotorReplication:FireServer(0,DisableEyes and -120 or 0,0,false)
+    end
+end)
+Tab3:Toggle("Disable Snare","Makes it so you won't get stunned or take damage from Snare when stepping on it.",false,function(Bool)
+        DisableSnare = Bool
+        for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+            if Object.Name == "Snare" then
+                ApplySettings(Object)
+            end
+        end
+    end)
+end
+Tab3:Toggle("Disable Seek Trigger","Makes it so you can't trigger Seek to spawn. Other players still can.",false,function(Bool)
+        DisableSeek = Bool
+        for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+            if Object.Name == "TriggerCollision" then
+                ApplySettings(Object)
+            end
+        end
+    end)
+    if Floor.Value == "Hotel" or Floor.Value == "Fools" then
+    Tab3:Toggle("Disable Dupe Doors","Makes it so you can't open duped doors",false,function(Bool)
+        DisableDupe = Bool
+        for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+            if Object.Name == "DoorFake" then
+                ApplySettings(Object)
+            end
+        end
+    end)
 
+    Tab:Toggle("Noclip","Noclip",false,function(Value)
+		if Value then
+			Clip = false
+			task.wait(0.1)
+			local function NoclipLoop()
+				if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+					for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+						if child:IsA("BasePart") and child.CanCollide == true then
+							child.CanCollide = false
+						end
+					end
+				end
+			end
+			Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+		else
+			if Noclipping then
+				Noclipping:Disconnect()
+			end
+			Clip = true
+		end
+	end,
+)
+local Toggle = Tab:Toggle("FullBright","No Darkness",false,function(Value)
+		if Value then
+				game:GetService("Lighting").Brightness = 2
+				game:GetService("Lighting").ClockTime = 14
+				game:GetService("Lighting").FogEnd = 100000
+				game:GetService("Lighting").GlobalShadows = false
+				game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+			else
+                    game:GetService("Lighting").Brightness = 1
+				game:GetService("Lighting").ClockTime = 14
+				game:GetService("Lighting").FogEnd = 300
+				game:GetService("Lighting").GlobalShadows = true
+				game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(256,256,256)
+              end
+	end,
+)
 Tab:Toggle("Remove Death Messages","Completely skips the Guiding/Curious light messages that appear after you die.",false,function(Bool)
     RemoveDeathHint = Bool
 end)
