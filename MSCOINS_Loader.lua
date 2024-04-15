@@ -302,41 +302,31 @@ local Toggle = Section:AddToggle("Notifies",{
 				task.wait(1)
 				if child.Name == "Eyes" then
 					notify("Eyes")
-					if EntityEsp then
-						selection(child, "[Eyes]")
 							end
-                                      elseif child.Name == "LiveHintBook" then
-					if EntityEsp then
-						selection(child, "[Book]")
-					end
-                                      elseif child.Name == "LiveBreakerPolePickup" then
-					if EntityEsp then
-						selection(child, "[Breaker]")
-					end
+                                      
                                 elseif child.Name == "SeekMoving" then
 					notify("Seek")
-					if EntityEsp then
-						selection(child, "[Seek]")
-					end
+					
                                 elseif child.Name == "JeffTheKiller" then
 					notify("Jeff")
-					if EntityEsp then
-						selection(child, " ")
-					end
+
+				elseif child.Name == "BackdoorLookman" then
+					notify("Lookman")
+
+
+			       elseif child.Name == "BackdoorRush" then
+					notify("Blizt")
+					
+
 				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 					notify("Rush")
-					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "Rush")
-					end
+					
 				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 					notify("Ambush")
-					if EntityEsp then
-						selection(child:FindFirstChildWhichIsA("BasePart"), "Ambush")
-					end
+					
 				elseif child.Name == "Drakobloxxer" then
-					if EntityEsp then
-						selection(child, "[DrakoBloxxer]")
-					end
+					notify("Drakobloxxer")
+					
 					if not MainNotified then
 						MainNotified = true
 						notify("DrakoBloxxer")
@@ -762,7 +752,7 @@ game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekESe then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Seek_Arm") then for v528,v529 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v529.Name=="Seek_Arm") then v529.AnimatorPart.CanTouch=false;end end end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekES then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("ChandelierObstruction") then for v530,v531 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v531.Name=="ChandelierObstruction") then v531.HurtPart.CanTouch=false;end end end end end);end);Section:AddToggle("MyToggle",{Text="Bypass Arms",Default=false,Tooltip="Remove Seek Arms HitBox From Seek Chase",Callback=function(v111)_G.SeekESe=v111;end})
 Section:AddToggle("MyToggle",{Text="Bypass Fire",Default=false,Tooltip="Remove Fire Damage From Seek Chase",Callback=function(v112)_G.SeekES=v112;end})
 local Tab2 = Window:AddTab("ESP")
-local Section4 = Tab2:AddLeftGroupbox("Toggles")
+local Section4 = Tab2:AddLeftGroupbox("Item ESP")
 
 local Toggle = Section4:AddToggle("Kesp",{
 	Text = "Key ESP",
@@ -772,7 +762,7 @@ local Toggle = Section4:AddToggle("Kesp",{
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "KeyObtain" and v:IsA("Model") then
-					selection(v, "[Key]")
+					selection(v, "Key")
 					spawn(function()
 						while task.wait() do
 							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
@@ -786,7 +776,7 @@ local Toggle = Section4:AddToggle("Kesp",{
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
 					if v.Name == "KeyObtain" and v:IsA("Model") then
-						selection(v, "[Key]")
+						selection(v, "Key")
 						spawn(function()
 							while task.wait() do
 								if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
@@ -808,33 +798,33 @@ local Toggle = Section4:AddToggle("Kesp",{
 	end,
 })
 
-local Toggle = Section4:AddToggle("Desp",{
-	Text = "Door ESP",
+local Toggle = Section4:AddToggle("Kesp",{
+	Text = "Lockpick ESP",
 	Default = false,
-	Tooltip = "DoorESP",
+	Tooltip = "LockpickESP",
 	Callback = function(Value)
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-				if v.Name == "Door" and v:IsA("Model") then
-					selection(v, "[Door]", true)
+				if v.Name == "Lockpick" and v:IsA("Model") then
+					selection(v, "Lockpick")
 					spawn(function()
 						while task.wait() do
-							if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
-								fireproximityprompt(v.ActivateEventPrompt)
+							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+								fireproximityprompt(v.ModulePrompt)
 							end
 						end
 					end)
 				end
 			end
-			DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+			KeyESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
-					if v.Name == "Door" and v:IsA("Model") then
-						selection(v, "[Door]", true)
+					if v.Name == "Lockpick" and v:IsA("Model") then
+						selection(v, "Lockpick")
 						spawn(function()
 							while task.wait() do
-								if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
-									fireproximityprompt(v.ActivateEventPrompt)
+								if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+									fireproximityprompt(v.ModulePrompt)
 								end
 							end
 						end)
@@ -842,9 +832,9 @@ local Toggle = Section4:AddToggle("Desp",{
 				end
 			end)
 		else
-			DoorESP:Disconnect()
+			KeyESP:Disconnect()
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-				if v.Name == "KiwiHighlight_2" then
+				if v.Name == "KiwiHighlight" then
 					v:Destroy()
 				end
 			end
@@ -852,41 +842,3 @@ local Toggle = Section4:AddToggle("Desp",{
 	end,
 })
 
-local Toggle = Section4:AddToggle("Cesp",{
-	Text = "Closet ESP",
-	Default = false,
-	Tooltip = "ClosetESP",
-	Callback = function(Value)
-		if Value then
-			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-				if v.Name == "RetroWardrobe" and v:IsA("Model") then
-					selection(v, "[Wardrobe]", false, true)
-				end
-			end
-			ClosetESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
-				task.wait(1)
-				for _, v in pairs(child:GetDescendants()) do
-					if v.Name == "RetroWardrobe" and v:IsA("Model") then
-						selection(v, "[Wardrobe]", false, true)
-					end
-				end
-			end)
-		else
-			ClosetESP:Disconnect()
-			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-				if v.Name == "KiwiHighlight_3" then
-					v:Destroy()
-				end
-			end
-		end
-	end,
-})
-
-local Toggle = Section4:AddToggle("Eesp",{
-	Text = "Entity ESP",
-	Default = false,
-	Tooltip = "EntityESP",
-	Callback = function(Value)
-		EntityEsp = Value
-	end,
-})
