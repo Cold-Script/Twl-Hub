@@ -799,14 +799,14 @@ local Toggle = Section4:AddToggle("Kesp",{
 })
 
 local Toggle = Section4:AddToggle("Kesp",{
-	Text = "Lockpick ESP",
+	Text = "Wardrobe ESP",
 	Default = false,
-	Tooltip = "LockpickESP",
+	Tooltip = "WardrobeESP",
 	Callback = function(Value)
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-				if v.Name == "Lockpick" and v:IsA("Model") then
-					selection(v, "Lockpick")
+				if v.Name == "Wardrobe" and v:IsA("Model") then
+					selection(v, "Closet")
 					spawn(function()
 						while task.wait() do
 							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
@@ -819,8 +819,8 @@ local Toggle = Section4:AddToggle("Kesp",{
 			KeyESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
-					if v.Name == "Lockpick" and v:IsA("Model") then
-						selection(v, "Lockpick")
+					if v.Name == "Wardrobe" and v:IsA("Model") then
+						selection(v, "Closet")
 						spawn(function()
 							while task.wait() do
 								if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
@@ -841,4 +841,87 @@ local Toggle = Section4:AddToggle("Kesp",{
 		end
 	end,
 })
+local Toggle = Section4:AddToggle("Desp",{
+	Text = "Door ESP",
+	Default = false,
+	Tooltip = "DoorESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "Door" and v:IsA("Model") then
+					selection(v, "[Door]", true)
+					spawn(function()
+						while task.wait() do
+							if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
+								fireproximityprompt(v.ActivateEventPrompt)
+							end
+						end
+					end)
+				end
+			end
+			DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "Door" and v:IsA("Model") then
+						selection(v, "[Door]", true)
+						spawn(function()
+							while task.wait() do
+								if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
+									fireproximityprompt(v.ActivateEventPrompt)
+								end
+							end
+						end)
+					end
+				end
+			end)
+		else
+			DoorESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight_2" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Section4:AddToggle("Cesp",{
+	Text = "Retro Wardrobe ESP",
+	Default = false,
+	Tooltip = "ClosetESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "RetroWardrobe" and v:IsA("Model") then
+					selection(v, "[Wardrobe]", false, true)
+				end
+			end
+			ClosetESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "RetroWardrobe" and v:IsA("Model") then
+						selection(v, "[Wardrobe]", false, true)
+					end
+				end
+			end)
+		else
+			ClosetESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight_3" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Section4:AddToggle("Eesp",{
+	Text = "Entity ESP",
+	Default = false,
+	Tooltip = "EntityESP",
+	Callback = function(Value)
+		EntityEsp = Value
+	end,
+})
+
 
