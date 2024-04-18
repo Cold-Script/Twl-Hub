@@ -665,7 +665,7 @@ game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekESe then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Seek_Arm") then for v528,v529 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v529.Name=="Seek_Arm") then v529.AnimatorPart.CanTouch=false;end end end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekES then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("ChandelierObstruction") then for v530,v531 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v531.Name=="ChandelierObstruction") then v531.HurtPart.CanTouch=false;end end end end end);end);Section:AddToggle("MyToggle",{Text="Bypass Arms",Default=false,Tooltip="Remove Seek Arms HitBox From Seek Chase",Callback=function(v111)_G.SeekESe=v111;end})
 Section:AddToggle("MyToggle",{Text="Bypass Fire",Default=false,Tooltip="Remove Fire Damage From Seek Chase",Callback=function(v112)_G.SeekES=v112;end})
 local Tab2 = Window:AddTab("ESP")
-local Section4 = Tab2:AddLeftGroupbox("Item ESP")
+local Section4 = Tab2:AddLeftGroupbox("ESP")
 local Toggle = Section4:AddToggle("Desp",{
 	Text = "Door ESP",
 	Default = false,
@@ -710,7 +710,7 @@ local Toggle = Section4:AddToggle("Desp",{
 	end,
 })
 
-local Toggle = Section:AddToggle("Cesp",{
+local Toggle = Section4:AddToggle("Cesp",{
 	Text = "Closet/Item ESP",
 	Default = false,
 	Tooltip = "Closet/Item ESP",
