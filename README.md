@@ -31,4 +31,5 @@ Void = game:GetService("ReplicatedStorage").ClientModules.EntityModules.Void
 Void:Destroy()
 else
 Void:Disconnect()
-    end
+   end
+end})
