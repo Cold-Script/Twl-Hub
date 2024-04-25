@@ -321,7 +321,7 @@ game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if
 Section9:AddToggle("MyToggle",{Text="Anti-Chandelier Fire",Default=false,Tooltip="Remove Fire Damage From Seek Chase",Callback=function(v112)_G.SeekES=v112;end})
 local Section10 = Tab3:AddRightGroupbox("Avoid")
 local Button = Section10:AddToggle("Gm",{
-	Text = "God Mode - Noclip [BYPASS]",
+	Text = "God Mode - (Noclip [BYPASS])",
         Default = false,
 	Tooltip = "Anti Ambush/Rush Died",
 	Callback = function(GM)
@@ -334,7 +334,7 @@ Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
    end
 end
 })
-local Button = Section9:AddButton({
+local Button = Section10:AddButton({
 	Text = "No Time Messeger [RETRO]",
 	Func = function()
 		for _, v in pairs(workspace:GetChildren()) do
@@ -343,4 +343,34 @@ local Button = Section9:AddButton({
 			end
 		end
 	end
+})
+
+local Toggle = Section10:AddToggle("FB",{
+	Text = "FullBright",
+	Default = false,
+	Tooltip = "FullBright",
+	Callback = function(Value)
+		if Value then
+				game:GetService("Lighting").Brightness = 2
+				game:GetService("Lighting").ClockTime = 14
+				game:GetService("Lighting").FogEnd = 9e9
+				game:GetService("Lighting").GlobalShadows = false
+				game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+			else
+                    game:GetService("Lighting").Brightness = 0.5
+				game:GetService("Lighting").ClockTime = 14
+				game:GetService("Lighting").FogEnd = 200
+				game:GetService("Lighting").GlobalShadows = true
+				game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(256,256,256)
+              end
+	end,
+})
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Chandelier") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Chandelier:Destroy();end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Light_Fixtures") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Light_Fixtures:Destroy();end end end);end)
+Section8:AddToggle("Nlight",{
+Text = "Anti-Light Off",
+Default = false,
+Tooltip = "No Light",
+Callback = function(NL)
+_G.MSHNL = NL
+end
 })
