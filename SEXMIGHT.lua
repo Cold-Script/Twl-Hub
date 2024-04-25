@@ -344,8 +344,8 @@ local Button = Section10:AddButton({
 		end
 	end
 })
-
-local Toggle = Section10:AddToggle("FB",{
+local Section11 = Tab2:AddLeftGroupbox("Lighting")
+local Toggle = Section11:AddToggle("FB",{
 	Text = "FullBright",
 	Default = false,
 	Tooltip = "FullBright",
@@ -366,8 +366,8 @@ local Toggle = Section10:AddToggle("FB",{
 	end,
 })
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Chandelier") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Chandelier:Destroy();end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Light_Fixtures") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Light_Fixtures:Destroy();end end end);end)
-Section8:AddToggle("Nlight",{
-Text = "Anti-Light Off",
+Section11:AddToggle("Nlight",{
+Text = "Light Off",
 Default = false,
 Tooltip = "No Light",
 Callback = function(NL)
