@@ -24,7 +24,7 @@ local v16={espdoors=false,espkeys=false,espitems=false,espbooks=false,esprush=fa
 -- Tab
 local Tab = LIX:AddTab("Main")
 local Tab2 = LIX:AddTab("Players")
-local Tab3 = LIX:AddTab("Cheat")
+local Tab3 = {Cheat=LIX:AddTab("Cheat")}
 local Tab4 = LIX:AddTab("Troll")
 local Tab5 = LIX:AddTab("Soon...")
 local Section = Tab:AddLeftGroupbox("Auto Loot")
@@ -196,8 +196,8 @@ local Toggle = Section6:AddToggle("Fly",{
 		end
 	end
 })
-local Section8 = Tab3:AddLeftTabbox("Anti-Entities")
-local Section9 = Tab:AddRightTabbox("Anti-Part")
+local Section8 = Tab3.Cheat:AddLeftTabbox("Anti-Entities")
+local Section9 = Tab3.Cheat:AddTab("Anti-Part")
 local Toggle = Section8:AddToggle("Nos",{
 	Text = "Anti-Screech",
 	Default = false,
