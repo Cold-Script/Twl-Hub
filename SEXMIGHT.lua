@@ -13,7 +13,7 @@ local v1 = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local v2 = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
 local version = 1,8
 local LIX = v0:CreateWindow({
-    Title = "LIXCOINS - (v2.1.2) [BETA]",
+    Title = "lolColdX - (v2.1.2) [BETA]",
     Center = true,
     AutoShow = true,
     TabPadding = 5.5,
@@ -24,7 +24,7 @@ local v16={espdoors=false,espkeys=false,espitems=false,espbooks=false,esprush=fa
 -- Tab
 local Tab = LIX:AddTab("Main")
 local Tab2 = LIX:AddTab("Players")
-local Tab3 = {Cheat=LIX:AddTab("Cheat")}
+local Tab3 = LIX:AddTab("Cheat")
 local Tab4 = LIX:AddTab("Troll")
 local Tab5 = LIX:AddTab("Soon...")
 local Section = Tab:AddLeftGroupbox("Auto Loot")
@@ -196,8 +196,8 @@ local Toggle = Section6:AddToggle("Fly",{
 		end
 	end
 })
-local Section8 = Tab3.Cheat:AddLeftTabbox("Anti-Entities")
-local Section9 = Tab3.Cheat:AddTab("Anti-Part")
+local Section8 = Tab3:AddLeftGroupbox("Anti-Entities")
+local Section9 = Tab3:AddRightGroupbox("Anti-Part")
 local Toggle = Section8:AddToggle("Nos",{
 	Text = "Anti-Screech",
 	Default = false,
