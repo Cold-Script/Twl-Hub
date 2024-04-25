@@ -319,3 +319,28 @@ local v48=game.ReplicatedStorage:WaitForChild("EntityInfo"):WaitForChild("A90");
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.bypassSnare then for v399,v400 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v400.Name=="Snare") then v400.Hitbox['TouchInterest']:Destroy();end end end end);end);Section9:AddToggle("MyToggle",{Text="Anti-Snare",Default=false,Tooltip="Anti Snare",Callback=function(v132)_G.bypassSnare=v132;end});
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekESe then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Seek_Arm") then for v528,v529 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v529.Name=="Seek_Arm") then v529.AnimatorPart.CanTouch=false;end end end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekES then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("ChandelierObstruction") then for v530,v531 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v531.Name=="ChandelierObstruction") then v531.HurtPart.CanTouch=false;end end end end end);end);Section8:AddToggle("MyToggle",{Text="Anti-Seek Arms",Default=false,Tooltip="Remove Seek Arms HitBox From Seek Chase",Callback=function(v111)_G.SeekESe=v111;end})
 Section9:AddToggle("MyToggle",{Text="Anti-Chandelier Fire",Default=false,Tooltip="Remove Fire Damage From Seek Chase",Callback=function(v112)_G.SeekES=v112;end})
+local Section10 = Tab3:AddRightGroupbox("Avoid")
+local Button = Section10:AddToggle("Gm",{
+	Text = "God Mode - Noclip [BYPASS]",
+        Default = false,
+	Tooltip = "Anti Ambush/Rush Died",
+	Callback = function(GM)
+ if GM then
+ local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+Collison.Position = Collison.Position - Vector3.new(0,7.5,0)
+else
+local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+Collison.Position = Collison.Position - Vector3.new(0,-7.5,0)
+   end
+end
+})
+local Button = Section9:AddButton({
+	Text = "No Time Messeger [RETRO]",
+	Func = function()
+		for _, v in pairs(workspace:GetChildren()) do
+			if v:IsA("Message") then
+				v:Destroy()
+			end
+		end
+	end
+})
