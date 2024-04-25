@@ -194,5 +194,127 @@ local Toggle = Section6:AddToggle("Fly",{
 		else
 			NOFLY()
 		end
+	end
+})
+Tab3:AddLabel"Cheat"
+local Section8 = Tab3:AddTabTabbox("Anti Entities")
+local Toggle = Section8:AddToggle("Nos",{
+	Text = "Anti-Screech",
+	Default = false,
+	Tooltip = "BypassScreech",
+	Callback = function(Value)
+		if Value then
+			Screech = game:GetService("ReplicatedStorage").Entities.Screech
+   Screech:Destroy()
+                        else
+                        Screech:Disconnect()
+		end
 	end,
 })
+local Toggle = Section9:AddToggle("BK",{
+	Text = "Anti-Lava",
+	Default = false,
+	Tooltip = "BypassKillbricks",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end
+			killBricks = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end)
+		else
+			killBricks:Disconnect()
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = true
+						end
+					end
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Section8:AddToggle("Beyes",{
+	Text = "Anti-Eyes",
+	Default = false,
+	Tooltip = "BypassEyes",
+	Callback = function(Value)
+		if Value then
+			Eyes = game:GetService("RunService").RenderStepped:Connect(function()
+				game:GetService("ReplicatedStorage").RemotesFolder.MotorReplication:FireServer(0, 90, 0, false)
+			end)
+		else
+			Eyes:Disconnect()
+		end
+	end,
+})
+local Toggle = Section9:AddToggle("BS",{
+	Text = "Anti-Seek Wall",
+	Default = false,
+	Tooltip = "BypassSeek",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end
+			SeekWall = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end)
+		else
+			SeekWall:Disconnect()
+		end
+	end,
+})
+
+local Toggle = Section8:AddToggle("BD",{
+	Text = "Anti-DrakoBloxxers",
+	Default = false,
+	Tooltip = "BypassDrakoBloxxers",
+	Callback = function(Value)
+		if Value then
+			DrakoBloxxers = workspace.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Drakobloxxer" then
+					child:Destroy()
+					for _, v in pairs(workspace:GetChildren()) do
+						if v.Name == "Sound" and v:IsA("Sound") then
+							v:Destroy()
+						end
+					end
+				end
+			end)
+		else
+			DrakoBloxxers:Disconnect()
+		end
+	end,
+})
+game:GetService("Workspace").DescendantAdded:Connect(function(v186)if  not _G.antibanananana then return;end if v186.IsA(v186,"Part") then if _G.antibanananana then if (v186.Name=="BananaPeel") then v186.CanTouch=false;end end end end);Section9:AddToggle("MyToggle",{Text="Anti-Banana",Default=false,Tooltip="Anti BananaPeel!",Callback=function(v187)local v188=0;while true do if (v188==(0 + 0)) then _G.antibanananana=v187;if (_G.antibanananana==true) then for v600,v601 in pairs(game:GetService("Workspace"):GetDescendants()) do if v601:IsA("Part") then if (v601.Name=="BananaPeel") then v601.CanTouch=false;end end end end break;end end end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.antije then for v413,v414 in pairs(game.workspace:GetChildren()) do if (v414.Name=="JeffTheKiller") then v414.Knife.CanTouch=false;end end for v415,v416 in pairs(game.workspace:GetChildren()) do if (v416.Name=="JeffTheKiller") then v416.Head.CanTouch=false;end end for v417,v418 in pairs(game.workspace:GetChildren()) do if (v418.Name=="JeffTheKiller") then v418.HumanoidRootPart.CanTouch=false;end end for v419,v420 in pairs(game.workspace:GetChildren()) do if (v420.Name=="JeffTheKiller") then v420["Left Arm"].CanTouch=false;end end for v421,v422 in pairs(game.workspace:GetChildren()) do if (v422.Name=="JeffTheKiller") then v422["Left Leg"].CanTouch=false;end end for v423,v424 in pairs(game.workspace:GetChildren()) do if (v424.Name=="JeffTheKiller") then v424["Right Arm"].CanTouch=false;end end for v425,v426 in pairs(game.workspace:GetChildren()) do if (v426.Name=="JeffTheKiller") then v426["Right Leg"].CanTouch=false;end end for v427,v428 in pairs(game.workspace:GetChildren()) do if (v428.Name=="JeffTheKiller") then v428.Torso.CanTouch=false;end end end end);end);Section8:AddToggle("MyToggle",{Text="Anti-Jeff The Killer",Default=false,Tooltip="Anti Jeff!",Callback=function(v189)_G.antije=v189;end});
+Section8:AddToggle("nsc",{Text="Anti-Seek Trigger",Default=false,Callback=function(v119)v16.noseek=v119;if v119 then local v279;v279=workspace.CurrentRooms.ChildAdded:Connect(function(v333)local v334=0 -0 ;local v335;while true do if (v334==(0 + 0)) then v335=v333:WaitForChild("TriggerEventCollision",2);if v335 then v335:Destroy();end break;end end end);repeat task.wait();until  not v16.noseek v279:Disconnect();end end});
+Section8:AddToggle("MyToggle",{Text="Anti-Halt",Default=false,Tooltip="Anti Halt",Callback=function(v122)local v123=0;while true do if (v123==(1480 -(641 + 839))) then _G.BypassHalte=v122;if (_G.BypassHalte==true) then local v472=913 -(910 + 3) ;local v473;while true do if (v472==(0 -0)) then v473=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Shade;v473.Parent=game.Workspace;break;end end elseif (_G.BypassHalte==false) then local v642=1684 -(1466 + 218) ;local v643;while true do if (v642==(0 + 0)) then v643=game.Workspace.Shade;v643.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});
+Section8:AddToggle("MyToggle",{Text="Anti-Dupe",Default=false,Tooltip="Anti Dupe",Callback=function(v128)v16.nodupe=v128;if v128 then local v288;v288=game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()task.wait();for v397,v398 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if (v398.Name=="DoorFake") then v398.Hidden.CanTouch=false;end end repeat task.wait();until  not v16.nodupe v288:Disconnect();end);end end});
+local v48=game.ReplicatedStorage:WaitForChild("EntityInfo"):WaitForChild("A90");Section:AddToggle("MyToggle",{Text="Anti-A90",Default=false,Tooltip="Bypass A-90 Use In The Rooms",Callback=function(v130)v16.noa90=v130;if v130 then local v289=0 + 0 ;local v290;while true do if (v289==(1477 -(29 + 1448))) then v290=v12.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90");if v290 then v290.Parent=nil;v48.Parent=nil;repeat task.wait();game.SoundService.Main.Volume=1390 -(135 + 1254) ;until  not v16.noa90 v290.Parent=v12.PlayerGui.MainUI.Jumpscare;v48.Parent=v15;end break;end end end end});
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.bypassSnare then for v399,v400 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v400.Name=="Snare") then v400.Hitbox['TouchInterest']:Destroy();end end end end);end);Section:AddToggle("MyToggle",{Text="Anti-Snare",Default=false,Tooltip="Anti Snare",Callback=function(v132)_G.bypassSnare=v132;end});
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekESe then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Seek_Arm") then for v528,v529 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v529.Name=="Seek_Arm") then v529.AnimatorPart.CanTouch=false;end end end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekES then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("ChandelierObstruction") then for v530,v531 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v531.Name=="ChandelierObstruction") then v531.HurtPart.CanTouch=false;end end end end end);end);Section:AddToggle("MyToggle",{Text="Anti-Seek Arms",Default=false,Tooltip="Remove Seek Arms HitBox From Seek Chase",Callback=function(v111)_G.SeekESe=v111;end})
+Section:AddToggle("MyToggle",{Text="Anti-Chandelier Fire",Default=false,Tooltip="Remove Fire Damage From Seek Chase",Callback=function(v112)_G.SeekES=v112;end})
