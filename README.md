@@ -57,7 +57,7 @@ local Slider = Section:AddSlider("MySlider",{
 		FlySpeed = Value
 	end,
 })
-
+if Floor.Value == "Retro" then
 local Slider = Section:AddSlider("MySlider",{
 	Text = "JumpPower",
 	Min = 25,
@@ -70,7 +70,7 @@ local Slider = Section:AddSlider("MySlider",{
 		JumpPower = Value
 	end
 })
-
+end
 
 local Slider = Section:AddSlider("MySlider",{
 	Text = "Field Of View",
