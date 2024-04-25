@@ -196,8 +196,8 @@ local Toggle = Section6:AddToggle("Fly",{
 		end
 	end
 })
-Tab3:AddLabel"Cheat"
-local Section8 = Tab3:AddTabTabbox("Anti Entities")
+local Section8 = Tab3:AddLeftTabbox("Anti-Entities")
+local Section9 = Tab:AddRightTabbox("Anti-Part")
 local Toggle = Section8:AddToggle("Nos",{
 	Text = "Anti-Screech",
 	Default = false,
