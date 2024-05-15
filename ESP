@@ -15,7 +15,7 @@ spawn(function()
                 bb.Adornee = v.Door.Door
                 bb.ExtentsOffset = Vector3.new(0, 1, 0)
                 bb.AlwaysOnTop = true
-                bb.Size = UDim2.new(3, 6, 2, 6)
+                bb.Size = UDim2.new(0, 6, 0, 6)
                 bb.StudsOffset = Vector3.new(0, 1, 0)
                 bb.Name = "BillBoard"
     
@@ -39,7 +39,7 @@ spawn(function()
                 txtlbl2.FontSize = 'Size12'
                 txtlbl2.Text = ""
                 txtlbl2.Name = "Dist"
-                txtlbl2.TextStrokeTransparency = 0.5
+                txtlbl2.TextStrokeTransparency = 1.5
                 txtlbl2.TextColor3 = Color3.fromRGB(174, 245, 130)
             end
             if v:FindFirstChild("Door") and v.Door:FindFirstChild("Door") and v.Door.Door:FindFirstChild("BillBoard") then
