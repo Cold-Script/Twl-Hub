@@ -76,7 +76,7 @@ spawn(function()
                 txtlbl.Size = UDim2.new(3, 0, 2, 0)
                 txtlbl.Font = 'ArialBold'
                 txtlbl.FontSize = 'Size12'
-                txtlbl.Text = 'Key'
+                txtlbl.Text = 'Key [' .. v.Name .. ']'
                 txtlbl.TextStrokeTransparency = 0.5
                 txtlbl.TextColor3 = Color3.fromRGB(249, 153, 25)
     
