@@ -48,7 +48,11 @@ spawn(function()
         end
     end
 end)
-wait()
+task.wait()
+function round(number, decimals)
+    local power = 10 ^ decimals
+    return math.floor(number * power) / power
+end
 spawn(function()
     while wait(0.04) do
         for _,v in next, workspace.CurrentRooms:GetChildren() do
