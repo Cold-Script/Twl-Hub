@@ -88,7 +88,7 @@ spawn(function()
                 txtlbl2.TextStrokeTransparency = 0.5
                 txtlbl2.TextColor3 = Color3.fromRGB(249, 153, 25)
             end
-            if v:FindFirstChild("Assets") and v.Assets:FindFirstChild("KeyOntain") and v.Assets.KeyObtain:FindFirstChild("BillBoard") then
+            if v:FindFirstChild("Assets") and v.Assets:FindFirstChild("KeyObtain") and v.Assets.KeyObtain:FindFirstChild("BillBoard") then
                 v.Assets.KeyObtain.BillBoard.Dist.Text = '['.. round((game.Players.LocalPlayer.Character.PrimaryPart.Position - v.Assets.KeyObtain.Position).magnitude, 1) ..'m]'
                end
            end
