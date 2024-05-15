@@ -26,7 +26,7 @@ spawn(function()
                 txtlbl.Size = UDim2.new(1, 0, 10, 0)
                 txtlbl.Font = 'ArialBold'
                 txtlbl.FontSize = 'Size12'
-                txtlbl.Text = "Door [" .. v.Name"]"
+                txtlbl.Text = '[Door {v.Name}]'
                 txtlbl.TextStrokeTransparency = 0.5
                 txtlbl.TextColor3 = Color3.fromRGB(241, 196, 15)
     
@@ -43,7 +43,7 @@ spawn(function()
                 txtlbl2.TextColor3 = Color3.fromRGB(241, 196, 15)
             end
             if v:FindFirstChild("Door") and v.Door:FindFirstChild("Door") and v.Door.Door:FindFirstChild("BillBoard") then
-                v.Door.Door.BillBoard.Dist.Text = "["round((game.Players.LocalPlayer.Character.PrimaryPart.Position - v.Door.Door.Position).magnitude, 1) .. "m]"
+                v.Door.Door.BillBoard.Dist.Text = "[{round((game.Players.LocalPlayer.Character.PrimaryPart.Position - v.Door.Door.Position).magnitude, 1)}m]"
             end
         end
     end
