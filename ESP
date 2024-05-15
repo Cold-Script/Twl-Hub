@@ -24,7 +24,7 @@ spawn(function()
                 txtlbl.BackgroundTransparency = 1
                 txtlbl.Position = UDim2.new(0, 0, 0, -45)
                 txtlbl.Size = UDim2.new(1, 0, 10, 0)
-                txtlbl.Font = 'ArialBold'
+                txtlbl.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
                 txtlbl.FontSize = 'Size12'
                 txtlbl.Text = 'Door [' .. v.Name .. ']'
                 txtlbl.TextStrokeTransparency = 0.75
@@ -35,7 +35,7 @@ spawn(function()
                 txtlbl2.BackgroundTransparency = 1
                 txtlbl2.Position = UDim2.new(0, 0, 0, -15)
                 txtlbl2.Size = UDim2.new(1, 0, 10, 0)
-                txtlbl2.Font = 'ArialBold'
+                txtlbl2.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
                 txtlbl2.FontSize = 'Size12'
                 txtlbl2.Text = ""
                 txtlbl2.Name = "Dist"
