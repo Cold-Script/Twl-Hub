@@ -1,99 +1,90 @@
-function round(number, decimals)
-    local power = 10 ^ decimals
-    return math.floor(number * power) / power
+-- // Data ESP \\
+local function billboard(child, name, name2, name3)
+local billboard_gui = Instance.new("BillboardGui")
+billboard_gui.Active = true
+billboard_gui.AlwaysOnTop = true
+billboard_gui.ClipsDescendants = true
+billboard_gui.LightInfluence = 9e9
+billboard_gui.Size = UDim2.new(1.75, 0, 1.25, 0)
+billboard_gui.ResetOnSpawn = true
+billboard_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+billboard_gui.Parent = child
+billboard_gui.Name = "Highlight"
+if name2 then
+billboard_gui.Name = "Highlight2"
+end
+if name3 then
+billboard_gui.Name = "Highlight3"
+end
+-- // ESP \\
+    local text_label = Instance.new("TextLabel")
+    text_label.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
+    text_label.Text = name
+    text_label.TextColor3 = Color3.new(1, 1, 1)
+    text_label.TextScaled = true
+    text_label.TextSize = 14
+    text_label.TextWrapped = true
+    text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+    text_label.BackgroundTransparency = 9e9
+    text_label.BorderColor3 = Color3.fromHSV(hue, 1, 1)
+    text_label.BorderSizePixel = 9e9
+    text_label.Size = UDim2.new(1, 0, 1, 0)
+    text_label.Visible = true
+    text_label.Parent = billboard_gui
+
+    local uistroke = Instance.new("UIStroke")
+    uistroke.Thickness = 1
+    uistroke.Parent = text_label
+-- // Color ESP \\
+    spawn(function()
+        while task.wait() do
+            local hue = tick() % 5 / 5
+            local color = Color3.fromHSV(hue, 1, 1) 
+            text_label.TextColor3 = color
+        end
+    end)
 end
 
-spawn(function()
-    while wait(0.04) do
-        for _,v in next, workspace.CurrentRooms:GetChildren() do
-            if v:FindFirstChild("Door") and v.Door:FindFirstChild("Door") and not v.Door.Door:FindFirstChild("Highlight") then
-                hg = Instance.new("Highlight", v.Door.Door)
-                hg.FillColor = Color3.fromRGB(174, 245, 130)
-                hg.FillTransparency = 0.5
-    
-                bb = Instance.new('BillboardGui', v.Door.Door)
-                bb.Adornee = v.Door.Door
-                bb.ExtentsOffset = Vector3.new(0, 1, 0)
-                bb.AlwaysOnTop = true
-                bb.Size = UDim2.new(0, 6, 0, 6)
-                bb.StudsOffset = Vector3.new(0, 1, 0)
-                bb.Name = "BillBoard"
-    
-                txtlbl = Instance.new('TextLabel', bb)
-                txtlbl.ZIndex = 10
-                txtlbl.BackgroundTransparency = 1
-                txtlbl.Position = UDim2.new(0, 0, 0, -45)
-                txtlbl.Size = UDim2.new(1, 0, 10, 0)
-                txtlbl.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
-                txtlbl.FontSize = 'Size25'
-                txtlbl.Text = 'Door [' .. v.Name .. ']' -- math.floor = 1 > 1000
-                txtlbl.TextStrokeTransparency = 0.75
-                txtlbl.TextColor3 = Color3.fromRGB(174, 245, 130)
-    
-                txtlbl2 = Instance.new('TextLabel', bb)
-                txtlbl2.ZIndex = 10
-                txtlbl2.BackgroundTransparency = 1
-                txtlbl2.Position = UDim2.new(0, 0, 0, -15)
-                txtlbl2.Size = UDim2.new(1, 0, 10, 0)
-                txtlbl2.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
-                txtlbl2.FontSize = 'Size25'
-                txtlbl2.Text = ""
-                txtlbl2.Name = "Dist"
-                txtlbl2.TextStrokeTransparency = 1.5
-                txtlbl2.TextColor3 = Color3.fromRGB(174, 245, 130)
-            end
-            if v:FindFirstChild("Door") and v.Door:FindFirstChild("Door") and v.Door.Door:FindFirstChild("BillBoard") then
-                v.Door.Door.BillBoard.Dist.Text = '[' .. round((game.Players.LocalPlayer.Character.PrimaryPart.Position - v.Door.Door.Position).magnitude, 1) .. 'm]'
+local function selection(child, name, name2, name3)
+    billboard(child, name, name2, name3)
+    local hi = Instance.new("Highlight")
+    hi.Parent = child
+    hi.Adornee = child
+    hi.OutlineColor = Color3.fromRGB(161, 0, 0)
+    hi.FillColor = Color3.fromRGB(255, 0, 0)
+    hi.FillTransparency = 0.75
+    hi.Name = "Highlight"
+    if name2 then
+        hi.Name = "Highlight2"
+    end
+    if name3 then
+        hi.Name = "Highlight3"
+    end
+    if child:IsA("Part") then
+        child.Color = Color3.fromRGB(0, 0, 0)
+        child.Transparency = 0.85
+    end
+    spawn(function()
+        while task.wait() do
+            if hi then
+                local hue = tick() % 5 / 5
+                local color = Color3.fromHSV(hue, 1, 1) 
+                hi.OutlineColor = color
+                hi.FillColor = color
             end
         end
-    end
-end)
-function round(number, decimals)
-    local power = 10 ^ decimals
-    return math.floor(number * power) / power
-end
-spawn(function()
-    while wait(0.04) do
-        for _,v in pair(workspace.CurrentRooms:GetChildren()) do
-            if v:FindFirstChild("Assets") and v.Assets:FindFirstChild("KeyObtain") and not v.Assets.KeyObtain:FindFirstChild("Highlight") then
-                hg = Instance.new("Highlight", v.Assets.KeyObtain)
-                hg.FillColor = Color3.fromRGB(249, 153, 25)
-                hg.FillTransparency = 0.5
-    
-                bb = Instance.new('BillboardGui', v.Assets.KeyObtain)
-                bb.Adornee = v.Assets.KeyObtain
-                bb.ExtentsOffset = Vector3.new(0, 1, 0)
-                bb.AlwaysOnTop = true
-                bb.Size = UDim2.new(3, 0, 2, 0)
-                bb.StudsOffset = Vector3.new(0, 1, 0)
-                bb.Name = "BillBoard"
-    
-                txtlbl = Instance.new('TextLabel', bb)
-                txtlbl.ZIndex = 10
-                txtlbl.BackgroundTransparency = 1
-                txtlbl.Position = UDim2.new(3, 0, 2, 0)
-                txtlbl.Size = UDim2.new(3, 0, 2, 0)
-                txtlbl.Font = 'ArialBold'
-                txtlbl.FontSize = 'Size25'
-                txtlbl.Text = 'Key [' .. v.Name .. ']'
-                txtlbl.TextStrokeTransparency = 0.5
-                txtlbl.TextColor3 = Color3.fromRGB(249, 153, 25)
-    
-                txtlbl2 = Instance.new('TextLabel', bb)
-                txtlbl2.ZIndex = 10
-                txtlbl2.BackgroundTransparency = 1
-                txtlbl2.Position = UDim2.new(3, 0, 2, 0)
-                txtlbl2.Size = UDim2.new(3, 0, 2, 0)
-                txtlbl2.Font = 'ArialBold'
-                txtlbl2.FontSize = 'Size12'
-                txtlbl2.Text = ""
-                txtlbl2.Name = "Dist"
-                txtlbl2.TextStrokeTransparency = 0.5
-                txtlbl2.TextColor3 = Color3.fromRGB(249, 153, 25)
-            end
-            if v:FindFirstChild("Assets") and v.Assets:FindFirstChild("KeyObtain") and v.Assets.KeyObtain:FindFirstChild("BillBoard") then
-                v.Assets.KeyObtain.BillBoard.Dist.Text = '['.. round((game.Players.LocalPlayer.Character.PrimaryPart.Position - v.Assets.KeyObtain.Position).magnitude, 1) ..'m]'
-               end
-           end
-       end
     end)
+end
+
+
+function checkDistance(part, extra)
+    if not extra then extra = 15 end
+    if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
+        return false
+    end
+    local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
+    if distanceToPart <= extra then
+        return true
+    end
+    return false
+end
