@@ -25,8 +25,8 @@ spawn(function()
                 txtlbl.Position = UDim2.new(0, 0, 0, -45)
                 txtlbl.Size = UDim2.new(1, 0, 10, 0)
                 txtlbl.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
-                txtlbl.FontSize = 'Size12'
-                txtlbl.Text = 'Door [' .. v.Name .. ']'
+                txtlbl.FontSize = 'Size25'
+                txtlbl.Text = 'Door [' .. v.Name .. ']' -- math.floor = 1 > 1000
                 txtlbl.TextStrokeTransparency = 0.75
                 txtlbl.TextColor3 = Color3.fromRGB(174, 245, 130)
     
@@ -36,7 +36,7 @@ spawn(function()
                 txtlbl2.Position = UDim2.new(0, 0, 0, -15)
                 txtlbl2.Size = UDim2.new(1, 0, 10, 0)
                 txtlbl2.FontFace = Font.new("rbxasset://fonts/families/Oswald.json")
-                txtlbl2.FontSize = 'Size12'
+                txtlbl2.FontSize = 'Size25'
                 txtlbl2.Text = ""
                 txtlbl2.Name = "Dist"
                 txtlbl2.TextStrokeTransparency = 1.5
@@ -48,14 +48,13 @@ spawn(function()
         end
     end
 end)
-task.wait()
 function round(number, decimals)
     local power = 10 ^ decimals
     return math.floor(number * power) / power
 end
 spawn(function()
     while wait(0.04) do
-        for _,v in next, workspace.CurrentRooms:GetChildren() do
+        for _,v in pair(workspace.CurrentRooms:GetChildren()) do
             if v:FindFirstChild("Assets") and v.Assets:FindFirstChild("KeyObtain") and not v.Assets.KeyObtain:FindFirstChild("Highlight") then
                 hg = Instance.new("Highlight", v.Assets.KeyObtain)
                 hg.FillColor = Color3.fromRGB(249, 153, 25)
@@ -75,7 +74,7 @@ spawn(function()
                 txtlbl.Position = UDim2.new(3, 0, 2, 0)
                 txtlbl.Size = UDim2.new(3, 0, 2, 0)
                 txtlbl.Font = 'ArialBold'
-                txtlbl.FontSize = 'Size12'
+                txtlbl.FontSize = 'Size25'
                 txtlbl.Text = 'Key [' .. v.Name .. ']'
                 txtlbl.TextStrokeTransparency = 0.5
                 txtlbl.TextColor3 = Color3.fromRGB(249, 153, 25)
