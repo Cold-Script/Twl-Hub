@@ -103,3 +103,20 @@ selection(v,"Closet",true)
 elseif v:IsA("Model") and v.Name == "RetroWardrobe" then
 selection(v,"Closet",true)
 -- // ESP ENTITIES 🟥 \\
+workspace.ChildAdded:Connect(function(child)
+				-- // EYES ESP \\
+		     if child.Name == "Eyes" then
+	           selection(child, "Eyes")
+                -- // JEFF ESP \\
+             elseif child.Name == "JeffTheKiller" then
+               selection(child, "JeffTheKiller")
+                -- // SEEK ESP \\
+             elseif child.Name == "SeekMoving" then
+               selection(child, "Seek")
+                -- // RUSH ESP \\
+             elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+			   selection(child:FindFirstChildWhichIsA("BasePart"), "Rush")
+                -- // AMBUSH ESP \\
+			 elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+			   selection(child:FindFirstChildWhichIsA("BasePart"), "Ambush")
+				
