@@ -75,7 +75,7 @@ local function selection(child, name, name2, name3)
         end
     end)
 end
-
+-- // CHECK DISTANCE \\
 
 function checkDistance(part, extra)
     if not extra then extra = 15 end
@@ -88,3 +88,18 @@ function checkDistance(part, extra)
     end
     return false
 end
+-- // ESP DOOR 🚪 \\
+for _, v in pairs(worskpace.CurrentRooms:GetDescendants()) do
+if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
+selection(v,"Door",true)
+-- // ESP KEY 🔑 \\
+elseif v:IsA("Model") and v.Name == "KeyObtain" then
+selection(v,"Door",true)
+-- // ESP CLOSET 🗄️ \\
+elseif v:IsA("Model") and v.Name == "Backdoor_Wardrobe" then
+selection(v,"Closet",true)
+elseif v:IsA("Model") and v.Name == "Wardrobe" then
+selection(v,"Closet",true)
+elseif v:IsA("Model") and v.Name == "RetroWardrobe" then
+selection(v,"Closet",true)
+-- // ESP ENTITIES 🟥 \\
