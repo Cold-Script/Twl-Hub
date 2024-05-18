@@ -102,21 +102,35 @@ elseif v:IsA("Model") and v.Name == "Wardrobe" then
 selection(v,"Closet",true)
 elseif v:IsA("Model") and v.Name == "RetroWardrobe" then
 selection(v,"Closet",true)
--- // ESP ENTITIES 🟥 \\
+-- // ESP ENTITIES DOOR 🟥 \\
 workspace.ChildAdded:Connect(function(child)
-				-- // EYES ESP \\
-		     if child.Name == "Eyes" then
-	           selection(child, "Eyes")
-                -- // JEFF ESP \\
-             elseif child.Name == "JeffTheKiller" then
-               selection(child, "JeffTheKiller")
+	        -- // EYES ESP \\
+             if child.Name == "Eyes" then
+	       selection(child, "Eyes")
                 -- // SEEK ESP \\
              elseif child.Name == "SeekMoving" then
                selection(child, "Seek")
                 -- // RUSH ESP \\
              elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-			   selection(child:FindFirstChildWhichIsA("BasePart"), "Rush")
+	       selection(child:FindFirstChildWhichIsA("BasePart"), "Rush")
                 -- // AMBUSH ESP \\
-			 elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
-			   selection(child:FindFirstChildWhichIsA("BasePart"), "Ambush")
-				
+             elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
+               selection(child:FindFirstChildWhichIsA("BasePart"), "Ambush")
+                -- // FIGURE ESP \\
+             elseif child.Name == "FigureRagdoll" then
+               selection(child,"Figure")
+-- // ESP SUPER HARD MODE 🟥 \\
+                -- // JEFF ESP \\
+             elseif child.Name == "JeffTheKiller" then
+               selection(child, "JeffTheKiller")
+-- // ESP RETRO MODE 🟥 \\
+                -- // SEEK WALL ESP \\
+             elseif child.Name == "ScaryWall" then
+               selection(child, "")
+		-- // DRAKOBLOXXER ESP \\
+             elseif child.Name == "Drakobloxxer" then
+               selection(child,"Drakobloxxer")
+                -- // LAVA ESP \\
+             elseif child.Name == "Lava" then
+               selection(child,"Lava")
+-- // ESP BACKDOOR 🟥 \\
