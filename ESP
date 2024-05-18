@@ -111,6 +111,31 @@ elseif v:IsA("Model") and v.Name == "RetroWardrobe" then
 selection(v,"Closet",true)
       end
 end
+workspace.CurrentRooms.ChildAdded:Connect(function(child)
+task.wait()
+-- // ESP DOOR 🚪 \\
+for _, v in pairs(child:GetDescendants()) do
+if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
+selection(v,"Door",true)
+-- // ESP KEY 🔑 \\
+elseif v:IsA("Model") and v.Name == "KeyObtain" then
+selection(v,"Key",true)
+-- // Timer Lever ⏳ \\
+elseif v:IsA("Model") and v.Name == "TimerLever" then
+selection(v,"TimerLever",true)
+-- // Lever 🪟 \\
+elseif v:IsA("Model") and v.Name == "LeverForGate" then
+selection(v,"Lever",true)
+-- // ESP CLOSET 🗄️ \\
+elseif v:IsA("Model") and v.Name == "Backdoor_Wardrobe" then
+selection(v,"Closet",true)
+elseif v:IsA("Model") and v.Name == "Wardrobe" then
+selection(v,"Closet",true)
+elseif v:IsA("Model") and v.Name == "RetroWardrobe" then
+selection(v,"Closet",true)
+      end
+   end
+end)
 -- // ESP DOOR 🟥 \\
 workspace.ChildAdded:Connect(function(child)
 	        -- // EYES ESP \\
