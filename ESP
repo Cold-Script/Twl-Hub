@@ -92,9 +92,16 @@ end
 for _, v in pairs(worskpace.CurrentRooms:GetDescendants()) do
 if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
 selection(v,"Door",true)
+end
 -- // ESP KEY 🔑 \\
 elseif v:IsA("Model") and v.Name == "KeyObtain" then
-selection(v,"Door",true)
+selection(v,"Key",true)
+-- // Timer Lever ⏳ \\
+elseif v:IsA("Model") and v.Name == "TimerLever" then
+selection(v,"TimerLever",true)
+-- // Lever 🪟 \\
+elseif v:IsA("Model") and v.Name == "LeverForGate" then
+selection(v,"Lever",true)
 -- // ESP CLOSET 🗄️ \\
 elseif v:IsA("Model") and v.Name == "Backdoor_Wardrobe" then
 selection(v,"Closet",true)
@@ -102,7 +109,8 @@ elseif v:IsA("Model") and v.Name == "Wardrobe" then
 selection(v,"Closet",true)
 elseif v:IsA("Model") and v.Name == "RetroWardrobe" then
 selection(v,"Closet",true)
--- // ESP ENTITIES DOOR 🟥 \\
+end
+-- // ESP DOOR 🟥 \\
 workspace.ChildAdded:Connect(function(child)
 	        -- // EYES ESP \\
              if child.Name == "Eyes" then
@@ -119,6 +127,8 @@ workspace.ChildAdded:Connect(function(child)
                 -- // FIGURE ESP \\
              elseif child.Name == "FigureRagdoll" then
                selection(child,"Figure")
+   end
+end)
 -- // ESP SUPER HARD MODE 🟥 \\
                 -- // JEFF ESP \\
              elseif child.Name == "JeffTheKiller" then
@@ -132,5 +142,15 @@ workspace.ChildAdded:Connect(function(child)
                selection(child,"Drakobloxxer")
                 -- // LAVA ESP \\
              elseif child.Name == "Lava" then
-               selection(child,"Lava")
+               selection(child,"")
 -- // ESP BACKDOOR 🟥 \\
+	     elseif child.Name == "BackdoorLookman" then
+	      if child then
+		task.wait()
+  child.Parent = game:GetService("Debris")
+		   return
+		end
+		selection(child:WaitForChild("Core"), "Backdoor Lookman")
+	      elseif child.Name == "BackdoorRush" then
+		selection(child:WaitForChild("Main"), "Blitz")
+	end
