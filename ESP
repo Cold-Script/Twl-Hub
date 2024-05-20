@@ -706,3 +706,92 @@ local Toggle = Tab:CreateToggle({
 	end,
 
 })
+local Toggle = Tab:CreateToggle({
+	Name = "Key ESP",
+	CurrentValue = false,
+	Flag = "KeyESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KeyObtain" and v:IsA("Model") then
+					selection(v, "🔑 Key")
+					notify("", nil, "🔑 Key Found!")
+					spawn(function()
+						while task.wait() do
+							if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+								fireproximityprompt(v.ModulePrompt)
+							end
+						end
+					end)
+				end
+			end
+			KeyESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "KeyObtain" and v:IsA("Model") then
+						selection(v, "🔑 Key")
+						notify("", nil, "🔑 Key Found!")
+						spawn(function()
+							while task.wait() do
+								if checkDistance(v:FindFirstChildWhichIsA("BasePart")) and AutoInteract then
+									fireproximityprompt(v.ModulePrompt)
+								end
+							end
+						end)
+					end
+				end
+			end)
+		else
+			KeyESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Tab:CreateToggle({
+	Name = "Door ESP",
+	CurrentValue = false,
+	Flag = "DoorESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "Door" and v:IsA("Model") then
+					selection(v, "🚪 Door", true)
+					spawn(function()
+						while task.wait() do
+							if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
+								fireproximityprompt(v.ActivateEventPrompt)
+							end
+						end
+					end)
+				end
+			end
+			DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "Door" and v:IsA("Model") then
+						selection(v, "🚪 Door", true)
+						spawn(function()
+							while task.wait() do
+								if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
+									fireproximityprompt(v.ActivateEventPrompt)
+								end
+							end
+						end)
+					end
+				end
+			end)
+		else
+			DoorESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight_2" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})
