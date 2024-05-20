@@ -1,691 +1,708 @@
-if Vynixu_ESPModule then return Vynixu_ESPModule end -- silly goose
+local screen_gui = Instance.new("ScreenGui")
 
+screen_gui.Name = "Kiwi"
 
+screen_gui.DisplayOrder = 999999999
 
--- Services
+screen_gui.IgnoreGuiInset = false
 
-local Players = game:GetService("Players")
+screen_gui.ResetOnSpawn = false
 
-local RunService = game:GetService("RunService")
+screen_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+screen_gui.Parent = game.CoreGui
 
 
--- Variables
 
-local localPlayer = Players.LocalPlayer
+local frame = Instance.new("Frame")
 
-local localChar = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+frame.AnchorPoint = Vector2.new(0, 1)
 
-local localRoot = localChar:WaitForChild("HumanoidRootPart")
+frame.BackgroundColor3 = Color3.new(1, 1, 1)
 
-local localCamera = workspace.CurrentCamera
+frame.BackgroundTransparency = 1
 
+frame.BorderColor3 = Color3.new(0, 0, 0)
 
+frame.BorderSizePixel = 0
 
-local vec2new = Vector2.new
+frame.Position = UDim2.new(0, 0, 1, 0)
 
-local col3new = Color3.new
+frame.Size = UDim2.new(0.386924595, 0, 0.576817155, 0)
 
-local col3hsv = Color3.fromHSV
+frame.Visible = true
 
-local drawnew = Drawing.new
+frame.Parent = screen_gui
 
-local instnew = Instance.new
 
-local waitForChild = game.WaitForChild
 
-local findFirstIsA = game.FindFirstChildWhichIsA
+local uigrid_layout = Instance.new("UIGridLayout")
 
-local descendantOf = game.IsDescendantOf
+uigrid_layout.CellPadding = UDim2.new(0, 0, 0.0500000007, 0)
 
-local getPlayers = Players.GetPlayers
+uigrid_layout.CellSize = UDim2.new(0.800000012, 0, 0.200000003, 0)
 
-local wtvp = localCamera.WorldToViewportPoint
+uigrid_layout.StartCorner = Enum.StartCorner.BottomLeft
 
-local math_min = math.min
+uigrid_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 
-local math_max = math.max
+uigrid_layout.SortOrder = Enum.SortOrder.LayoutOrder
 
-local math_floor = math.floor
+uigrid_layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 
-local math_clamp = math.clamp
+uigrid_layout.Parent = frame
 
-local table_insert = table.insert
 
-local string_lower = string.lower
 
+local uipadding = Instance.new("UIPadding")
 
+uipadding.PaddingBottom = UDim.new(0.02500000037252903, 0)
 
-local module = {
+uipadding.Parent = frame
 
-    Containers = {},
 
-    Connections = {},
 
-    Config = {
+local template = Instance.new("Frame")
 
-        TextSize = 16,
+template.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
 
-        Rainbow = true,
+template.BorderColor3 = Color3.new(0, 0, 0)
 
-        ColorOverride = nil,
+template.BorderSizePixel = 0
 
-        Distance = {
+template.Position = UDim2.new(0, 0, 0.605726838, 0)
 
-            Enabled = true,
+template.Size = UDim2.new(0, 231, 0, 286)
 
-            Max = math.huge
+template.Visible = false
 
-        },
+template.Name = "template"
 
-        Health = {
+template.Parent = frame
 
-            Enabled = true,
 
-            Type = "Percentage" -- "Fraction"
 
-        },
+local uiscale = Instance.new("UIScale")
 
-        Tracer = {
+uiscale.Parent = template
 
-            Enabled = true,
 
-            Thickness = 1,
 
-            Color = col3new(1, 1, 1),
+local uicorner = Instance.new("UICorner")
 
-            From = vec2new(localCamera.ViewportSize.X / 2, localCamera.ViewportSize.Y)
+uicorner.Parent = template
 
-        },
 
-        Highlight = {
 
-            Enabled = true,
+local uistroke = Instance.new("UIStroke")
 
-            AlwaysOnTop = true,
+uistroke.Color = Color3.new(0.588235, 0.588235, 0.588235)
 
-            Color = col3new(1, 1, 1),
+uistroke.Thickness = 2.5
 
-            Transparency = {
+uistroke.Parent = template
 
-                Fill = 0.75,
 
-                Outline = 0.75
 
-            }
+local uigradient = Instance.new("UIGradient")
 
-        }
+uigradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.996078, 0.0392157, 0)), ColorSequenceKeypoint.new(0.1599999964237213, Color3.new(1, 0.615686, 0)), ColorSequenceKeypoint.new(0.3199999928474426, Color3.new(1, 1, 0)), ColorSequenceKeypoint.new(0.47999998927116394, Color3.new(0, 1, 0)), ColorSequenceKeypoint.new(0.6399999856948853, Color3.new(0, 0.666667, 1)), ColorSequenceKeypoint.new(0.800000011920929, Color3.new(1, 0.333333, 1)), ColorSequenceKeypoint.new(1, Color3.new(0.666667, 0, 1))})
 
-    }
+uigradient.Parent = uistroke
 
-}
 
 
+local text_label = Instance.new("TextLabel")
 
--- Functions
+text_label.Font = Enum.Font.GothamBold
 
-local function onCharacterAdded(char)
+text_label.Text = "Entity spawned"
 
-    localChar, localRoot = char, waitForChild(char, "HumanoidRootPart")
+text_label.TextColor3 = Color3.new(1, 1, 1)
+
+text_label.TextScaled = true
+
+text_label.TextSize = 14
+
+text_label.TextWrapped = true
+
+text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+
+text_label.BackgroundTransparency = 1
+
+text_label.BorderColor3 = Color3.new(0, 0, 0)
+
+text_label.BorderSizePixel = 0
+
+text_label.Size = UDim2.new(1, 0, 1, 0)
+
+text_label.Visible = true
+
+text_label.ZIndex = 3
+
+text_label.Parent = template
+
+
+
+local uistroke_2 = Instance.new("UIStroke")
+
+uistroke_2.Thickness = 2.5
+
+uistroke_2.Parent = text_label
+
+
+
+local uipadding_2 = Instance.new("UIPadding")
+
+uipadding_2.PaddingBottom = UDim.new(0.10000000149011612, 0)
+
+uipadding_2.PaddingLeft = UDim.new(0.10000000149011612, 0)
+
+uipadding_2.PaddingRight = UDim.new(0.10000000149011612, 0)
+
+uipadding_2.PaddingTop = UDim.new(0.10000000149011612, 0)
+
+uipadding_2.Parent = text_label
+
+
+
+local uigradient_2 = Instance.new("UIGradient")
+
+uigradient_2.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(0.3799654543399811, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(0.5, Color3.new(0.580392, 0.580392, 0.580392)), ColorSequenceKeypoint.new(0.5336787700653076, Color3.new(1, 1, 1)), ColorSequenceKeypoint.new(1, Color3.new(1, 1, 1))})
+
+uigradient_2.Offset = Vector2.new(-1, 0)
+
+uigradient_2.Rotation = 45
+
+uigradient_2.Parent = template
+
+
+
+local shadow = Instance.new("ImageLabel")
+
+shadow.Image = "rbxassetid://14001321443"
+
+shadow.ImageColor3 = Color3.new(0, 0, 0)
+
+shadow.ImageTransparency = 0.75
+
+shadow.ScaleType = Enum.ScaleType.Slice
+
+shadow.SliceCenter = Rect.new(50, 50, 150, 150)
+
+shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+
+shadow.BackgroundColor3 = Color3.new(1, 1, 1)
+
+shadow.BackgroundTransparency = 1
+
+shadow.BorderColor3 = Color3.new(0, 0, 0)
+
+shadow.BorderSizePixel = 0
+
+shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+shadow.Size = UDim2.new(1, 35, 1, 35)
+
+shadow.Visible = true
+
+shadow.ZIndex = -1
+
+shadow.Name = "shadow"
+
+shadow.Parent = template
+
+
+
+local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+
+uiaspect_ratio_constraint.AspectRatio = 1.107398509979248
+
+uiaspect_ratio_constraint.Parent = frame
+
+
+
+local function sound()
+
+	local notification = Instance.new("Sound", workspace)
+
+	notification.SoundId = "rbxassetid://5153734608"
+
+	notification.Parent = workspace
+
+	notification:Play()
 
 end
 
 
 
-local function isAlive(container)
+local function notify(entity, bypassed, other)
 
-    local rootPart = container.Root
+	sound()
 
-    local humanoid = container.Humanoid
+	local tem = template:Clone()
 
-    if not rootPart or not rootPart.Parent then
+	tem.Visible = true
 
-        return false
+	tem.TextLabel.Text = entity .. " Has just spawned!"
 
-    elseif humanoid and humanoid.Health <= 0 then
+	if bypassed then
 
-        return false
+		tem.TextLabel.Text = entity .. " Has been bypassed!"
 
-    end
+	end
 
-    return true
+	if other then
+
+		tem.TextLabel.Text = other
+
+	end
+
+	tem.Parent = frame
+
+	game:GetService("TweenService"):Create(tem.UIScale, TweenInfo.new(0.25, Enum.EasingStyle.Sine), { Scale = 1 }):Play()
+
+	spawn(function()
+
+		while true do
+
+			task.wait(0.01)
+
+			if not tem or not tem:FindFirstChild("UIStroke") or not tem:FindFirstChild("UIStroke"):FindFirstChild("UIGradient") then
+
+				return
+
+			end
+
+			tem.UIStroke.UIGradient.Rotation += 1
+
+		end
+
+	end)
+
+
+
+	spawn(function()
+
+		while true do
+
+			task.wait(0.01)
+
+			if not tem or not tem:FindFirstChild("UIGradient") then
+
+				return
+
+			end
+
+			if tem.UIGradient.Offset.X >= 1 then
+
+				tem.UIGradient.Offset = Vector2.new(-1, 0)
+
+			end
+
+			tem.UIGradient.Offset += Vector2.new(0.01, 0)
+
+		end
+
+	end)
+
+	spawn(function()
+
+		task.wait(15)
+
+		if tem and tem:FindFirstChild("UIScale") then
+
+			game:GetService("TweenService"):Create(tem.UIScale, TweenInfo.new(0.25, Enum.EasingStyle.Sine), { Scale = 0 }):Play()
+
+			task.wait(.25)
+
+			tem:Destroy()
+
+		end
+
+	end)
 
 end
 
 
 
-local function getCallback(container, key)
+if game:GetService("ReplicatedStorage").GameData.Floor.Value ~= "Retro" then
 
-    local callback = container.Callbacks[key]
+	notify("", nil, "Not Retro Mode!")
 
-    return typeof(callback) == "function" and {callback()} or {}
+	return
 
 end
 
 
 
-function module:Add(rootPart, options, callbacks)
+if _G.DAFH then
 
-    if typeof(rootPart) == "Instance" and rootPart.ClassName == "Model" then
+	notify("", nil, "Already Executed!")
 
-        rootPart = rootPart.PrimaryPart or findFirstIsA(rootPart, "BasePart")
+	return
 
-    end
+end
 
-    if not rootPart then
+_G.DAFH = true
 
-        warn("Failed to find root part.")
 
-        return
 
-    elseif self.Containers[rootPart] then
+local function billboard(child, name, name2, name3)
 
-        self:Remove(rootPart)
+	local billboard_gui = Instance.new("BillboardGui")
 
-    end
+	billboard_gui.Active = true
 
+	billboard_gui.AlwaysOnTop = true
 
+	billboard_gui.ClipsDescendants = true
 
-    -- Setup callbacks (nullable)
+	billboard_gui.LightInfluence = 1
 
-    callbacks = (typeof(callbacks) == "table") and callbacks or {}
+	billboard_gui.Size = UDim2.new(10, 0, 2, 0)
 
+	billboard_gui.ResetOnSpawn = false
 
+	billboard_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-    -- Get player from rootPart (nullable)
+	billboard_gui.Parent = child
 
-    local player;
+	billboard_gui.Name = "KiwiHighlight"
 
-    for _, plr in getPlayers(Players) do
+	if name2 then
 
-        if plr.Character and descendantOf(plr.Character, rootPart) then
+		billboard_gui.Name = "KiwiHighlight_2"
 
-            player = plr
+	end
 
-            break
+	if name3 then
 
-        end
+		billboard_gui.Name = "KiwiHighlight_3"
 
-    end
+	end
 
 
 
-    -- Get player team color (nullable)
+	local text_label = Instance.new("TextLabel")
 
-    local teamColor;
+	text_label.Font = Enum.Font.GothamBold
 
-    if player then
+	text_label.Text = name
 
-        teamColor = player.TeamColor.Color
+	text_label.TextColor3 = Color3.new(1, 1, 1)
 
-    end
+	text_label.TextScaled = true
 
+	text_label.TextSize = 14
 
+	text_label.TextWrapped = true
 
-    -- Construct container
+	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
 
-    local config = {
+	text_label.BackgroundTransparency = 1
 
-        Name = options.Name or rootPart.Name,
+	text_label.BorderColor3 = Color3.new(0, 0, 0)
 
-        Color = options.Color or teamColor or col3new(1, 1, 1),
+	text_label.BorderSizePixel = 0
 
-        HighlightFocus = options.HighlightFocus or rootPart,
+	text_label.Size = UDim2.new(1, 0, 1, 0)
 
-        Hidden = false
+	text_label.Visible = true
 
-    }
+	text_label.Parent = billboard_gui
 
-    local connections = {}
 
-    local drawing = {}
 
-    local container = {
+	local uistroke = Instance.new("UIStroke")
 
-        Root = rootPart,
+	uistroke.Thickness = 2.5
 
-        Connections = connections,
+	uistroke.Parent = text_label
 
-        Drawing = drawing,
 
-        Callbacks = callbacks,
 
-        Config = config,
+	spawn(function()
 
-        Remove = function(self)
+		while task.wait() do
 
-            module:Remove(self.Root)
+			local hue = tick() % 5 / 5
 
-        end
+			local color = Color3.fromHSV(hue, 1, 1) 
 
-    }
+			text_label.TextColor3 = color
 
+		end
 
-
-    -- Connections
-
-    connections.AncestryChanged = rootPart.AncestryChanged:Connect(function(_, parent)
-
-        if not parent then
-
-            container:Remove()
-
-        end
-
-    end)
-
-
-
-    -- Drawing
-
-    local name = drawnew("Text")
-
-    name.Center = true
-
-    name.Outline = true
-
-    name.Size = self.Config.TextSize
-
-    name.Color = config.Color
-
-    name.Text = config.Name
-
-
-
-    local distance = drawnew("Text")
-
-    distance.Center = true
-
-    distance.Outline = true
-
-    distance.Color = col3new(1, 1, 1)
-
-    distance.Size = self.Config.TextSize
-
-
-
-    local health = drawnew("Text")
-
-    health.Center = true
-
-    health.Outline = true
-
-    health.Color = col3new(1, 1, 1)
-
-    health.Size = self.Config.TextSize
-
-
-
-    local tracer = drawnew("Line")
-
-    tracer.From = self.Config.Tracer.From
-
-    tracer.Thickness = self.Config.Tracer.Thickness
-
-    tracer.Color = config.Color
-
-
-
-    local highlight = instnew("Highlight")
-
-    highlight.Enabled = false
-
-    highlight.FillTransparency = self.Config.Highlight.Transparency.Fill
-
-    highlight.OutlineTransparency = self.Config.Highlight.Transparency.Outline
-
-    highlight.FillColor = self.Config.Highlight.Color
-
-    highlight.OutlineColor = self.Config.Highlight.Color
-
-    highlight.Parent = config.HighlightFocus
-
-
-
-    -- Indexing
-
-    table_insert(drawing, { Obj = name, Name = "Name", Type = "Text", Order = 1 })
-
-    table_insert(drawing, { Obj = distance, Name = "Distance", Type = "Text", Order = 2})
-
-    table_insert(drawing, { Obj = health, Name = "Health", Type = "Text", Order = 3})
-
-    table_insert(drawing, { Obj = tracer, Name = "Tracer", Type = "Line" })
-
-    table_insert(drawing, { Obj = highlight, Name = "Highlight", Type = "Highlight" })
-
-
-
-    self.Containers[rootPart] = container
-
-    return container
+	end)
 
 end
 
 
 
-function module:Remove(rootPart)
+local function selection(child, name, name2, name3)
 
-    local container = self.Containers[rootPart]
+	billboard(child, name, name2, name3)
 
-    if container then
+	local hi = Instance.new("Highlight")
 
-        self.Containers[rootPart] = nil
+	hi.Parent = child
 
-        for i, connection in container.Connections do
+	hi.Adornee = child
 
-            connection:Disconnect()
+	hi.OutlineColor = Color3.fromRGB(161, 0, 0)
 
-            container.Connections[i] = nil
+	hi.FillColor = Color3.fromRGB(255, 0, 0)
 
-        end
+	hi.FillTransparency = 0.75
 
-        for i, draw in container.Drawing do
+	hi.Name = "KiwiHighlight"
 
-            draw.Obj:Destroy()
+	if name2 then
 
-            container.Drawing[i] = nil
+		hi.Name = "KiwiHighlight_2"
 
-        end
+	end
 
-        for i, _ in container do
+	if name3 then
 
-            container[i] = nil
+		hi.Name = "KiwiHighlight_3"
 
-        end
+	end
 
-    end
+	if child:IsA("Part") then
 
-end
+		child.Color = Color3.fromRGB(0, 0, 0)
 
+		child.Transparency = 0
 
+	end
 
-function module:Clear()
+	spawn(function()
 
-    for _, container in self.Containers do
+		while task.wait() do
 
-        container:Remove()
+			if hi then
 
-    end
+				local hue = tick() % 5 / 5
 
-end
+				local color = Color3.fromHSV(hue, 1, 1) 
 
+				hi.OutlineColor = color
 
+				hi.FillColor = color
 
-function module:Unload()
+			end
 
-    self:Clear()
+		end
 
-    for i, connection in self.Connections do
-
-        connection:Disconnect()
-
-        self.Connections[i] = nil
-
-    end
-
-    for i, _ in self do
-
-        self[i] = nil
-
-    end
-
-    getgenv().Vynixu_ESPModule = nil
+	end)
 
 end
 
 
 
--- Main
+function checkDistance(part, extra)
 
-local connections = module.Connections
+	if not extra then extra = 15 end
 
-connections.CharacterAdded = localPlayer.CharacterAdded:Connect(onCharacterAdded)
+	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
 
-connections.Update = RunService.RenderStepped:Connect(function()
+		return false
 
-    local eConfig = module.Config
+	end
 
-    local eDistance = eConfig.Distance
+	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
 
-    local eHealth = eConfig.Health
+	if distanceToPart <= extra then
 
-    local eTracer = eConfig.Tracer
+		return true
 
-    local eHighlight = eConfig.Highlight
+	end
 
-    local textSize = eConfig.TextSize
+	return false
 
+end
 
 
-    -- Update containers
 
-    for _, container in module.Containers do
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-        local config = container.Config
 
-        local drawing = container.Drawing
 
-        local callbacks = container.Callbacks
+local Window = Rayfield:CreateWindow({
 
-        local shouldHide = false
+	Name = "Tiqz Hub",
 
-        
+	LoadingTitle = "[BETA]",
 
-        -- Check if alive
+	LoadingSubtitle = "",
 
-        if not isAlive(container) then
+	ConfigurationSaving = {
 
-            container:Remove()
+		Enabled = true,
 
-            continue
+		FolderName = nil,
 
-        end
+		FileName = ""
 
+	},
 
+	KeySystem = false,
 
-        -- Get on-screen position
+})
 
-        local root = container.Root
 
-        local pos, onScreen = wtvp(localCamera, root.Position)
 
-        if not onScreen then
 
-            shouldHide = true
 
-        end
+local Tab = Window:CreateTab("Main", 16964919241)
 
-        
+local Section = Tab:CreateSection("Toggles")
 
-        -- Check distance
 
-        local mag = (root.Position - localRoot.Position).Magnitude
 
-        if mag > eDistance.Max then
+local Toggle = Tab:CreateToggle({
 
-            shouldHide = true
+	Name = "Entity Notifier",
 
-        end
+	CurrentValue = false,
 
+	Flag = "EntityNotifier",
 
+	Callback = function(Value)
 
-        if shouldHide then
+		if Value then
 
-            -- Hide container
+			EntityNotifier = workspace.ChildAdded:Connect(function(child)
 
-            if not config.Hidden then
+				task.wait(1)
 
-                config.Hidden = true
+				if child.Name == "Eyes" then
 
-                for i2 = 1, #drawing, 1 do
+					notify("Eyes")
 
-                    local draw = drawing[i2]
+					if EntityEsp then
 
-                    if draw.Type ~= "Highlight" then
+						selection(child, "Eyes")
 
-                        draw.Obj.Visible = false
+					end
+                elseif child.Name == "SeekMoving" then
+                     notify("Seek")
+                  if EntityEsp then
+                      selection(child, "Seek")
+                 end
 
-                    else
+                elseif child.Name == "JeffTheKiller" then
+                     notify("Jeff The Killer")
+                  if EntityEsp then
+                      selection(child, "JeffTheKiller")
+                 end
 
-                        draw.Obj.Enabled = false
+                elseif child.Name == "ScaryWall" then
+                     notify("Seek Wall")
+                  if EntityEsp then
+                      selection(child, "")
+                 end
 
-                    end
+				elseif child.Name == "RushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 
-                end
+					notify("Rush")
 
-            end
+					if EntityEsp then
 
-            continue
+						selection(child:FindFirstChildWhichIsA("BasePart"), "Rush")
 
-        else
+					end
 
-            config.Hidden = false
+				elseif child.Name == "AmbushMoving" and checkDistance(child:FindFirstChildWhichIsA("BasePart"), 1000) then
 
+					notify("Ambush")
 
+					if EntityEsp then
 
-            -- Update container
+						selection(child:FindFirstChildWhichIsA("BasePart"), "Ambush")
 
-            local vec2 = vec2new(pos.X, pos.Y)
+					end
 
-            local color = typeof(eConfig.ColorOverride == "Color3") and eConfig.ColorOverride or eConfig.Rainbow and col3hsv(tick() % 4 / 4, 1, 1) or config.Color
+				elseif child.Name == "Drakobloxxer" then
 
-            local textRows = 0
+					if EntityEsp then
 
-            
+						selection(child, "DrakoBloxxer")
 
-            -- Get text rows count
+					end
 
-            for i = 1, #drawing, 1 do
+					if not MainNotified then
 
-                local draw = drawing[i]
+						MainNotified = true
 
-                if draw.Type == "Text" and draw.Obj.Text ~= "" then
+						notify("DrakoBloxxer")
 
-                    textRows += 1
+					end
 
-                end
+				end
 
-            end
+			end)
 
-            
+			EntityNotifierScreech = workspace.CurrentCamera.ChildAdded:Connect(function(child)
 
-            for i = 1, #drawing, 1 do
+				task.wait(1)
 
-                local draw = drawing[i]
+				if child.Name == "RetroScreech" then
 
-                local obj = draw.Obj
+					notify("Retro Screech")
 
-                local name = draw.Name
+					if EntityEsp then
 
-                local ttype = draw.Type
+						selection(child, "Retro Screech")
 
+					end
 
+				end
 
-                if ttype == "Text" then
+			end)
 
-                    if name == "Name" then
+				elseif child.Name == "Screech" then
 
-                        obj.Text = config.Name
+					notify("Screech")
 
+					if EntityEsp then
 
+						selection(child, "Screech")
 
-                    elseif name == "Distance" then
+					end
 
-                        obj.Text = eDistance.Enabled and `[{math_floor(mag)} m]` or ""
+				end
 
+			end)
 
+		else
 
-                    elseif name == "Health" then
+			EntityNotifier:Disconnect()
 
-                        local text;
+			EntityNotifierScreech:Disconnect()
 
-                        if eHealth.Enabled then
+		end
 
-                            local args = getCallback(container, "Health")
+	end,
 
-                            if #args > 1 then
+})
 
-                                local hType = string_lower(eHealth.Type)
 
-                                if hType == "percentage" then
 
-                                    text = `[{math_clamp(math_floor(100 / args[2] * args[1] * 10) / 10, 0, 100)}%]`
+local Toggle = Tab:CreateToggle({
 
-                                elseif hType == "fraction" then
+	Name = "Auto Interact Door,Key [Retro Mode]",
 
-                                    text = `[{math_floor(math_max(args[1], 0))}/{math_floor(args[2])}]`
+	CurrentValue = false,
 
-                                end
+	Flag = "Auto Interact",
 
-                            end
+	Callback = function(Value)
 
-                        end
+		AutoInteract = Value
 
-                        obj.Text = text or ""
+	end,
 
-                    end
-
-                    obj.Size = textSize
-
-                    obj.Color = color
-
-                    obj.Position = vec2 - vec2new(0, (textRows - math_min(textRows, draw.Order)) * textSize) -- dynamically order text positions (dogshit lol)
-
-                    obj.Visible = true
-
-
-
-                elseif ttype == "Line" then
-
-                    local enabled = eTracer.Enabled
-
-                    if enabled then
-
-                        obj.Color = color
-
-                        obj.From = eTracer.From
-
-                        obj.To = vec2 + vec2new(0, math_max(textRows * textSize / 2, textSize)) -- always under last text row
-
-                        obj.Thickness = eTracer.Thickness
-
-                    end
-
-                    obj.Visible = enabled
-
-                
-
-                elseif ttype == "Highlight" then
-
-                    local enabled = eHighlight.Enabled
-
-                    if enabled then
-
-                        obj.FillColor = color
-
-                        obj.FillTransparency = eHighlight.Transparency.Fill
-
-                        obj.OutlineColor = color
-
-                        obj.OutlineTransparency = eHighlight.Transparency.Outline
-
-                        obj.DepthMode = eHighlight.AlwaysOnTop and "AlwaysOnTop" or "Occluded"
-
-                    end
-
-                    obj.Enabled = enabled
-
-                end
-
-            end
-
-        end
-
-    end
-
-end)
-
-getgenv().Vynixu_ESPModule = module
-
-return module
+})
