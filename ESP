@@ -795,3 +795,124 @@ local Toggle = Tab:CreateToggle({
 		end
 	end,
 })
+local Toggle = Tab:CreateToggle({
+	Name = "Entity ESP",
+	CurrentValue = false,
+	Flag = "EntityESP",
+	Callback = function(Value)
+		EntityEsp = Value
+	end,
+})
+local Toggle = Tab:CreateToggle({
+	Name = "Bypass Screech",
+	CurrentValue = false,
+	Flag = "BypassScreech",
+	Callback = function(Value)
+		if Value then
+			game:GetService("ReplicatedStorage").Entities.ScreechRetro.Name = "Screechretro"
+		else
+			game:GetService("ReplicatedStorage").Entities.Screechretro.Name = "ScreechRetro"
+		end
+	end,
+})
+
+local Toggle = Tab:CreateToggle({
+	Name = "Bypass Killbricks",
+	CurrentValue = false,
+	Flag = "BypassKillbricks",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end
+			killBricks = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end)
+		else
+			killBricks:Disconnect()
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = true
+						end
+					end
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = Tab:CreateToggle({
+	Name = "Bypass Eyes",
+	CurrentValue = false,
+	Flag = "BypassEyes",
+	Callback = function(Value)
+		if Value then
+			Eyes = game:GetService("RunService").RenderStepped:Connect(function()
+				game:GetService("ReplicatedStorage").RemotesFolder.MotorReplication:FireServer(0, 90, 0, false)
+			end)
+		else
+			Eyes:Disconnect()
+		end
+	end,
+})
+
+local Toggle = Tab:CreateToggle({
+	Name = "Bypass Seek",
+	CurrentValue = false,
+	Flag = "BypassSeek",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end
+			SeekWall = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end)
+		else
+			SeekWall:Disconnect()
+		end
+	end,
+})
+
+local Toggle = Tab:CreateToggle({
+	Name = "Bypass DrakoBloxxers",
+	CurrentValue = false,
+	Flag = "BypassDrakoBloxxers",
+	Callback = function(Value)
+		if Value then
+			DrakoBloxxers = workspace.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Drakobloxxer" then
+					child:Destroy()
+					for _, v in pairs(workspace:GetChildren()) do
+						if v.Name == "Sound" and v:IsA("Sound") then
+							v:Destroy()
+						end
+					end
+				end
+			end)
+		else
+			DrakoBloxxers:Disconnect()
+		end
+	end,
+})
