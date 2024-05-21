@@ -1,49 +1,47 @@
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
-function message(text)
-	spawn(function()
-		local msg = Instance.new("Message",workspace)
-		msg.Text = tostring(text)
-		task.wait(5)
-		msg:Destroy()
+-- // Linoria Ui \\
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 
-		--firesignal(entityinfo.Caption.OnClientEvent,tostring(text)) 
-	end)
-end
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
 
-function normalmessage(title, text, timee)
-	Notification:Notify(
-		{Title = title, Description = text},
-		{OutlineColor = Color3.fromRGB(80, 80, 80),Time = timee or 5, Type = "default"}
-	)
-end
+local UI = Library:CreateWindow({
+    Title = "",
+    Center = true,
+    AutoShow = true,
+    TabPadding = 10,
+    MenuFadeTime = 0.3
+})
+local v16={espdoors=false,espkeys=false,espitems=false,espbooks=false,esprush=false,espchest=false,esplocker=false,esphumans=false,espgold=false,goldespvalue=1061 -(810 + 251) ,hintrush=false,hintrushhee=false,light=false,instapp=false,noseek=false,nogates=false,nopuzzle=false,noa90=false,noskeledoors=false,noseekarmsfire=false,noscreech=false,nodupe=false,getcode=false,getcodet=false,roomsnolock=false,draweraura=false,autorooms=false,itemsaura=false,autopulllever=false,bookcollecter=false,breakercollecter=false};local v17={table.unpack(v16)};local v18={doors={},keys={},items={},books={},entity={},chests={},lockers={},people={},gold={}}
+local WTF1 = UI:AddTab("Main")
+local OMG1 = WTF1:AddLeftGroupbox("       // Anti-Entities \\\\          ")
+local OMG1 = WTF1:AddRightGroupbox("     // Disable-Entities \\\\          ")
 
-function confirmnotification(title, text, timee, callback)
-	Notification:Notify(
-		{Title = title, Description = text},
-		{OutlineColor = Color3.fromRGB(80, 80, 80), Time = timee or 10, Type = "option"},
-		{Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84), Callback = callback or function(state)end}
-	)
-end 
 
-function warnmessage(title, text, timee)
-	Notification:Notify(
-		{Title = title, Description = text},
-		{OutlineColor = Color3.fromRGB(80, 80, 80),Time = timee or 5, Type = "image"},
-		{Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
-	)
-end
-warnmessage("I myself rechedmcvn talk", "You want to know my status?", 3)
-task.wait(3)
-warnmessage("I myself rechedmcvn talk", "But let's face it, it's very bad", 5)
-task.wait(5)
-warnmessage("I myself rechedmcvn talk", "And I sorry yieviro92 because fake awesome script", 10)
-task.wait(10)
-warnmessage("I myself rechedmcvn talk", "But The person who needs my apology the most is a00kidd", 10)
-task.wait(10)
-warnmessage("I myself rechedmcvn talk", "Goodbye,yieviro92 and a00kidd", 3)
-task.wait(3)
-warnmessage("I myself rechedmcvn talk", "Thanks but i will try to live normally", 5)
-task.wait(3)
-warnmessage("I myself rechedmcvn talk", "Goodbye!", 3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
