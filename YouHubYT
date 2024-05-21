@@ -75,20 +75,19 @@ game.Lighting.GlobalShadows = false
 else
 game.Lighting.GlobalShadows = true end;end})
 local OMG7 = WTF2:AddLeftGroupbox("Bypass Cheat Speed")
-OMG7:AddLabel("1.You On IY")
-OMG7:AddLabel("2.You Fly,Fixcam of IY")
-OMG7:AddLabel("3.Open Door [0001]")
+OMG7:AddLabel("1.You On Infinite Yield")
+OMG7:AddLabel("2.You Fly,Fixcam of Infinite Yield")
+OMG7:AddLabel("3.Open Door [-50 or 001]")
 OMG7:AddLabel("4.On Script Bypass")
 OMG7:AddLabel("5.Find and go Closet [No Hide]")
 OMG7:AddLabel("6.Reset Character of IY")
 OMG7:AddLabel("Warning:Use in floor Backdoor,Retro")
-OMG7:AddButton({Text="IY",Func=function()
+OMG7:AddButton({Text="Infinite Yield",Func=function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 end})
 OMG7:AddButton({Text="Bypass",Func=function()
 loadstring(game:HttpGet("https://pastebin.ai/raw/0sqnyk2wxm"))()
 end})
-OMG7:AddLabel("Warning:Use in floor Backdoor,Retro")
 
 
 
