@@ -16,7 +16,120 @@ local v16={espdoors=false,espkeys=false,espitems=false,espbooks=false,esprush=fa
 local WTF1 = UI:AddTab("Main")
 local OMG1 = WTF1:AddLeftGroupbox("       // Anti-Entities \\\\          ")
 local OMG2 = WTF1:AddRightGroupbox("     // Disable-Entities \\\\          ")
-OMG2:AddToggle("MyToggle",{Text="Disable-Halt",Default=false,Tooltip="Anti Halt",Callback=function(v122)local v123=0;while true do if (v123==(1480 -(641 + 839))) then _G.BypassHalte=v122;if (_G.BypassHalte==true) then local v472=913 -(910 + 3) ;local v473;while true do if (v472==(0 -0)) then v473=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Shade;v473.Parent=game.Workspace;break;end end elseif (_G.BypassHalte==false) then local v642=1684 -(1466 + 218) ;local v643;while true do if (v642==(0 + 0)) then v643=game.Workspace.Shade;v643.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});OMG1:AddToggle("MyToggle",{Text="Anti-JumpScares [Void,Glitch]",Default=false,Tooltip="Anti Glitch & Void No JumpScares",Callback=function(v124)local v125=1148 -(556 + 592) ;while true do if (v125==(0 + 0)) then _G.GV=v124;if (_G.GV==true) then local v474=808 -(329 + 479) ;local v475;local v476;while true do if (v474==1) then v475.Parent=game.Workspace;v476.Parent=game.Workspace;break;end if (v474==(854 -(174 + 680))) then v475=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Glitch;v476=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Void;v474=3 -2 ;end end elseif (_G.GV==false) then local v644=0 -0 ;local v645;local v646;while true do if (v644==0) then v645=game.Workspace.Glitch;v646=game.Workspace.Void;v644=1 + 0 ;end if ((740 -(396 + 343))==v644) then v645.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;v646.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});OMG2:AddToggle("MyToggle",{Text="Disable-Screech Damage",Default=false,Tooltip="Screech No Damage",Callback=function(v126)getgenv().avoidsc=v126;end});OMG1:AddToggle("MyToggle",{Text="Anti-Dupe",Default=false,Tooltip="Anti Dupe",Callback=function(v128)v16.nodupe=v128;if v128 then local v288;v288=game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()task.wait();for v397,v398 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if (v398.Name=="DoorFake") then v398.Hidden.CanTouch=false;end end repeat task.wait();until  not v16.nodupe v288:Disconnect();end);end end});local v48=game.ReplicatedStorage:WaitForChild("EntityInfo"):WaitForChild("A90");OMG2:AddToggle("MyToggle",{Text="Disable A90",Default=false,Tooltip="Bypass A-90 Use In The Rooms",Callback=function(v130)v16.noa90=v130;if v130 then local v289=0 + 0 ;local v290;while true do if (v289==(1477 -(29 + 1448))) then v290=v12.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90");if v290 then v290.Parent=nil;v48.Parent=nil;repeat task.wait();game.SoundService.Main.Volume=1390 -(135 + 1254) ;until  not v16.noa90 v290.Parent=v12.PlayerGui.MainUI.Jumpscare;v48.Parent=v15;end break;end end end end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.bypassSnare then for v399,v400 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v400.Name=="Snare") then v400.Hitbox['TouchInterest']:Destroy();end end end end);end);OMG1:AddToggle("MyToggle",{Text="Anti-Snare",Default=false,Tooltip="Anti Snare",Callback=function(v132)_G.bypassSnare=v132;end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);OMG1:AddToggle("MyToggle",{Text="Anti-Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});local v49=getrawmetatable(game);local v50=v49.__namecall;setreadonly(v49,false);v49.__namecall=newcclosure(function(v134,...)args={...};if (DisableEyes and EyesOnMap) then if (tostring(v134)=="MotorReplication") then args[2 + 0 ]= -(1647 -(389 + 1138));end end return v50(v134,table.unpack(args));end);
+OMG2:AddToggle("MyToggle",{Text="Disable-Halt",Default=false,Tooltip="Anti Halt",Callback=function(v122)local v123=0;while true do if (v123==(1480 -(641 + 839))) then _G.BypassHalte=v122;if (_G.BypassHalte==true) then local v472=913 -(910 + 3) ;local v473;while true do if (v472==(0 -0)) then v473=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Shade;v473.Parent=game.Workspace;break;end end elseif (_G.BypassHalte==false) then local v642=1684 -(1466 + 218) ;local v643;while true do if (v642==(0 + 0)) then v643=game.Workspace.Shade;v643.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});OMG1:AddToggle("MyToggle",{Text="Anti-JumpScares [Void,Glitch]",Default=false,Tooltip="Anti Glitch & Void No JumpScares",Callback=function(v124)local v125=1148 -(556 + 592) ;while true do if (v125==(0 + 0)) then _G.GV=v124;if (_G.GV==true) then local v474=808 -(329 + 479) ;local v475;local v476;while true do if (v474==1) then v475.Parent=game.Workspace;v476.Parent=game.Workspace;break;end if (v474==(854 -(174 + 680))) then v475=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Glitch;v476=game:GetService("ReplicatedStorage").ClientModules.EntityModules.Void;v474=3 -2 ;end end elseif (_G.GV==false) then local v644=0 -0 ;local v645;local v646;while true do if (v644==0) then v645=game.Workspace.Glitch;v646=game.Workspace.Void;v644=1 + 0 ;end if ((740 -(396 + 343))==v644) then v645.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;v646.Parent=game:GetService("ReplicatedStorage").ClientModules.EntityModules;break;end end end break;end end end});OMG1:AddToggle("MyToggle",{Text="Anti-Dupe",Default=false,Tooltip="Anti Dupe",Callback=function(v128)v16.nodupe=v128;if v128 then local v288;v288=game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()task.wait();for v397,v398 in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do if (v398.Name=="DoorFake") then v398.Hidden.CanTouch=false;end end repeat task.wait();until  not v16.nodupe v288:Disconnect();end);end end});local v48=game.ReplicatedStorage:WaitForChild("EntityInfo"):WaitForChild("A90");OMG2:AddToggle("MyToggle",{Text="Disable A90",Default=false,Tooltip="Bypass A-90 Use In The Rooms",Callback=function(v130)v16.noa90=v130;if v130 then local v289=0 + 0 ;local v290;while true do if (v289==(1477 -(29 + 1448))) then v290=v12.PlayerGui:WaitForChild("MainUI"):WaitForChild("Jumpscare"):FindFirstChild("Jumpscare_A90");if v290 then v290.Parent=nil;v48.Parent=nil;repeat task.wait();game.SoundService.Main.Volume=1390 -(135 + 1254) ;until  not v16.noa90 v290.Parent=v12.PlayerGui.MainUI.Jumpscare;v48.Parent=v15;end break;end end end end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.bypassSnare then for v399,v400 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v400.Name=="Snare") then v400.Hitbox['TouchInterest']:Destroy();end end end end);end);OMG1:AddToggle("MyToggle",{Text="Anti-Snare",Default=false,Tooltip="Anti Snare",Callback=function(v132)_G.bypassSnare=v132;end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.Eyhasd then if workspace:FindFirstChild("Eyes") then game:GetService("ReplicatedStorage").EntityInfo.MotorReplication:FireServer(0,(_G.Eyhasd and  -(452 -332)) or (0 -0) ,0,false);end end end);end);OMG1:AddToggle("MyToggle",{Text="Anti-Eyes",Default=false,Tooltip="Eyes No Damage",Callback=function(v133)_G.Eyhasd=v133;end});local v49=getrawmetatable(game);local v50=v49.__namecall;setreadonly(v49,false);v49.__namecall=newcclosure(function(v134,...)args={...};if (DisableEyes and EyesOnMap) then if (tostring(v134)=="MotorReplication") then args[2 + 0 ]= -(1647 -(389 + 1138));end end return v50(v134,table.unpack(args));end);
+game:GetService("Workspace").DescendantAdded:Connect(function(v186)if  not _G.antibanananana then return;end if v186.IsA(v186,"Part") then if _G.antibanananana then if (v186.Name=="BananaPeel") then v186.CanTouch=false;end end end end);OMG1:AddToggle("MyToggle",{Text="Anti-Banana",Default=false,Tooltip="Anti BananaPeel!",Callback=function(v187)local v188=0;while true do if (v188==(0 + 0)) then _G.antibanananana=v187;if (_G.antibanananana==true) then for v600,v601 in pairs(game:GetService("Workspace"):GetDescendants()) do if v601:IsA("Part") then if (v601.Name=="BananaPeel") then v601.CanTouch=false;end end end end break;end end end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.antije then for v413,v414 in pairs(game.workspace:GetChildren()) do if (v414.Name=="JeffTheKiller") then v414.Knife.CanTouch=false;end end for v415,v416 in pairs(game.workspace:GetChildren()) do if (v416.Name=="JeffTheKiller") then v416.Head.CanTouch=false;end end for v417,v418 in pairs(game.workspace:GetChildren()) do if (v418.Name=="JeffTheKiller") then v418.HumanoidRootPart.CanTouch=false;end end for v419,v420 in pairs(game.workspace:GetChildren()) do if (v420.Name=="JeffTheKiller") then v420["Left Arm"].CanTouch=false;end end for v421,v422 in pairs(game.workspace:GetChildren()) do if (v422.Name=="JeffTheKiller") then v422["Left Leg"].CanTouch=false;end end for v423,v424 in pairs(game.workspace:GetChildren()) do if (v424.Name=="JeffTheKiller") then v424["Right Arm"].CanTouch=false;end end for v425,v426 in pairs(game.workspace:GetChildren()) do if (v426.Name=="JeffTheKiller") then v426["Right Leg"].CanTouch=false;end end for v427,v428 in pairs(game.workspace:GetChildren()) do if (v428.Name=="JeffTheKiller") then v428.Torso.CanTouch=false;end end end end);end);OMG1:AddToggle("MyToggle",{Text="Anti-Jeff The Killer",Default=false,Tooltip="Anti Jeff!",Callback=function(v189)_G.antije=v189;end});
+OMG2:AddToggle("nsc",{Text="Disable-Seek Trigger",Default=false,Callback=function(v119)v16.noseek=v119;if v119 then local v279;v279=workspace.CurrentRooms.ChildAdded:Connect(function(v333)local v334=0 -0 ;local v335;while true do if (v334==(0 + 0)) then v335=v333:WaitForChild("TriggerEventCollision",2);if v335 then v335:Destroy();end break;end end end);repeat task.wait();until  not v16.noseek v279:Disconnect();end end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekESe then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Seek_Arm") then for v528,v529 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v529.Name=="Seek_Arm") then v529.AnimatorPart.CanTouch=false;end end end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.SeekES then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("ChandelierObstruction") then for v530,v531 in pairs(game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):GetChildren()) do if (v531.Name=="ChandelierObstruction") then v531.HurtPart.CanTouch=false;end end end end end);end);OMG2:AddToggle("MyToggle",{Text="Disable-Obstruction",Default=false,Tooltip="Remove Seek Arms and Chandelier HitBox From Seek Chase",Callback=function(v111)_G.SeekESe=v111;_G.SeekES=v111;;end})local Toggle = OMG2:AddToggle("Nos",{
+	Text = "Disable-Screech",
+	Default = false,
+	Tooltip = "BypassScreech",
+	Callback = function(Value)
+		if Value then
+			Screech = game:GetService("ReplicatedStorage").Entities.Screech
+   Screech:Destroy()
+                        else
+                        Screech:Disconnect()
+		end
+	end,
+})
+local Toggle = OMG1:AddToggle("BK",{
+	Text = "Anti-Lava",
+	Default = false,
+	Tooltip = "BypassKillbricks",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end
+			killBricks = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = false
+						end
+					end
+				end
+			end)
+		else
+			killBricks:Disconnect()
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child then
+					for _, v in pairs(child:GetDescendants()) do
+						if v.Name == "Lava" then
+							v.CanTouch = true
+						end
+					end
+				end
+			end
+		end
+	end,
+})
+
+local Toggle = OMG1:AddToggle("Beyes",{
+	Text = "Anti-Lookman",
+	Default = false,
+	Tooltip = "BypassLookman",
+	Callback = function(Value)
+		if Value then
+			Lookman = game:GetService("RunService").RenderStepped:Connect(function()
+				game:GetService("ReplicatedStorage").RemotesFolder.MotorReplication:FireServer(0, 90, 0, false)
+			end)
+		else
+			Lookman:Disconnect()
+		end
+	end,
+})
+local Toggle = OMG2:AddToggle("BS",{
+	Text = "Disable-Seek Wall",
+	Default = false,
+	Tooltip = "BypassSeek",
+	Callback = function(Value)
+		if Value then
+			for _, child in pairs(workspace.CurrentRooms:GetChildren()) do
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end
+			SeekWall = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Parts:FindFirstChild("ScaryWall") then
+					child.Parts.ScaryWall:Destroy()
+				end
+			end)
+		else
+			SeekWall:Disconnect()
+		end
+	end,
+})
+
+local Toggle = OMG2:AddToggle("BD",{
+	Text = "Disable-DrakoBloxxers",
+	Default = false,
+	Tooltip = "BypassDrakoBloxxers",
+	Callback = function(Value)
+		if Value then
+			DrakoBloxxers = workspace.ChildAdded:Connect(function(child)
+				task.wait(1)
+				if child.Name == "Drakobloxxer" then
+					child:Destroy()
+					for _, v in pairs(workspace:GetChildren()) do
+						if v.Name == "Sound" and v:IsA("Sound") then
+							v:Destroy()
+						end
+					end
+				end
+			end)
+		else
+			DrakoBloxxers:Disconnect()
+		end
+	end,
+})
 
 
 
