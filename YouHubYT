@@ -61,7 +61,7 @@ local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 Collison.Position = Collison.Position - Vector3.new(0,-10,0)end;end})
  local OMG6 = WTF2:AddRightGroupbox("Camera")
 local Slider = OMG6:AddSlider("MySlider",{Text = "Field Of View",Min = 70,Max = 120,Default = 70,Tooltip = "FOV",Rounding=1,Compact=true,Callback = function(Value)FOV = Value end})
-OMG6:AddToggle("MyToggle",{Text="No Shake Camera",Default=false,Tooltip="No Shake Cam",Callback=function(v89)if v89 then localplayer.PlayerScripts.CameraShake.Value = CFrame.new(9,9,9) * CFrame.new(9,9,9);else localplayer.PlayerScripts.CameraShake.Value = CFrame.new(9,9,9) * CFrame.new(9,9,9);end end});OMG6:AddToggle("MyToggle",{Text="No Darkness Effect",Default=false,Callback=function(FB)if FB then
+OMG6:AddToggle("MyToggle",{Text="No Shake Camera",Default=false,Tooltip="No Shake Cam",Callback=function(v89)if v89 then localplayer.PlayerScripts.CameraShake.Value = CFrame.new(9,9,9) * CFrame.new(9,9,9);else localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0);end end});OMG6:AddToggle("MyToggle",{Text="No Darkness Effect",Default=false,Callback=function(FB)if FB then
 game.Lighting.Brightness = 2
 game.Lighting.OutdoorAmbient = Color3.new(1,1,1)
 else
@@ -74,7 +74,21 @@ OMG6:AddToggle("MyToggle",{Text="No Shadows",Default=false,Callback=function(FB)
 game.Lighting.GlobalShadows = false
 else
 game.Lighting.GlobalShadows = true end;end})
-
+local OMG7 = WTF2:AddLeftGroupbox("Bypass Speed")
+OMG7:AddLabel("You On IY")
+OMG7:AddLabel("You Fly,Fixcam of IY")
+OMG7:AddLabel("Open Door [0001]")
+OMG7:AddLabel("On Script Bypass")
+OMG7:AddLabel("Find and go Closet [No Hide]")
+OMG7:AddLabel("Reset Character of IY")
+OMG7:AddButton({Text="IY",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end})
+OMG7:AddButton({Text="Bypass",function()
+loadstring(game:HttpGet("https://pastebin.ai/raw/0sqnyk2wxm"))()
+end})
+OMG7:AddLabel("Use in floor:")
+OMG7:AddLabel("Backdoor,Retro")
 
 
 
