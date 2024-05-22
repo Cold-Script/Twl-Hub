@@ -10,8 +10,8 @@ end)
 local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 
 local v0 = loadstring(game:HttpGet(repo .. 'Library.lua'))()
-local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
-local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+local v1 = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local v2 = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
 
 local UI = v0:CreateWindow({
     Title = "youhub | (v3.7.2) [ALPHA TEST]",
@@ -69,7 +69,7 @@ local Collison = game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 Collison.Position = Collison.Position - Vector3.new(0,-10,0)end;end})
  local OMG6 = WTF2:AddRightGroupbox("Camera")
 local Slider = OMG6:AddSlider("MySlider",{Text = "Field Of View",Min = 70,Max = 120,Default = 70,Tooltip = "FOV",Rounding=1,Compact=true,Callback = function(Value)FOV = Value end})
-OMG6:AddToggle("MyToggle",{Text="No Shake Camera",Default=false,Tooltip="No Shake Cam",Callback=function(v89)if v89 then game.Players.LocalPlayer.PlayerScripts.CameraShake.Value = CFrame.new(9e9,9e9,9e9) * CFrame.new(9e9,9e9,9e9);else game.Players.LocalPlayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0);end end});OMG6:AddToggle("MyToggle",{Text="No Darkness Effect",Default=false,Callback=function(FB)if FB then
+OMG6:AddToggle("MyToggle",{Text="No Shake Camera [Mitigation]",Default=false,Tooltip="No Shake Cam",Callback=function(v89)if v89 then localplayer.PlayerScripts.CameraShake.Value = CFrame.new(9e9,9e9,9e9) * CFrame.new(9e9,9e9,9e9);else localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0);end end});OMG6:AddToggle("MyToggle",{Text="No Darkness Effect",Default=false,Callback=function(FB)if FB then
 game.Lighting.Brightness = 2
 game.Lighting.OutdoorAmbient = Color3.new(1,1,1)
 else
