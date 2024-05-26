@@ -7,7 +7,7 @@ game:GetService("Workspace").CurrentRooms.DescendantAdded:Connect(function(v)
     end
 end)
 -- // Linoria Ui \\
-local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
+local repo = 'https://raw.githubusercontent.com/Cold-Script/LinoriaLib/patch-3/'
 
 local v0 = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local v1 = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
