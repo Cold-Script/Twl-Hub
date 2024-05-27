@@ -747,7 +747,7 @@ v0:OnUnload(function()
 	v0.Unloaded = true
 end)
 -- UI Settings
-local WTF3 = UI:AddTab("Ui Setting")
+local WTF4 = UI:AddTab("Ui Setting")
 local MenuGroup = WTF4:AddLeftGroupbox('Menu')
 
 -- I set NoUI so it does not show up in the keybinds menu
