@@ -711,6 +711,12 @@ end})
 OMG10:AddButton({Text="Nam châm",DoubleClick=true,Func=function()
 loadstring(Game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/MagnetByNerd.lua"))()
 end})
+OMG10:AddButton({Text="Súng Seek",DoubleClick=true,Func=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/persopoiu/scripts/main/seekgun.lua"))()
+end})
+OMG10:AddButton({Text="Thánh Giá",DoubleClick=true,Func=function()
+loadstring(Game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/Crucifix/main/Crucifix.lua"))()
+end})
 
 end
 local FrameTimer = tick()
