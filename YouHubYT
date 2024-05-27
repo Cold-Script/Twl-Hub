@@ -162,8 +162,8 @@ v0.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind fo
 -- ThemeManager (Allows you to have a menu theme system)
 
 -- Hand the library over to our managers
-ThemeManager:SetLibrary(Library)
-SaveManager:SetLibrary(Library)
+ThemeManager:SetLibrary(v0)
+SaveManager:SetLibrary(v0)
 
 -- Ignore keys that are used by ThemeManager.
 -- (we dont want configs to save themes, do we?)
