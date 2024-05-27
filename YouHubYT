@@ -14,7 +14,7 @@ local v1 = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local v2 = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
 
 local UI = v0:CreateWindow({
-    Title = "YOU HUB | (v4) [BETA]",
+    Title = "YOU HUB | (v4.4.2) [BETA]",
     Center = true,
     AutoShow = true,
     TabPadding = 10,
@@ -74,7 +74,7 @@ local Toggle = OMG4:AddToggle("lol",{
 		AutoInteract = Value
 	end,
 })
-OMG8:AddButton({Text="Enable Interact Door",Default=false,Func=function()
+OMG4:AddButton({Text="Enable Interact Door",Default=false,Func=function()
 for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "Door" and v:IsA("Model") then
 					spawn(function()
@@ -191,7 +191,7 @@ OMG7:AddLabel("3.Mở Cửa [-50 or 001]")
 OMG7:AddLabel("4.Bật Script Bypass")
 OMG7:AddLabel("5.Tìm,đi tới tủ [không trốn]")
 OMG7:AddLabel("6.Gõ Reset Character từ IY")
-OMG7:AddLabel("Cảnh báo:dùng ở Backdoor,Retro")
+OMG7:AddLabel("Cảnh báo:dùng ở Backdoor,Retro,Rooms")
 OMG7:AddButton({Text="Infinite Yield",Func=function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 end})
