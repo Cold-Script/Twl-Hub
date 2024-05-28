@@ -128,31 +128,7 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				end
 			end)
 			end})
-OMG4:AddButton({Text="Nhận Nhấn Gạt Thời Gian",Default=false,Func=function()
-for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-if v.Name == "TimerLever" and v:IsA("BasePart") then
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v.ActivateEventPrompt)
-				end
-			end
-		end)
-workspace.CurrentRooms.ChildAdded:Connect(function(child)
-	spawn(function()
-		task.wait(5)
-		for _, v in pairs(child:GetDescendants()) do
-                      if v.Name == "TimerLever" and v:IsA("BasePart") then
-			spawn(function()
-				while task.wait() do
-					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v.ActivateEventPrompt)
-				end
-			end)
-		end
-	end)
-end)
-end})
+
 local OMG5 = WTF2:AddRightGroupbox("Người Chơi")
 game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.speedkuys then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=_G.SelectBootst;end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(18))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=96 -68 ;elseif (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(9 + 8))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=18;elseif (_G.SpeedHack and (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed==(486.5 -(381 + 89)))) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=21 ;elseif _G.SpeedHack then local v796=11 + 4 + game.Players.LocalPlayer.Character.Humanoid:GetAttribute("SpeedBoost") ;if (game.Players.LocalPlayer.Character.Humanoid.WalkSpeed<=v796) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed+=_G.SelectBoots end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.FieldOfView then game:GetService("Workspace").Camera.FieldOfView=_G.FieldOfViewe;end end);end);OMG5:AddSlider("MySliderspeed",{Text="Tăng tốc độ ",Default=5,Min=0 -0 ,Max=5,Rounding=1,Compact=true,Callback=function(v80)_G.SelectBoots=v80;end});_G.SelectBoots=1790.5 -(214 + 1570) ;_G.FieldOfViewe=120;OMG5:AddToggle("MyToggle",{Text="Nhận tăng tốc độ đã chọn",Default=false,Tooltip="Speed Boots",Callback=function(v82)_G.SpeedHack=v82;if (_G.SpeedHack==false) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=false;elseif (_G.SpeedHack==true) then game:GetService("Players").LocalPlayer.PlayerGui.MainUI.MainFrame.Healthbar.Effects.SpeedBoost.Visible=true;end end});local Slider = OMG5:AddSlider("MySlider",{Text = "Nhảy Cao",Min = 25,Max = 50,Default = 50,Tooltip = "JumpPower",Rounding=1,Compact=true,Callback = function(Value)JumpPower = Value ;end})
 game:GetService("RunService").RenderStepped:Connect(function()
