@@ -54,7 +54,7 @@ local function billboard(child, name, name2, name3)
 	text_label.Parent = billboard_gui
 
 	local uistroke = Instance.new("UIStroke")
-	uistroke.Thickness = 0
+	uistroke.Thickness = 1
 	uistroke.Parent = text_label
 
 	spawn(function()
@@ -262,7 +262,7 @@ local Toggle = OMG9:AddToggle("MyToggle",{
 	Callback = function(Value)
 		if Value then
 			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-				if v.Name == "Door" and v.Parent.Name == "Door" and v:IsA("Model") then
+				if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
 					selection(v, "Door", true)
 					spawn(function()
 						while task.wait() do
@@ -276,7 +276,7 @@ local Toggle = OMG9:AddToggle("MyToggle",{
 			DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
 				task.wait(1)
 				for _, v in pairs(child:GetDescendants()) do
-					if v.Name == "Door" and v.Parent.Name == "Door" and v:IsA("Model") then
+					if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
 						selection(v, "Door", true)
 					end
 				end
