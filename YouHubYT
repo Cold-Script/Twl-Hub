@@ -255,9 +255,44 @@ game.Players.LocalPlayer.Character.RightLowerLeg.Size = Vector3.new(0)
 game.Players.LocalPlayer.Character.LeftLowerLeg.Size = Vector3.new(0);break;end if (v212==(1 + 0)) then v213.Parent=game.SoundService;v213.SoundId="rbxassetid://4590657391";v212=2;end end end,DoubleClick=true,Tooltip="Click To Play Again"});
 if (game:GetService("ReplicatedStorage").GameData.Floor.Value=="Hotel") then OMG8:AddToggle("MyToggle",{Text="Giải mã từ thư viện",Default=false,Tooltip="Auto library code",Callback=function(v303)v16.getcode=v303;if v303 then local function v406()local v498=v13:FindFirstChild("LibraryHintPaper");local v499=v12.PlayerGui:WaitForChild("PermUI"):WaitForChild("Hints");local v500={[786 -(222 + 563) ]="_",[3 -1 ]="_",[3 + 0 ]="_",[194 -(23 + 167) ]="_",[1803 -(690 + 1108) ]="_"};if v498 then for v785,v786 in pairs(v498:WaitForChild("UI"):GetChildren()) do if (v786:IsA("ImageLabel") and (v786.Name~="Image")) then for v880,v881 in pairs(v499:GetChildren()) do if (v881:IsA("ImageLabel") and v881.Visible and (v786.ImageRectOffset==v881.ImageRectOffset)) then local v950=0 + 0 ;local v951;while true do if ((0 + 0)==v950) then v951=v881:FindFirstChild("TextLabel").Text;v500[tonumber(v786.Name)]=v951;break;end end end end end end end return v500;end local v407;v407=v13.ChildAdded:Connect(function(v501)if (v501:IsA("Tool") and (v501.Name=="LibraryHintPaper")) then local v661=848 -(40 + 808) ;local v662;while true do if (v661==(0 + 0)) then task.wait();v662=table.concat(v406());v661=3 -2 ;end if (v661==(1 + 0)) then if v662:find("_") then v0:Notify("Bruh You must collect all the books.");local v919=Instance.new("Sound");v919.Parent=game.SoundService;v919.SoundId="rbxassetid://550209561";v919.Volume=5;v919.PlayOnRemove=true;v919:Destroy();else v0:Notify("Code = "   .. v662 );local v925=Instance.new("Sound");v925.Parent=game.SoundService;v925.SoundId="rbxassetid://4590657391";v925.Volume=5;v925.PlayOnRemove=true;v925:Destroy();local v931={[1 + 0 ]=v662};game:GetService("ReplicatedStorage"):WaitForChild("EntityInfo"):WaitForChild("PL"):FireServer(unpack(v931));v0:Notify("The Door has been unlocked.");if (_G.chat==true) then game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("The Door has been unlocked.");end end break;end end end end);repeat task.wait();until  not v16.getcode v407:Disconnect();end end});elseif (game:GetService("ReplicatedStorage").GameData.Floor.Value=="Fools") then OMG8:AddToggle("MyToggle",{Text="Giải mã từ thư viện",Default=false,Tooltip="Auto library code",Callback=function(v408)local v409=0 + 0 ;while true do if (v409==(571 -(47 + 524))) then v16.getcodet=v408;if v408 then local function v819()local v860=v13:FindFirstChild("LibraryHintPaperHard");local v861=v12.PlayerGui:WaitForChild("PermUI"):WaitForChild("Hints");local v862={[1]="_",[2 + 0 ]="_",[8 -5 ]="_",[5 -1 ]="_",[11 -6 ]="_",[1732 -(1165 + 561) ]="_",[1 + 6 ]="_",[24 -16 ]="_",[9]="_",[10]="_"};if v860 then for v952,v953 in pairs(v860:WaitForChild("UI"):GetChildren()) do if (v953:IsA("ImageLabel") and (v953.Name~="Image")) then for v1031,v1032 in pairs(v861:GetChildren()) do if (v1032:IsA("ImageLabel") and v1032.Visible and (v953.ImageRectOffset==v1032.ImageRectOffset)) then local v1046=v1032:FindFirstChild("TextLabel").Text;v862[tonumber(v953.Name)]=v1046;end end end end end return v862;end local v820;v820=v13.ChildAdded:Connect(function(v863)if (v863:IsA("Tool") and (v863.Name=="LibraryHintPaperHard")) then task.wait();local v932=table.concat(v819());if v932:find("_") then v0:Notify("Bruh You must collect all the books.");local v970=Instance.new("Sound");v970.Parent=game.SoundService;v970.SoundId="rbxassetid://550209561";v970.Volume=5;v970.PlayOnRemove=true;v970:Destroy();else v0:Notify("Code = "   .. v932 );local v976=Instance.new("Sound");v976.Parent=game.SoundService;v976.SoundId="rbxassetid://4590657391";v976.Volume=5;v976.PlayOnRemove=true;v976:Destroy();local v982={[1 + 0 ]=v932};game:GetService("ReplicatedStorage"):WaitForChild("EntityInfo"):WaitForChild("PL"):FireServer(unpack(v982));v0:Notify("The Door has been unlocked.");if (_G.chat==true) then game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("The Door has been unlocked.");end end end end);repeat task.wait();until  not v16.getcodet v820:Disconnect();end break;end end end});end OMG8:AddToggle("MyToggle",{Text="Xoá nhịp tim",Default=false,Tooltip="Win Heartbeat MiniGame",Callback=function(v97)getgenv().winhb=v97;end});game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.AutoBreaker then game:GetService("ReplicatedStorage").EntityInfo.EBF:FireServer();end end);end);OMG8:AddToggle("MyToggle",{Text="Hoàn hành điện 10 giây",Default=false,Tooltip="Breaker Box Minigame So Ez",Callback=function(v102)_G.AutoBreaker=v102;end});
 local OMG9 = WTF2:AddLeftGroupbox("Trực Quang")
-OMG9:AddToggle("MyToggle",{Text="Trực Quang Cửa",Default=false,Tooltip="Esp Doors",Callback=function(v135)local v136=0;while true do if (v136==(574 -(102 + 472))) then v16.espdoors=v135;if v135 then local function v477(v549)local v550=0 + 0 ;local v551;local v552;local v553;while true do if (v550==3) then if (_G.Highlights==true) then local v868=0;local v869;while true do if (v868==0) then v869=hightlightoutboi(_G.DoorsC,v551);table.insert(v18.doors,v869);break;end end end v551:WaitForChild("Open").Played:Connect(function()if (_G.EspEnable==true) then h.delete();end if (_G.Highlights==true) then o.delete();end end);v550=3 + 1 ;end if (v550==(2 + 0)) then if v551.Parent:FindFirstChild("Lock") then v553="[Khoá]";else v553="";end if (_G.EspEnable==true) then local v870=esp(v551,_G.DoorsC,v551,"Door "   .. v552.Sign.Stinker.Text   .. " "   .. v553   .. "" );table.insert(v18.doors,v870);end v550=1548 -(320 + 1225) ;end if (v550==(0 -0)) then v551=v549:WaitForChild("Door"):WaitForChild("Door");v552=v549:WaitForChild("Door");v550=1 + 0 ;end if (v550==(1468 -(157 + 1307))) then v551.AncestryChanged:Connect(function()local v848=1859 -(821 + 1038) ;while true do if (v848==(0 -0)) then if (_G.EspEnable==true) then h.delete();end if (_G.Highlights==true) then o.delete();end break;end end end);break;end if (v550==(1 + 0)) then v553=nil;task.wait(0.1 -0 );v550=1 + 1 ;end end end local v478;v478=v12:GetAttributeChangedSignal("CurrentRoom"):Connect(function()local v554=0 -0 ;while true do if (v554==0) then for v849,v850 in pairs(v18.doors) do v850.delete();end v477(workspace.CurrentRooms[v12:GetAttribute("CurrentRoom")]);break;end end end);if workspace.CurrentRooms[v12:GetAttribute("CurrentRoom")]:FindFirstChild("Assets") then v477(workspace.CurrentRooms[v12:GetAttribute("CurrentRoom")]);end repeat task.wait();until  not v16.espdoors v478:Disconnect();for v555,v556 in pairs(v18.doors) do v556.delete();end end break;end end end});local Toggle = OMG9:AddToggle("MyToggle",{
+local Toggle = OMG9:AddToggle("MyToggle",{
+	Text = "Trực Quang Cửa",
+	Default = false,
+	Tooltip = "DoorESP",
+	Callback = function(Value)
+		if Value then
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "Door" and v.Parent.Name == "Door" and v:IsA("Model") then
+					selection(v, "Door", true)
+					spawn(function()
+						while task.wait() do
+							if checkDistance(v:FindFirstChild("Hidden")) and AutoInteract then
+								fireproximityprompt(v.ActivateEventPrompt)
+							end
+						end
+					end)
+				end
+			end
+			DoorESP = workspace.CurrentRooms.ChildAdded:Connect(function(child)
+				task.wait(1)
+				for _, v in pairs(child:GetDescendants()) do
+					if v.Name == "Door" and v.Parent.Name == "Door" and v:IsA("Model") then
+						selection(v, "Door", true)
+					end
+				end
+			end)
+		else
+			DoorESP:Disconnect()
+			for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "KiwiHighlight_2" then
+					v:Destroy()
+				end
+			end
+		end
+	end,
+})local Toggle = OMG9:AddToggle("MyToggle",{
 	Text = "Trực Quang Chìa Khoá",
-	Value = false,
+	Default = false,
 	Tooltip = "KeyESP",
 	Callback = function(Value)
 		if Value then
