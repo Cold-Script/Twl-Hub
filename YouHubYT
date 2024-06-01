@@ -39,7 +39,7 @@ local function billboard(child, name, name2, name3)
 	end
 
 	local text_label = Instance.new("TextLabel")
-	text_label.Font = Enum.Font.GothamBold
+	text_label.Font = Enum.Font.Oswald
 	text_label.Text = name
 	text_label.TextColor3 = Color3.new(1, 1, 1)
 	text_label.TextScaled = true
