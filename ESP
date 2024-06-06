@@ -3,26 +3,38 @@ local Players = game:GetService('Players');
 local localplayer = Players.LocalPlayer;
 -- semicolon but cool :sunglasses:
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/9Strew/roblox/main/proc/jans"))()
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+
 local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/9Strew/roblox/main/proc/kiriotesp"))()
 Esp.Enabled = false
 Esp.Tracers = false
 Esp.Boxes = false
 
-local Window = Library:CreateWindow("🧟🎃 Evade", Vector2.new(500, 300), Enum.KeyCode.RightShift)
-local Evade = Window:CreateTab("General")
-local AutoFarms = Window:CreateTab("Farms")
-local Gamee = Window:CreateTab("Game")
-local Configs = Window:CreateTab("Settings")
+local Window = Library:CreateWindow({
+        Title = 'YOU HUB | EVADE',
+	Center = true,
+	AutoShow = true,
+	Resizable = true,
+	ShowCustomCursor = true,
+	TabPadding = 8,
+	MenuFadeTime = 0.2
+})
+local Evade = Window:AddTab("Main")
+local AutoFarms = Window:AddTab("Farm")
+local Gamee = Window:AddTab("Game")
+local Configs = Window:AddTab("Settings")
 
-local EvadeSector = Evade:CreateSector("Character", "left")
-local Visuals = Evade:CreateSector("Visuals", "right")
-local Credits = Evade:CreateSector("Credits", "left")
-local Farms = AutoFarms:CreateSector("Farms", "left")
-local FarmStats = AutoFarms:CreateSector("Stats", "right")
+local EvadeSector = Evade:AddLeftGroupbox("Character")
+local Visuals = Evade:AddRightGroupbox("Visuals")
+local Farms = AutoFarms:AddLeftGroupbox("Farms")
+local FarmStats = AutoFarms:AddRightGroupbox("Stats")
 
-local Gamesec = Gamee:CreateSector("Utils", "right")
-local World = Gamee:CreateSector("World", "left")
+local Gamesec = Gamee:AddRightGroupbox("Utils")
+local World = Gamee:AddRightGroupbox("World")
 
 getgenv().Settings = {
     moneyfarm = false,
