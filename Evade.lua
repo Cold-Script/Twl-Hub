@@ -3,25 +3,37 @@ local Players = game:GetService('Players');
 local localplayer = Players.LocalPlayer;
 -- semicolon but cool :sunglasses:
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/9Strew/roblox/main/proc/jans"))()
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
 local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/9Strew/roblox/main/proc/kiriotesp"))()
 Esp.Enabled = false
 Esp.Tracers = false
 Esp.Boxes = false
 
-local Window = Library:CreateWindow("🧟🎃 Evade", Vector2.new(500, 300), Enum.KeyCode.RightShift)
-local Evade = Window:CreateTab("General")
-local AutoFarms = Window:CreateTab("Farms")
-local Gamee = Window:CreateTab("Game")
+local Window = Library:CreateWindow({
+	Title = 'YOU HUB | Evade',
+	Center = true,
+	AutoShow = true,
+	Resizable = true,
+	ShowCustomCursor = true,
+	TabPadding = 8,
+	MenuFadeTime = 0.2
+})
+local Evade = Window:AddTab("Main")
+local AutoFarms = Window:AddTab("Farm")
+local Gamee = Window:AddTab("Game")
+local Configs = Window:AddTab("Settings")
 
-local EvadeSector = Evade:CreateSector("Character", "left")
-local Visuals = Evade:CreateSector("Visuals", "right")
-local Credits = Evade:CreateSector("Credits", "left")
-local Farms = AutoFarms:CreateSector("Farms", "left")
-local FarmStats = AutoFarms:CreateSector("Stats", "right")
+local EvadeSector = Evade:AddLeftGroupbox("Character")
+local Visuals = Evade:AddRightGroupbox("Visuals")
+local Farms = AutoFarms:AddLeftGroupbox("Farms")
+local FarmStats = AutoFarms:AddRightGroupbox("Stats")
 
-local Gamesec = Gamee:CreateSector("Utils", "right")
-local World = Gamee:CreateSector("World", "left")
+local Gamesec = Gamee:AddRightGroupbox("Utils")
+local World = Gamee:AddRightGroupbox("World")
 
 getgenv().Settings = {
     moneyfarm = false,
@@ -51,99 +63,87 @@ getgenv().Settings = {
 }
 
 
-local WalkSpeed = EvadeSector:AddSlider("Speed", 1450, 1450, 12000, 100, function(Value)
+local WalkSpeed = EvadeSector:AddSlider("MySlider",{Text="Speed",Min=16,Default=50,Max=50,function(Value)
     Settings.Speed = Value
-end)
+end})
 
 
-local JumpPower = EvadeSector:AddSlider("JumpPower", 3, 3, 20, 1, function(Value)
+local JumpPower = EvadeSector:AddSlider("MySlider",{Text="JumpPower",Min=16,Default=50,Max=50,function(Value)
     Settings.Jump = Value
 end)
 
 --// because silder does not detect dotted values 
 
-World:AddButton('Full Bright', function()
+World:AddToggle("MyToggle,{Text='Full Bright',Default=false,function(Value)
+if Value then
    	Game.Lighting.Brightness = 4
 	Game.Lighting.FogEnd = 100000
 	Game.Lighting.GlobalShadows = false
     Game.Lighting.ClockTime = 12
-end)
+else
+Game.Lighting.Brightness = 0.5
+	Game.Lighting.FogEnd = 200
+	Game.Lighting.GlobalShadows = true
+    Game.Lighting.ClockTime = 12
+end
+end})
 
-World:AddToggle('No Camera Shake', false, function(State)
+World:AddToggle("MyToggle",{Text='No Camera Shake',Default=false,function(State)
     Settings.NoCameraShake = State
-end)
+end})
 
-Gamesec:AddToggle('Fast Revive', false, function(State)
+Gamesec:AddToggle("MyToggle",{Text='Fast Revive',Default=false,function(State)
     if State then
         workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
     else
         workspace.Game.Settings:SetAttribute("ReviveTime", Settings.reviveTime)
     end
-end)
+end})
 
-EvadeSector:AddToggle('Auto Respawn', false, function(State)
+EvadeSector:AddToggle("MyToggle",{Text='Auto Respawn',Default=false,function(State)
     Settings.AutoRespawn = State
-end)
+end})
 
-EvadeSector:AddButton('Respawn',function()
+EvadeSector:AddButton({'Respawn',Func=function()
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-end)
+end})
 
---Farms:AddToggle('Ticket Farm', false, function(State)
---    Settings.TicketFarm = State
---end)
 
-Farms:AddToggle('Money Farm', false, function(State)
+Farms:AddToggle("MyToggle",{Text='Money Farm',Default=false,function(State)
     Settings.moneyfarm = State
-end)
+end})
 
-Farms:AddToggle('Afk Farm', false, function(State)
+Farms:AddToggle("MyToggle",{Text='AFK Farm',Default=false,function(State)
     Settings.afkfarm = State
-end)
+end})
 
-Visuals:AddToggle('Enable Esp', false, function(State)
+Visuals:AddToggle("MyToggle",{Text='Enable Esp',Default=false,function(State)
     Esp.Enabled = State
-end)
+end})
 
-Visuals:AddToggle('Bot Esp', false, function(State)
+Visuals:AddToggle("MyToggle",{Text='Bot Esp', false, function(State)
     Esp.NPCs = State
-end)
+end})
 
---Visuals:AddToggle('Ticket Esp', false, function(State)
---    Esp.TicketEsp = State
---end)
+Visuals:AddToggle("MyToggle",{Text='Ticket Esp',Default=false,function(State)
+    Esp.TicketEsp = State
+end})
 
-Visuals:AddToggle('Downed Player Esp', false, function(State)
+Visuals:AddToggle("MyToggle",{Text='Downed Player Esp',Default=false,function(State)
     Settings.Downedplayeresp = State
-end)
+end})
 
-Visuals:AddToggle('Boxes', false, function(State)
-    Esp.Boxes = State
-end)
-
-Visuals:AddToggle('Tracers', false, function(State)
+Visuals:AddToggle("MyToggle",{Text='Tracers',Default=false,function(State)
     Esp.Tracers = State
-end)
+end})
 
-Visuals:AddToggle('Players', false, function(State)
+Visuals:AddToggle("MyToggle",{Text='Players',Default=false,function(State)
     Esp.Players = State
-end)
+end})
 
-Visuals:AddToggle('Distance', false, function(State)
+Visuals:AddToggle("MyToggle",{Text='Distance',Default=false,function(State)
     Esp.Distance = State
-end)
-
-Visuals:AddColorpicker("Player Color", Color3.fromRGB(255,170,0), function(Color)
-    Settings.PlayerColor = Color
-end)
-
-Visuals:AddColorpicker("Downed Player Color", Color3.fromRGB(255,255,255), function(Color)
-    Settings.DownedColor = Color
-end)
-
-Credits:AddLabel("Developed By xCLY And batusd")
-Credits:AddLabel("UI Lib: Jans Lib")
-Credits:AddLabel("ESP Lib: Kiriot")
+end})
 
 local TypeLabelC5 = FarmStats:AddLabel('Auto Farm Stats')
 local DurationLabelC5 = FarmStats:AddLabel('Duration: 0')
