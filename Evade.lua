@@ -206,12 +206,12 @@ Visuals:AddButton({
 		})
  Visuals:AddToggle("MyToggle",{
 			Text = "Bots tracers",
-			Default = true,
+			Default = false,
 			Callback = function(Value)
 				getgenv().toggleespmpt = Value
 			end    
 		})
- getgenv().mptespcolour = color3.fromRGB(255,255,255)
+
 local cam = workspace.CurrentCamera
 		local rs = game:GetService'RunService'
  
