@@ -8,10 +8,6 @@ local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-local Esp = loadstring(game:HttpGet("https://raw.githubusercontent.com/9Strew/roblox/main/proc/kiriotesp"))()
-Esp.Enabled = false
-Esp.Tracers = false
-Esp.Boxes = false
 
 local Window = Library:CreateWindow({
 	Title = 'YOU HUB | Evade',
@@ -108,33 +104,154 @@ Farms:AddToggle("MyToggle",{Text='AFK Farm',Default=false,function(State)
     Settings.afkfarm = State
 end})
 
-Visuals:AddToggle("MyToggle",{Text='Enable Esp',Default=false,function(State)
-    Esp.Enabled = State
-end})
-
-Visuals:AddToggle("MyToggle",{Text='Bot Esp', false, function(State)
-    Esp.NPCs = State
-end})
-
-Visuals:AddToggle("MyToggle",{Text='Ticket Esp',Default=false,function(State)
-    Esp.TicketEsp = State
-end})
-
-Visuals:AddToggle("MyToggle",{Text='Downed Player Esp',Default=false,function(State)
-    Settings.Downedplayeresp = State
-end})
-
-Visuals:AddToggle("MyToggle",{Text='Tracers',Default=false,function(State)
-    Esp.Tracers = State
-end})
-
-Visuals:AddToggle("MyToggle",{Text='Players',Default=false,function(State)
-    Esp.Players = State
-end})
-
-Visuals:AddToggle("MyToggle",{Text='Distance',Default=false,function(State)
-    Esp.Distance = State
-end})
+EvadeSector:AddButton({
+			Text = "Inf Jump",
+			Func = function()
+				local InfiniteJumpEnabled = true
+				game:GetService("UserInputService").JumpRequest:connect(function()
+					if InfiniteJumpEnabled then
+						game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+					end
+				end)
+				
+			end    
+		})
+Visuals:AddButton({
+			Text = "Player Esp",
+			Func = function()
+				local c = workspace.CurrentCamera
+				local ps = game:GetService("Players")
+				local lp = ps.LocalPlayer
+				local rs = game:GetService("RunService")
+				local function getdistancefc(part)
+					return (part.Position - c.CFrame.Position).Magnitude
+				end
+				local function esp(p, cr)
+					local h = cr:WaitForChild("Humanoid")
+					local hrp = cr:WaitForChild("HumanoidRootPart")
+					local text = Drawing.new("Text")
+					text.Visible = false
+					text.Center = true
+					text.Outline = true
+					text.Font = 2
+					text.Color = Color3.fromRGB(255, 255, 255)
+					text.Size = 17
+					local c1
+					local c2
+					local c3
+					local function dc()
+						text.Visible = false
+						text:Remove()
+						if c1 then
+							c1:Disconnect()
+							c1 = nil
+						end
+						if c2 then
+							c2:Disconnect()
+							c2 = nil
+						end
+						if c3 then
+							c3:Disconnect()
+							c3 = nil
+						end
+					end
+					c2 =
+						cr.AncestryChanged:Connect(
+							function(_, parent)
+								if not parent then
+								dc()
+							end
+							end
+						)
+					c3 =
+						h.HealthChanged:Connect(
+							function(v)
+								if (v <= 0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+								dc()
+							end
+							end
+						)
+					c1 =
+						rs.RenderStepped:Connect(
+							function()
+								local hrp_pos, hrp_os = c:WorldToViewportPoint(hrp.Position)
+								if hrp_os then
+								text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y)
+								text.Text = p.Name .. " (" .. tostring(math.floor(getdistancefc(hrp))) .. " m)"
+								text.Visible = true
+							else
+								text.Visible = false
+							end
+							end
+						)
+				end
+				local function p_added(p)
+					if p.Character then
+						esp(p, p.Character)
+					end
+					p.CharacterAdded:Connect(
+						function(cr)
+							esp(p, cr)
+						end
+					)
+				end
+				for i, p in next, ps:GetPlayers() do
+					if p ~= lp then
+						p_added(p)
+					end
+				end
+				ps.PlayerAdded:Connect(p_added)
+				
+			end    
+		})
+ Visuals:AddToggle("MyToggle",{
+			Text = "Bots tracers",
+			Default = true,
+			Callback = function(Value)
+				getgenv().toggleespmpt = Value
+			end    
+		})
+ getgenv().mptespcolour = color3.fromRGB(255,255,255)
+local cam = workspace.CurrentCamera
+		local rs = game:GetService'RunService'
+ 
+		getgenv().toggleespmpt = true
+		function esp(plr)
+			if game:GetService'Players':GetPlayerFromCharacter(plr) == nil then
+				local rat = Drawing.new("Line")
+				rs.RenderStepped:Connect(function()
+					if plr:FindFirstChild'HumanoidRootPart' then
+						local vector,screen = cam:WorldToViewportPoint(plr.HumanoidRootPart.Position)
+						if screen then
+							rat.Visible = toggleespmpt
+							rat.From = Vector2.new(cam.ViewportSize.X / 2,cam.ViewportSize.Y / 1)
+							rat.To = Vector2.new(vector.X,vector.Y)
+							rat.Color = getgenv().mptespcolour
+							rat.Thickness = getgenv().mptespthickness
+						else
+							rat.Visible = false
+						end
+					else
+						pcall(function()
+							rat.Visible = false
+						end)
+					end
+					if not plr:FindFirstChild'HumanoidRootPart' or not plr:FindFirstChild'HumanoidRootPart':IsDescendantOf(game:GetService'Workspace') then
+						pcall(function()
+							rat:Remove()
+						end)
+					end
+				end)
+			end
+		end
+ 
+		for i,v in pairs(game:GetService'Workspace'.Game.Players:GetChildren()) do
+			esp(v)
+		end
+ 
+		game:GetService'Workspace'.Game.Players.ChildAdded:Connect(function(plr)
+			esp(plr)
+		end)
 
 local TypeLabelC5 = FarmStats:AddLabel('Auto Farm Stats')
 local DurationLabelC5 = FarmStats:AddLabel('Duration: 0')
@@ -181,44 +298,7 @@ local revive = function()
 end
 
 --Kiriot
-Esp:AddObjectListener(WorkspacePlayers, {
-    Color =  Color3.fromRGB(255,0,0),
-    Type = "Model",
-    PrimaryPart = function(obj)
-        local hrp = obj:FindFirstChild('HRP')
-        while not hrp do
-            wait()
-            hrp = obj:FindFirstChild('HRP')
-        end
-        return hrp
-    end,
-    Validator = function(obj)
-        return not game.Players:GetPlayerFromCharacter(obj)
-    end,
-    CustomName = function(obj)
-        return '[AI] '..obj.Name
-    end,
-    IsEnabled = "NPCs",
-})
 
---[[
-Esp:AddObjectListener(game:GetService("Workspace").Game.Effects.Tickets, {
-    CustomName = "Ticket",
-    Color = Color3.fromRGB(41,180,255),
-    IsEnabled = "TicketEsp"
-})
-]]
-
---Tysm CJStylesOrg
-Esp.Overrides.GetColor = function(char)
-   local GetPlrFromChar = Esp:GetPlrFromChar(char)
-   if GetPlrFromChar then
-       if Settings.Downedplayeresp and GetPlrFromChar.Character:GetAttribute("Downed") then
-           return Settings.DownedColor
-       end
-   end
-   return Settings.PlayerColor
-end
 
 local old
 old = hookmetamethod(game,"__namecall",newcclosure(function(self,...)
