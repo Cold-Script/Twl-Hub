@@ -63,18 +63,9 @@ getgenv().Settings = {
 }
 
 
-local WalkSpeed = EvadeSector:AddSlider("MySlider",{Text="Speed",Min=16,Default=50,Max=50,function(Value)
-    Settings.Speed = Value
-end})
-
-
-local JumpPower = EvadeSector:AddSlider("MySlider",{Text="JumpPower",Min=16,Default=50,Max=50,function(Value)
-    Settings.Jump = Value
-end)
-
 --// because silder does not detect dotted values 
 
-World:AddToggle("MyToggle,{Text='Full Bright',Default=false,function(Value)
+World:AddToggle("MyToggle",{Text='Full Bright',Default=false,function(Value)
 if Value then
    	Game.Lighting.Brightness = 4
 	Game.Lighting.FogEnd = 100000
@@ -104,7 +95,7 @@ EvadeSector:AddToggle("MyToggle",{Text='Auto Respawn',Default=false,function(Sta
     Settings.AutoRespawn = State
 end})
 
-EvadeSector:AddButton({'Respawn',Func=function()
+EvadeSector:AddButton({Text='Respawn',Func=function()
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end})
 
