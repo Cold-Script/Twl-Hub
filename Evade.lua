@@ -51,6 +51,21 @@ EvadeSector:AddToggle("MyToggle",{Text='Fast Revive',Default=false,function(Stat
 end})
 
 
+
+EvadeSector:AddToggle("MyToggle",{Text="Enable WalkSpeed Of Nextbots",Default=false,Callback=function(v1)
+	if v1 then
+		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 35
+	else
+		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 16
+	end
+end})
+EvadeSector:AddToggle("MyToggle",{Text="Enable Field Of View Player",Default=false,Callback=function(v1)
+	if v1 then
+		workspace.CurrentCamera.FieldOfView = 120
+	else
+		workspace.CurrentCamera.FieldOfView = 70
+	end
+end})
 EvadeSector:AddButton({Text='Respawn',Func=function()
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end})
@@ -68,20 +83,6 @@ EvadeSector:AddButton({
 				
 			end    
 		})
-EvadeSector:AddToggle("MyToggle",{Text="Enable WalkSpeed Of Nextbots",Default=false,Callback=function(v1)
-	if v1 then
-		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 35
-	else
-		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 16
-	end
-end})
-EvadeSector:AddToggle("MyToggle",{Text="Enable Field Of View Player",Default=false,Callback=function(v1)
-	if v1 then
-		workspace.CurrentCamera.FieldOfView = 120
-	else
-		workspace.CurrentCamera.FieldOfView = 70
-	end
-end})
 --local TicketsLabelC5 = FarmStats:AddLabel('Total Tickets:'..localplayer:GetAttribute('Tickets'))
 
 local FindAI = function()
