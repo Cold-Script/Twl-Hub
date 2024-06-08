@@ -165,11 +165,15 @@ local _L_9 = _L_3.Fram:AddToggle({
   Name = "Auto Help Players Downed",
   Description = "Cứu Người Chơi Để Lấy Tiền",
   Default = false,
+  Callback = function(Value)
+			Settings.moneyfarm = Value
 })
 local _L_10 = _L_3.Fram:AddToggle({
   Name = "Auto Survival >Can Downed< ",
   Description = "Tự Sống Để Có Tiền",
   Default = false,
+  Callback = function(Value)
+				Settings.afkfarm = Value
 })
 
 _L_9:Callback(function(Value)
