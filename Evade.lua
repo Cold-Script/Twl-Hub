@@ -19,49 +19,12 @@ local Window = Library:CreateWindow({
 	MenuFadeTime = 0.2
 })
 local Evade = Window:AddTab("Main")
-local AutoFarms = Window:AddTab("Farm")
-local Gamee = Window:AddTab("Game")
-local Configs = Window:AddTab("Settings")
 
-local EvadeSector = Evade:AddLeftGroupbox("Character")
-local Visuals = Evade:AddRightGroupbox("Visuals")
-local Farms = AutoFarms:AddLeftGroupbox("Farms")
-local FarmStats = AutoFarms:AddRightGroupbox("Stats")
-
-local Gamesec = Gamee:AddRightGroupbox("Utils")
-local World = Gamee:AddRightGroupbox("World")
-
-getgenv().Settings = {
-    moneyfarm = false,
-    afkfarm = false,
-    NoCameraShake = false,
-    Downedplayeresp = false,
-    AutoRespawn = false,
-    TicketFarm = false,
-    Speed = 1450,
-    Jump = 3,
-    reviveTime = 3,
-    DownedColor = Color3.fromRGB(255,0,0),
-    PlayerColor = Color3.fromRGB(255,170,0),
-
-    stats = {
-        TicketFarm = {
-            earned = nil,
-            duration = 0
-        },
-
-        TokenFarm = {
-            earned = nil,
-            duration = 0
-        }
-
-    }
-}
-
+local EvadeSector = Evade:AddLeftGroupbox("All Feature")
 
 --// because silder does not detect dotted values 
 
-World:AddToggle("MyToggle",{Text='Full Bright',Default=false,function(Value)
+EvadeSector:AddToggle("MyToggle",{Text='Full Bright',Default=false,function(Value)
 if Value then
    	Game.Lighting.Brightness = 4
 	Game.Lighting.FogEnd = 100000
@@ -75,11 +38,11 @@ Game.Lighting.Brightness = 0.5
 end
 end})
 
-World:AddToggle("MyToggle",{Text='No Camera Shake',Default=false,function(State)
+EvadeSector:AddToggle("MyToggle",{Text='No Camera Shake',Default=false,function(State)
     Settings.NoCameraShake = State
 end})
 
-Gamesec:AddToggle("MyToggle",{Text='Fast Revive',Default=false,function(State)
+EvadeSector:AddToggle("MyToggle",{Text='Fast Revive',Default=false,function(State)
     if State then
         workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
     else
@@ -87,22 +50,11 @@ Gamesec:AddToggle("MyToggle",{Text='Fast Revive',Default=false,function(State)
     end
 end})
 
-EvadeSector:AddToggle("MyToggle",{Text='Auto Respawn',Default=false,function(State)
-    Settings.AutoRespawn = State
-end})
 
 EvadeSector:AddButton({Text='Respawn',Func=function()
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end})
 
-
-Farms:AddToggle("MyToggle",{Text='Money Farm',Default=false,function(State)
-    Settings.moneyfarm = State
-end})
-
-Farms:AddToggle("MyToggle",{Text='AFK Farm',Default=false,function(State)
-    Settings.afkfarm = State
-end})
 
 EvadeSector:AddButton({
 			Text = "Inf Jump",
@@ -116,146 +68,20 @@ EvadeSector:AddButton({
 				
 			end    
 		})
-Visuals:AddButton({
-			Text = "Player Esp",
-			Func = function()
-				local c = workspace.CurrentCamera
-				local ps = game:GetService("Players")
-				local lp = ps.LocalPlayer
-				local rs = game:GetService("RunService")
-				local function getdistancefc(part)
-					return (part.Position - c.CFrame.Position).Magnitude
-				end
-				local function esp(p, cr)
-					local h = cr:WaitForChild("Humanoid")
-					local hrp = cr:WaitForChild("HumanoidRootPart")
-					local text = Drawing.new("Text")
-					text.Visible = false
-					text.Center = true
-					text.Outline = true
-					text.Font = 2
-					text.Color = Color3.fromRGB(255, 255, 255)
-					text.Size = 17
-					local c1
-					local c2
-					local c3
-					local function dc()
-						text.Visible = false
-						text:Remove()
-						if c1 then
-							c1:Disconnect()
-							c1 = nil
-						end
-						if c2 then
-							c2:Disconnect()
-							c2 = nil
-						end
-						if c3 then
-							c3:Disconnect()
-							c3 = nil
-						end
-					end
-					c2 =
-						cr.AncestryChanged:Connect(
-							function(_, parent)
-								if not parent then
-								dc()
-							end
-							end
-						)
-					c3 =
-						h.HealthChanged:Connect(
-							function(v)
-								if (v <= 0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
-								dc()
-							end
-							end
-						)
-					c1 =
-						rs.RenderStepped:Connect(
-							function()
-								local hrp_pos, hrp_os = c:WorldToViewportPoint(hrp.Position)
-								if hrp_os then
-								text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y)
-								text.Text = p.Name .. " (" .. tostring(math.floor(getdistancefc(hrp))) .. " m)"
-								text.Visible = true
-							else
-								text.Visible = false
-							end
-							end
-						)
-				end
-				local function p_added(p)
-					if p.Character then
-						esp(p, p.Character)
-					end
-					p.CharacterAdded:Connect(
-						function(cr)
-							esp(p, cr)
-						end
-					)
-				end
-				for i, p in next, ps:GetPlayers() do
-					if p ~= lp then
-						p_added(p)
-					end
-				end
-				ps.PlayerAdded:Connect(p_added)
-				
-			end    
-		})
- Visuals:AddToggle("MyToggle",{
-			Text = "Bots tracers",
-			Default = false,
-			Callback = function(Value)
-				getgenv().toggleespmpt = Value
-			end    
-		})
-
-local cam = workspace.CurrentCamera
-		local rs = game:GetService'RunService'
- 
-		getgenv().toggleespmpt = true
-		function esp(plr)
-			if game:GetService'Players':GetPlayerFromCharacter(plr) == nil then
-				local rat = Drawing.new("Line")
-				rs.RenderStepped:Connect(function()
-					if plr:FindFirstChild'HumanoidRootPart' then
-						local vector,screen = cam:WorldToViewportPoint(plr.HumanoidRootPart.Position)
-						if screen then
-							rat.Visible = toggleespmpt
-							rat.From = Vector2.new(cam.ViewportSize.X / 2,cam.ViewportSize.Y / 1)
-							rat.To = Vector2.new(vector.X,vector.Y)
-							rat.Color = getgenv().mptespcolour
-							rat.Thickness = getgenv().mptespthickness
-						else
-							rat.Visible = false
-						end
-					else
-						pcall(function()
-							rat.Visible = false
-						end)
-					end
-					if not plr:FindFirstChild'HumanoidRootPart' or not plr:FindFirstChild'HumanoidRootPart':IsDescendantOf(game:GetService'Workspace') then
-						pcall(function()
-							rat:Remove()
-						end)
-					end
-				end)
-			end
-		end
- 
-		for i,v in pairs(game:GetService'Workspace'.Game.Players:GetChildren()) do
-			esp(v)
-		end
- 
-		game:GetService'Workspace'.Game.Players.ChildAdded:Connect(function(plr)
-			esp(plr)
-		end)
-
-local TypeLabelC5 = FarmStats:AddLabel('Auto Farm Stats')
-local DurationLabelC5 = FarmStats:AddLabel('Duration: 0')
-local EarnedLabelC5 = FarmStats:AddLabel('Earned: 0')
+EvadeSector:AddToggle("MyToggle',{Text="Enable WalkSpeed Of Nextbots",Default=false,Callback=function(v1)
+	if v1 then
+		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 35
+	else
+		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 16
+	end
+end})
+EvadeSector:AddToggle("MyToggle',{Text="Enable Field Of View Player",Default=false,Callback=function(v1)
+	if v1 then
+		workspace.CurrentCamera.FieldOfView = 120
+	else
+		workspace.CurrentCamera.FieldOfView = 70
+	end
+end})
 --local TicketsLabelC5 = FarmStats:AddLabel('Total Tickets:'..localplayer:GetAttribute('Tickets'))
 
 local FindAI = function()
