@@ -68,14 +68,14 @@ EvadeSector:AddButton({
 				
 			end    
 		})
-EvadeSector:AddToggle("MyToggle',{Text="Enable WalkSpeed Of Nextbots",Default=false,Callback=function(v1)
+EvadeSector:AddToggle("MyToggle",{Text="Enable WalkSpeed Of Nextbots",Default=false,Callback=function(v1)
 	if v1 then
 		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 35
 	else
 		game.Players.LocalPlayers.Character.Humanoid.WalkSpeed = 16
 	end
 end})
-EvadeSector:AddToggle("MyToggle',{Text="Enable Field Of View Player",Default=false,Callback=function(v1)
+EvadeSector:AddToggle("MyToggle",{Text="Enable Field Of View Player",Default=false,Callback=function(v1)
 	if v1 then
 		workspace.CurrentCamera.FieldOfView = 120
 	else
