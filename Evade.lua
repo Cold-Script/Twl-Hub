@@ -1,3 +1,7 @@
+local WorkspacePlayers = game:GetService("Workspace").Game.Players;
+local Players = game:GetService('Players');
+local localplayer = Players.LocalPlayer;
+
 local _L_1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
 local _L_2 = _L_1:MakeWindow({
@@ -78,11 +82,18 @@ local _L_7 = _L_3.Main:AddToggle({
   Description = "Tự Uống Cola",
   Default = false,
 })
+if AutoRevive then
+     if localplayer.Character and localplayer.Character:GetAttribute("Downed") then
+                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+	end        
+end
 local _L_7 = _L_3.Main:AddToggle({
   Name = "Revive You On Downed",
   Description = "Hồi Sinh Hi Chết",
   Default = false,
-})
+  Callback = function(RYOD)
+  AutoRevive = RYOD
+end})
 local _L_7 = _L_3.Main:AddToggle({
   Name = "No Shake Camera",
   Description = "Không lắc màn hình",
@@ -102,7 +113,7 @@ local _L_7 = _L_3.Main:AddToggle({
 if FRP then
         workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
     else
-        workspace.Game.Settings:SetAttribute("ReviveTime", Settings.reviveTime)
+        workspace.Game.Settings:SetAttribute("ReviveTime", 3)
     end
 end})
 local _L_7 = _L_3.Main:AddToggle({
@@ -110,16 +121,37 @@ local _L_7 = _L_3.Main:AddToggle({
   Description = "Nhảy liên tục mặc không cần chạm đất",
   Default = false,
 })
+if Settings.moneyfarm then
+            if localplayer:GetAttribute("InMenu") and localplayer:GetAttribute("Dead") ~= true then
+                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+            end
+            if localplayer.Character and localplayer.Character:GetAttribute("Downed") then
+                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+                task.wait(3)
+            else
+                revive()
+                task.wait(0.25)
+            end
+
+end
 local _L_9 = _L_3.Fram:AddToggle({
   Name = "Auto Help Players Downed",
   Description = "Cứu Người Chơi Để Lấy Tiền",
   Default = false,
-})
+  Callback = function(AHPD)
+Settings.moneyfarm = AHPD
+end})
+local nil = {}
+if Settings.afkfarm and localplayer.Character:FindFirstChild('HumanoidRootPart') ~= nil then
+            localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(6007, 7005, 8005)
+end
 local _L_10 = _L_3.Fram:AddToggle({
   Name = "Auto Survival >Can Downed< ",
   Description = "Tự Sống Để Có Tiền",
   Default = false,
-})
+  Callback = function(AS)
+Settings.afkfarm = AS
+end})
 
 _L_9:Callback(function(Value)
   _L_10:Set(false)
