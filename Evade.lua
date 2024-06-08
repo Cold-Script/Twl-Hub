@@ -1,6 +1,3 @@
-local WorkspacePlayers = game:GetService("Workspace").Game.Players;
-local Players = game:GetService('Players');
-local localplayer = Players.LocalPlayer;
 
 local _L_1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
@@ -10,6 +7,39 @@ local _L_2 = _L_1:MakeWindow({
   SaveFolder = "testando | redz lib v5.lua",
   SaveUiSize = Vector3.new(35,35)
 })
+task.spawn(function()
+			while task.wait() do
+				if Settings.AutoRespawn then
+					if localplayer.Character and localplayer.Character:GetAttribute("Downed") then
+						game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+					end
+				end
+ 
+				if Settings.NoCameraShake then
+					localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
+				end
+				if Settings.moneyfarm then
+					if localplayer.Character and localplayer.Character:GetAttribute("Downed") then
+						game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+						task.wait(3)
+					else
+						revive()
+						task.wait(1)
+					end
+				end
+				if Settings.moneyfarm == false and Settings.afkfarm and localplayer.Character:FindFirstChild('HumanoidRootPart') ~= nil then
+					localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(6007, 7005, 8005)
+				end
+			end
+		end)
+function autodrink()
+			while AutoDrink == true do
+				local ohString1 = "Cola"
+				game:GetService("ReplicatedStorage").Events.UseUsable:FireServer(ohString1)
+				wait(6)
+			end
+end
+
 local _L_3 = {
          Main = _L_2:MakeTab({"Main (🍒)", "cherry"}),
          Fram = _L_2:MakeTab({"Fram + Tracer (🤑$)", "swords"}),
@@ -77,23 +107,23 @@ else
 game.Lighting.OutdoorAmbient = Color3.new(0,0,0)
 end
 end})
-local _L_7 = _L_3.Main:AddToggle({
-  Name = "Auto Drink Colas",
-  Description = "Tự Uống Cola",
-  Default = false,
-})
-if AutoRevive then
-     if localplayer.Character and localplayer.Character:GetAttribute("Downed") then
-                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-	end        
-end
-local _L_7 = _L_3.Main:AddToggle({
-  Name = "Revive You On Downed",
-  Description = "Hồi Sinh Hi Chết",
-  Default = false,
-  Callback = function(RYOD)
-  AutoRevive = RYOD
-end})
+_L_3.Main:AddToggle({
+			Name = "Auto Drink Cola (You Right Have Cola)",
+			Default = false,
+		        Description = "Tự Uống Cola",
+			Callback = function(Value)
+				AutoDrink = Value
+				autodrink()
+			end    
+		})
+_L_3.Main:AddToggle({
+			Name = "Auto Respawn",
+			Default = false,
+		        Description = "Hồi Sinh Hi Chết",
+			Callback = function(Value)
+				Settings.AutoRespawn = Value
+			end    
+		})
 local _L_7 = _L_3.Main:AddToggle({
   Name = "No Shake Camera",
   Description = "Không lắc màn hình",
@@ -107,7 +137,7 @@ Players.LocalPlayer.PlayerScripts.CameraShake.Value = CFrame.new(9,9,9) * CFrame
 		end})
 local _L_7 = _L_3.Main:AddToggle({
   Name = "Fast Revive Players",
-  Description = "Hồi Sinh Nhanh",
+  Description = "Hồi Sinh Người Chơi Nhanh",
   Default = false,
   Callback = function(FRP)
 if FRP then
@@ -116,42 +146,31 @@ if FRP then
         workspace.Game.Settings:SetAttribute("ReviveTime", 3)
     end
 end})
-local _L_7 = _L_3.Main:AddToggle({
-  Name = "Inf Jump",
-  Description = "Nhảy liên tục mặc không cần chạm đất",
-  Default = false,
-})
-if Settings.moneyfarm then
-            if localplayer:GetAttribute("InMenu") and localplayer:GetAttribute("Dead") ~= true then
-                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-            end
-            if localplayer.Character and localplayer.Character:GetAttribute("Downed") then
-                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-                task.wait(3)
-            else
-                revive()
-                task.wait(0.25)
-            end
+  EvadeSector:AddButton({Name='Respawn',Description = "Hồi Sinh",function()
+    game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+end})
 
-end
+
+_L_3.Main:AddButton({Name = "Jump No Colldown",Description = "Nhảy liên tục",function()
+				local InfiniteJumpEnabled = true
+				game:GetService("UserInputService").JumpRequest:connect(function()
+					if InfiniteJumpEnabled then
+						game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+					end
+				end)
+				
+			end    
+		})
 local _L_9 = _L_3.Fram:AddToggle({
   Name = "Auto Help Players Downed",
   Description = "Cứu Người Chơi Để Lấy Tiền",
   Default = false,
-  Callback = function(AHPD)
-Settings.moneyfarm = AHPD
-end})
-local nil = {}
-if Settings.afkfarm and localplayer.Character:FindFirstChild('HumanoidRootPart') ~= nil then
-            localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(6007, 7005, 8005)
-end
+})
 local _L_10 = _L_3.Fram:AddToggle({
   Name = "Auto Survival >Can Downed< ",
   Description = "Tự Sống Để Có Tiền",
   Default = false,
-  Callback = function(AS)
-Settings.afkfarm = AS
-end})
+})
 
 _L_9:Callback(function(Value)
   _L_10:Set(false)
