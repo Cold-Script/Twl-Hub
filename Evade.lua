@@ -95,6 +95,17 @@ Players.LocalPlayer.PlayerScripts.CameraShake.Value = CFrame.new(9,9,9) * CFrame
 			end				
 		end})
 local _L_7 = _L_3.Main:AddToggle({
+  Name = "Fast Revive Players",
+  Description = "Hồi Sinh Nhanh",
+  Default = false,
+  Callback = function(FRP)
+if FRP then
+        workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
+    else
+        workspace.Game.Settings:SetAttribute("ReviveTime", Settings.reviveTime)
+    end
+end})
+local _L_7 = _L_3.Main:AddToggle({
   Name = "Inf Jump",
   Description = "Nhảy liên tục mặc không cần chạm đất",
   Default = false,
