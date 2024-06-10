@@ -42,7 +42,6 @@ end
 
 local _L_3 = {
          Main = _L_2:MakeTab({"Main (🍒)", "cherry"}),
-         Fram = _L_2:MakeTab({"Fram + Tracer (🤑$)", "swords"}),
          Configs = _L_2:MakeTab({"Configs", "user"})
 }
 _L_1:SetTheme("Dark")
@@ -107,23 +106,6 @@ else
 game.Lighting.OutdoorAmbient = Color3.new(0,0,0)
 end
 end})
-_L_3.Main:AddToggle({
-			Name = "Auto Drink Cola (You Right Have Cola)",
-			Default = false,
-		        Description = "Tự Uống Cola",
-			Callback = function(Value)
-				AutoDrink = Value
-				autodrink()
-			end    
-		})
-_L_3.Main:AddToggle({
-			Name = "Auto Respawn",
-			Default = false,
-		        Description = "Hồi Sinh Hi Chết",
-			Callback = function(Value)
-				Settings.AutoRespawn = Value
-			end    
-		})
 local _L_7 = _L_3.Main:AddToggle({
   Name = "No Shake Camera",
   Description = "Không lắc màn hình",
@@ -146,7 +128,7 @@ if FRP then
         workspace.Game.Settings:SetAttribute("ReviveTime", 3)
     end
 end})
-  EvadeSector:AddButton({Name='Respawn',Description = "Hồi Sinh",function()
+  _L_3.Main:AddButton({Name='Respawn',Description = "Hồi Sinh",function()
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end})
 
@@ -161,33 +143,7 @@ _L_3.Main:AddButton({Name = "Jump No Colldown",Description = "Nhảy liên tục
 				
 			end    
 		})
-local _L_9 = _L_3.Fram:AddToggle({
-  Name = "Auto Help Players Downed",
-  Description = "Cứu Người Chơi Để Lấy Tiền",
-  Default = false,
-  Callback = function(Value)
-			Settings.moneyfarm = Value
-})
-local _L_10 = _L_3.Fram:AddToggle({
-  Name = "Auto Survival >Can Downed< ",
-  Description = "Tự Sống Để Có Tiền",
-  Default = false,
-  Callback = function(Value)
-				Settings.afkfarm = Value
-})
 
-_L_9:Callback(function(Value)
-  _L_10:Set(false)
-end)
-_L_10:Callback(function(Value)
-  _L_9:Set(false)
-end)
-
-local _L_9 = _L_3.Fram:AddToggle({
-  Name = "Tracer Nextbots",
-  Description = "Chỉ Vào Cái Con AI",
-  Default = false,
-})
 
 _L_3.Configs:AddButton({"Dark Theme",Default=true, function()
   _L_1:SetTheme("Dark")
