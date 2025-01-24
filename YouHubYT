@@ -1,1 +1,2 @@
-game.Players.LocalPlayer:Kick("Doors Floor 2 sẽ ra mất sớm nhất để cho các bạn chơi")
+wait(1)
+game.Players.LocalPlayer:Kick("Please check your internet if want next.")
